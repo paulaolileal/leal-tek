@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layout/BaseLayout.astro';
 import Badge from '../ui/Badge.astro';
+import TechBadge from '../ui/TechBadge.astro';
 import Button from '../ui/Button.astro';
 import { labProjects } from '../../data/labs';
 import { getTranslations } from '../../i18n/utils';
@@ -15,6 +16,26 @@ const statusLabel: Record<string, string> = {
   wip:      tl.wip,
   complete: tl.complete,
 };
+
+type LabContent = { tagline: string; description: string };
+const labsContent = t.labsContent as unknown as Record<string, LabContent>;
+
+const enrichedLabs = labProjects.map((project, i) => {
+  const tc = labsContent[project.id];
+  const statusVariant = project.status === 'active'
+    ? 'status-active'
+    : project.status === 'wip'
+      ? 'status-wip'
+      : 'status-complete';
+  return {
+    ...project,
+    displayTagline: tc?.tagline ?? project.tagline,
+    displayDescription: tc?.description ?? project.description,
+    statusVariant,
+    delayClass: `project-card reveal reveal-delay-${(i % 3) + 1}`,
+    idLabel: String(i + 1).padStart(2, "0"),
+  };
+});
 ---
 
 <BaseLayout title={tl.meta.title} description={tl.meta.description}>
@@ -32,47 +53,47 @@ const statusLabel: Record<string, string> = {
   <section class="projects-section section-sm">
     <div class="container">
       <div class="projects-grid">
-        {labProjects.map((project, i) => (
-          <article class={`project-card reveal reveal-delay-${(i % 3) + 1}`}>
-            <div class="card-top">
-              <div class="card-header">
-                <Badge variant={`status-${project.status}`}>
-                  {statusLabel[project.status]}
-                </Badge>
-                <span class="project-id">{String(i + 1).padStart(2, '0')}</span>
+        {enrichedLabs.map(project => (
+            <article class={project.delayClass}>
+              <div class="card-top">
+                <div class="card-header">
+                  <Badge variant={project.statusVariant}>
+                    {statusLabel[project.status]}
+                  </Badge>
+                  <span class="project-id">{project.idLabel}</span>
+                </div>
+                <h3 class="project-name">{project.name}</h3>
+                <p class="project-tagline">{project.displayTagline}</p>
               </div>
-              <h3 class="project-name">{project.name}</h3>
-              <p class="project-tagline">{project.tagline}</p>
-            </div>
 
-            <p class="project-description">{project.description}</p>
+              <p class="project-description">{project.displayDescription}</p>
 
-            <div class="project-stack">
-              {project.techStack.map(tech => (
-                <Badge variant="tech">{tech}</Badge>
-              ))}
-            </div>
-
-            {(project.demoUrl || project.gitlabUrl || project.githubUrl) && (
-              <div class="project-links">
-                {project.demoUrl && (
-                  <Button href={project.demoUrl} variant="primary" size="sm" target="_blank" rel="noopener noreferrer">
-                    Live Demo
-                  </Button>
-                )}
-                {project.gitlabUrl && (
-                  <Button href={project.gitlabUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">
-                    GitLab
-                  </Button>
-                )}
-                {project.githubUrl && (
-                  <Button href={project.githubUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                  </Button>
-                )}
+              <div class="project-stack">
+                {project.techStack.map(tech => (
+                  <TechBadge tech={tech} />
+                ))}
               </div>
-            )}
-          </article>
+
+              {(project.demoUrl || project.gitlabUrl || project.githubUrl) && (
+                <div class="project-links">
+                  {project.demoUrl && (
+                    <Button href={project.demoUrl} variant="primary" size="sm" target="_blank" rel="noopener noreferrer">
+                      Live Demo
+                    </Button>
+                  )}
+                  {project.gitlabUrl && (
+                    <Button href={project.gitlabUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">
+                      GitLab
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button href={project.githubUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">
+                      GitHub
+                    </Button>
+                  )}
+                </div>
+              )}
+            </article>
         ))}
       </div>
     </div>

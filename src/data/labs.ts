@@ -51,14 +51,4 @@ export const labProjects: LabProject[] = [
     techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Google Sheets API', 'Recharts'],
     gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
   },
-  {
-    id: 'blip-payments',
-    name: 'Blip Payments',
-    tagline: 'Unified payment provider orchestration platform',
-    description:
-      'Enterprise-grade multi-provider payment platform built at Blip. Standardizes integrations with Fiserv, Cielo, Mercado Pago, EfíBank, and PicPay — supporting PIX, Payment Links, and Open Finance through a single unified API.',
-    status: 'complete',
-    techStack: ['.NET 8', 'MongoDB', 'AES-256', 'Azure DevOps', 'Kubernetes', 'Helm'],
-    gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
-  },
 ];

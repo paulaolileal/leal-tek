@@ -16,6 +16,7 @@ export interface Product {
   externalUrl?: string;
   nugetUrl?: string;
   gitlabUrl?: string;
+  logo?: string;
 }
 
 export const products: Product[] = [
@@ -73,6 +74,7 @@ export const products: Product[] = [
     ],
     href: '/products/mindcircle',
     gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
+    logo: '/images/mindcircle-icon.svg',
   },
   {
     id: 'myth',
@@ -113,19 +115,20 @@ export const products: Product[] = [
     href: '/products/myth',
     nugetUrl: 'https://www.nuget.org/profiles/paulaolileal',
     gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
+    logo: '/images/myth-logo.png',
   },
 ];
 
 export const mythPackages = [
-  { name: 'Myth.Commons',                   description: 'Foundation utilities, value objects, global service provider, pagination.' },
-  { name: 'Myth.DependencyInjection',        description: 'Convention-based auto-registration and assembly scanning.' },
-  { name: 'Myth.Flow',                       description: 'Pipeline orchestration with fluent API, retry, OpenTelemetry.' },
-  { name: 'Myth.Flow.Actions',               description: 'CQRS and event-driven architecture with IDispatcher and event bus.' },
-  { name: 'Myth.Guard',                      description: 'Fluent, context-aware validation with async integration.' },
-  { name: 'Myth.Repository',                 description: 'Clean read/write repository abstractions.' },
-  { name: 'Myth.Repository.EntityFramework', description: 'EF Core implementations with BaseContext and Unit of Work.' },
-  { name: 'Myth.Specification',              description: 'Composable query specifications with fluent API.' },
-  { name: 'Myth.Rest',                       description: 'Modern REST client with resilience and circuit breaker.' },
-  { name: 'Myth.Morph',                      description: 'Compile-time safe object transformations, zero reflection.' },
-  { name: 'Myth.Testing',                    description: 'Pre-configured test base classes, HTTP mocking, Bogus, FluentAssertions.' },
+  { name: 'Myth.Commons',                   logo: '/images/myth-logo.png',                       description: 'Foundation utilities, value objects, global service provider, pagination.' },
+  { name: 'Myth.DependencyInjection',        logo: '/images/myth-dependency-injection-logo.png',  description: 'Convention-based auto-registration and assembly scanning.' },
+  { name: 'Myth.Flow',                       logo: '/images/myth-flow-logo.png',                  description: 'Pipeline orchestration with fluent API, retry, OpenTelemetry.' },
+  { name: 'Myth.Flow.Actions',               logo: '/images/myth-flow-actions-logo.png',          description: 'CQRS and event-driven architecture with IDispatcher and event bus.' },
+  { name: 'Myth.Guard',                      logo: '/images/myth-guard-logo.png',                 description: 'Fluent, context-aware validation with async integration.' },
+  { name: 'Myth.Repository',                 logo: '/images/myth-repository-logo.png',            description: 'Clean read/write repository abstractions.' },
+  { name: 'Myth.Repository.EntityFramework', logo: '/images/myth-repository-ef-logo.png',        description: 'EF Core implementations with BaseContext and Unit of Work.' },
+  { name: 'Myth.Specification',              logo: '/images/myth-specification-logo.png',         description: 'Composable query specifications with fluent API.' },
+  { name: 'Myth.Rest',                       logo: '/images/myth-rest-logo.png',                  description: 'Modern REST client with resilience and circuit breaker.' },
+  { name: 'Myth.Morph',                      logo: '/images/myth-morph-logo.png',                 description: 'Compile-time safe object transformations, zero reflection.' },
+  { name: 'Myth.Testing',                    logo: '/images/myth-testing-logo.png',               description: 'Pre-configured test base classes, HTTP mocking, Bogus, FluentAssertions.' },
 ];

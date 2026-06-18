@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layout/BaseLayout.astro';
 import Button from '../ui/Button.astro';
+import TechBadge from '../ui/TechBadge.astro';
 import ProductCard from '../sections/ProductCard.astro';
 import GameCard from '../sections/GameCard.astro';
 import BlogPostCard from '../sections/BlogPostCard.astro';
@@ -20,82 +21,114 @@ const allPosts = await getCollection('blog');
 const latestPosts = allPosts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+const mindcircle = products.find(p => p.id === 'mindcircle')!;
+const myth = products.find(p => p.id === 'myth')!;
+
+type LabTagline = { tagline: string };
+const homeLabsContent = t.labsContent as unknown as Record<string, LabTagline>;
+const enrichedHomeLabs = labProjects.map(lab => ({
+  ...lab,
+  displayTagline: homeLabsContent[lab.id]?.tagline ?? lab.tagline,
+}));
 ---
 
 <BaseLayout title={th.meta.title} description={th.meta.description}>
 
   <!-- ═══════════════════════════════════════════════════════ HERO -->
   <section class="hero">
-    <div class="hero-bg-gear" aria-hidden="true">
-      <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g opacity="0.04">
-          <path
-            d="M300 80
-               L320 60 L340 80 L360 60 L380 80
-               A220 220 0 0 1 520 300
-               L540 320 L520 340 L540 360 L520 380
-               A220 220 0 0 1 300 520
-               L280 540 L260 520 L240 540 L220 520
-               A220 220 0 0 1 80 300
-               L60 280 L80 260 L60 240 L80 220
-               A220 220 0 0 1 300 80Z"
-            stroke="var(--gold-primary)" stroke-width="2" fill="none"
-          />
-          <circle cx="300" cy="300" r="120" stroke="var(--gold-primary)" stroke-width="1.5" fill="none" />
-          <circle cx="300" cy="300" r="60" stroke="var(--gold-primary)" stroke-width="1" fill="none" />
-          <circle cx="300" cy="300" r="20" fill="var(--gold-primary)" />
-          <path d="M285 80 L285 40 L315 40 L315 80" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <path d="M285 520 L285 560 L315 560 L315 520" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <path d="M80 285 L40 285 L40 315 L80 315" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <path d="M520 285 L560 285 L560 315 L520 315" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <path d="M132 132 L103 103 L124 82 L153 111" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <path d="M468 132 L497 103 L476 82 L447 111" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <path d="M132 468 L103 497 L124 518 L153 489" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <path d="M468 468 L497 497 L476 518 L447 489" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
-          <line x1="300" y1="180" x2="300" y2="420" stroke="var(--gold-primary)" stroke-width="0.5" stroke-dasharray="4 8"/>
-          <line x1="180" y1="300" x2="420" y2="300" stroke="var(--gold-primary)" stroke-width="0.5" stroke-dasharray="4 8"/>
-        </g>
-      </svg>
-    </div>
-
     <div class="container hero-container">
-      <div class="hero-content">
-        <span class="section-label hero-label">LealTEK</span>
 
-        <h1 class="hero-headline">
-          {th.heroHeadline1}<br />
-          <em>{th.heroHeadline2}</em>
-        </h1>
+      <!-- LEFT: headline + CTA + stats -->
+      <div class="hero-left">
+        <div class="hero-content">
+          <span class="section-label hero-label">LealTEK</span>
 
-        <p class="hero-sub">{th.heroSub}</p>
+          <h1 class="hero-headline">
+            {th.heroHeadline1}<br />
+            <em>{th.heroHeadline2}</em>
+          </h1>
 
-        <div class="hero-actions">
-          <Button href={`${base}/products`} variant="primary" size="lg">{th.cta1}</Button>
-          <Button href={`${base}/about`} variant="secondary" size="lg">{th.cta2}</Button>
+          <p class="hero-sub">{th.heroSub}</p>
+
+          <div class="hero-actions">
+            <Button href={`${base}/products`} variant="primary" size="lg">{th.cta1}</Button>
+            <Button href={`${base}/about`} variant="secondary" size="lg">{th.cta2}</Button>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">10+</span>
+            <span class="stat-label">{th.statYears}</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-value">11</span>
+            <span class="stat-label">{th.statPackages}</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-value">40%</span>
+            <span class="stat-label">{th.statIncidents}</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-value">2</span>
+            <span class="stat-label">{th.statGames}</span>
+          </div>
         </div>
       </div>
 
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-value">10+</span>
-          <span class="stat-label">{th.statYears}</span>
+      <!-- RIGHT: floating product cards visual -->
+      <div class="hero-visual" aria-hidden="true">
+        <!-- MindCircle card -->
+        <div class="vis-card vis-card-mc">
+          <div class="vis-card-row">
+            <div class="vis-logo-wrap vis-logo-mc">
+              <img src="/images/mindcircle-icon.svg" alt="" width="28" height="28" />
+            </div>
+            <div class="vis-card-info">
+              <span class="vis-name">MindCircle</span>
+              <span class="vis-type">SaaS Platform</span>
+            </div>
+            <span class="vis-live-dot"></span>
+          </div>
+          <div class="vis-chips">
+            <span class="vis-chip">.NET 8</span>
+            <span class="vis-chip">React 18</span>
+            <span class="vis-chip">AI</span>
+          </div>
         </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-value">11</span>
-          <span class="stat-label">{th.statPackages}</span>
+
+        <!-- Myth card -->
+        <div class="vis-card vis-card-myth">
+          <div class="vis-card-row">
+            <div class="vis-logo-wrap vis-logo-myth">
+              <img src="/images/myth-logo.png" alt="" width="28" height="28" />
+            </div>
+            <div class="vis-card-info">
+              <span class="vis-name">Myth Ecosystem</span>
+              <span class="vis-type">Open Source · NuGet</span>
+            </div>
+          </div>
+          <div class="vis-stat">
+            <span class="vis-stat-num">11+</span>
+            <span class="vis-stat-label">packages</span>
+          </div>
         </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-value">40%</span>
-          <span class="stat-label">{th.statIncidents}</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-value">2</span>
-          <span class="stat-label">{th.statGames}</span>
-        </div>
+
+        <!-- Floating tech pills -->
+        <div class="vis-pill vp-1">TypeScript</div>
+        <div class="vis-pill vp-2">Clean Arch</div>
+        <div class="vis-pill vp-3">SignalR</div>
+        <div class="vis-pill vp-4">DDD</div>
+
+        <!-- Background glow rings -->
+        <div class="vis-ring vis-ring-1"></div>
+        <div class="vis-ring vis-ring-2"></div>
       </div>
+
     </div>
 
     <div class="scroll-hint" aria-hidden="true">
@@ -130,34 +163,34 @@ const latestPosts = allPosts
         <p class="section-description">{th.labsDesc}</p>
       </div>
       <div class="grid-3">
-        {labProjects.map(lab => (
-          <article class="lab-card">
-            <div class="lab-card-top">
-              <span class:list={['lab-status', lab.status]}>
-                {lab.status === 'active' ? th.labActive : lab.status === 'wip' ? th.labWip : th.labComplete}
-              </span>
-              <h3 class="lab-name">{lab.name}</h3>
-              <p class="lab-tagline">{lab.tagline}</p>
-            </div>
-            <div class="lab-tags">
-              {lab.techStack.slice(0, 2).map(tech => (
-                <span class="tech-tag">{tech}</span>
-              ))}
-            </div>
-            {(lab.gitlabUrl || lab.githubUrl || lab.demoUrl) && (
-              <a
-                href={lab.demoUrl ?? lab.gitlabUrl ?? lab.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="lab-link"
-              >
-                {th.labViewProject}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                </svg>
-              </a>
-            )}
-          </article>
+        {enrichedHomeLabs.map(lab => (
+            <article class="lab-card">
+              <div class="lab-card-top">
+                <span class:list={['lab-status', lab.status]}>
+                  {lab.status === 'active' ? th.labActive : lab.status === 'wip' ? th.labWip : th.labComplete}
+                </span>
+                <h3 class="lab-name">{lab.name}</h3>
+                <p class="lab-tagline">{lab.displayTagline}</p>
+              </div>
+              <div class="lab-tags">
+                {lab.techStack.slice(0, 2).map(tech => (
+                  <TechBadge tech={tech} />
+                ))}
+              </div>
+              {(lab.gitlabUrl || lab.githubUrl || lab.demoUrl) && (
+                <a
+                  href={lab.demoUrl ?? lab.gitlabUrl ?? lab.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="lab-link"
+                >
+                  {th.labViewProject}
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  </svg>
+                </a>
+              )}
+            </article>
         ))}
       </div>
     </div>
@@ -239,6 +272,7 @@ const latestPosts = allPosts
 </BaseLayout>
 
 <style>
+  /* ── HERO ── */
   .hero {
     position: relative;
     min-height: calc(100vh - var(--header-height));
@@ -249,27 +283,22 @@ const latestPosts = allPosts
     padding-block: var(--space-4xl);
   }
 
-  .hero-bg-gear {
-    position: absolute;
-    right: -120px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 640px;
-    height: 640px;
-    pointer-events: none;
-    user-select: none;
-  }
-
   .hero-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-3xl);
+    align-items: center;
     position: relative;
     z-index: 1;
   }
 
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+
   .hero-content {
-    max-width: 680px;
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
@@ -281,7 +310,7 @@ const latestPosts = allPosts
   }
 
   .hero-headline {
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
     font-weight: 800;
     line-height: 1.0;
     letter-spacing: -0.03em;
@@ -300,8 +329,7 @@ const latestPosts = allPosts
     content: '';
     position: absolute;
     bottom: 4px;
-    left: 0;
-    right: 0;
+    left: 0; right: 0;
     height: 3px;
     background: linear-gradient(90deg, var(--gold-primary), var(--gold-light), transparent);
     border-radius: 2px;
@@ -315,9 +343,9 @@ const latestPosts = allPosts
   }
 
   .hero-sub {
-    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
     color: var(--text-secondary);
-    max-width: 520px;
+    max-width: 480px;
     line-height: 1.7;
     animation: fadeSlideUp 0.7s 0.2s ease both;
   }
@@ -332,7 +360,6 @@ const latestPosts = allPosts
   .hero-stats {
     display: flex;
     align-items: stretch;
-    gap: 0;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
@@ -345,15 +372,14 @@ const latestPosts = allPosts
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: var(--space-lg) var(--space-xl);
-    position: relative;
+    padding: var(--space-md) var(--space-lg);
   }
 
   .stat-item:hover { background: var(--bg-card-hover); }
 
   .stat-value {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
     font-weight: 800;
     color: var(--gold-primary);
     line-height: 1;
@@ -362,7 +388,7 @@ const latestPosts = allPosts
 
   .stat-label {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -370,12 +396,169 @@ const latestPosts = allPosts
     white-space: nowrap;
   }
 
-  .stat-divider {
-    width: 1px;
-    background: var(--border);
+  .stat-divider { width: 1px; background: var(--border); flex-shrink: 0; }
+
+  /* ── HERO VISUAL (right side) ── */
+  .hero-visual {
+    position: relative;
+    height: 420px;
+    animation: fadeSlideUp 0.8s 0.4s ease both;
+  }
+
+  .vis-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 151, 58, 0.08);
+    pointer-events: none;
+  }
+
+  .vis-ring-1 {
+    width: 360px; height: 360px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .vis-ring-2 {
+    width: 220px; height: 220px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-color: rgba(200, 151, 58, 0.12);
+  }
+
+  .vis-card {
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-width: 220px;
+  }
+
+  .vis-card-mc {
+    top: 20px; left: 0;
+    border-color: rgba(59, 158, 245, 0.25);
+    background: linear-gradient(135deg, var(--bg-card), rgba(59, 158, 245, 0.04));
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .vis-card-myth {
+    bottom: 40px; right: 0;
+    border-color: rgba(200, 151, 58, 0.3);
+    background: linear-gradient(135deg, var(--bg-card), rgba(200, 151, 58, 0.04));
+    animation: float 6s 1.5s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-10px); }
+  }
+
+  .vis-card-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .vis-logo-wrap {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    padding: 4px;
     flex-shrink: 0;
   }
 
+  .vis-logo-mc   { background: rgba(59, 158, 245, 0.12); border: 1px solid rgba(59, 158, 245, 0.2); }
+  .vis-logo-myth { background: rgba(200, 151, 58, 0.10); border: 1px solid rgba(200, 151, 58, 0.2); }
+
+  .vis-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
+
+  .vis-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .vis-name { font-weight: 700; font-size: 0.875rem; color: var(--text-primary); }
+  .vis-type { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.06em; }
+
+  .vis-live-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4ADE80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+    animation: pulse-dot 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.7; transform: scale(1.2); }
+  }
+
+  .vis-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .vis-chip {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(59, 158, 245, 0.08);
+    border: 1px solid rgba(59, 158, 245, 0.2);
+    color: #60A5FA;
+  }
+
+  .vis-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border);
+  }
+
+  .vis-stat-num  { font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; color: var(--gold-primary); line-height: 1; }
+  .vis-stat-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .vis-pill {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .vp-1 { top: 50%; left: 40%; transform: translateY(-50%); animation: floatPill 7s 0s ease-in-out infinite; }
+  .vp-2 { top: 35%; right: 10%; animation: floatPill 7s 1s ease-in-out infinite; }
+  .vp-3 { bottom: 20%; left: 30%; animation: floatPill 7s 2s ease-in-out infinite; }
+  .vp-4 { top: 15%; right: 20%; animation: floatPill 7s 0.5s ease-in-out infinite; }
+
+  @keyframes floatPill {
+    0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+    33%       { transform: translateY(-6px) translateX(3px); opacity: 1; }
+    66%       { transform: translateY(4px) translateX(-2px); opacity: 0.8; }
+  }
+
+  /* ── SCROLL HINT ── */
   .scroll-hint {
     position: absolute;
     bottom: var(--space-xl);
@@ -388,8 +571,7 @@ const latestPosts = allPosts
 
   .scroll-line {
     display: block;
-    width: 1px;
-    height: 48px;
+    width: 1px; height: 48px;
     background: linear-gradient(to bottom, var(--gold-primary), transparent);
     animation: scrollPulse 2s ease-in-out infinite;
   }
@@ -409,6 +591,7 @@ const latestPosts = allPosts
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── SECTIONS ── */
   .section-alt {
     background: var(--bg-surface);
     position: relative;
@@ -451,6 +634,7 @@ const latestPosts = allPosts
     gap: var(--space-xl);
   }
 
+  /* ── LAB CARDS ── */
   .lab-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -506,8 +690,7 @@ const latestPosts = allPosts
 
   .lab-status::before {
     content: '';
-    width: 5px;
-    height: 5px;
+    width: 5px; height: 5px;
     border-radius: 50%;
     background: currentColor;
     flex-shrink: 0;
@@ -520,11 +703,7 @@ const latestPosts = allPosts
   .lab-name    { font-size: 1.125rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; }
   .lab-tagline { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
 
-  .lab-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-  }
+  .lab-tags { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 
   .lab-link {
     display: inline-flex;
@@ -540,6 +719,7 @@ const latestPosts = allPosts
 
   .lab-link:hover { color: var(--gold-light); gap: 10px; }
 
+  /* ── BLOG / CTA ── */
   .section-cta {
     display: flex;
     justify-content: center;
@@ -564,7 +744,6 @@ const latestPosts = allPosts
   .linkedin-cta:hover {
     background: rgba(10, 102, 194, 0.15);
     border-color: rgba(10, 102, 194, 0.4);
-    color: #0A66C2;
     transform: translateY(-1px);
     box-shadow: 0 4px 16px rgba(10, 102, 194, 0.15);
   }
@@ -584,44 +763,27 @@ const latestPosts = allPosts
   }
 
   .cta-banner-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-    max-width: 560px;
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column;
+    gap: var(--space-lg); max-width: 560px;
   }
 
-  .cta-banner-headline {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-  }
-
+  .cta-banner-headline { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em; }
   .cta-banner-text { font-size: 1rem; color: var(--text-secondary); max-width: 440px; }
 
-  .cta-banner-deco {
-    position: absolute;
-    right: -80px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
+  .cta-banner-deco { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 
-  .deco-circle {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(200, 151, 58, 0.15);
-  }
-
+  .deco-circle { position: absolute; border-radius: 50%; border: 1px solid rgba(200, 151, 58, 0.15); }
   .deco-circle-1 { width: 320px; height: 320px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
   .deco-circle-2 { width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(200,151,58,0.2); }
   .deco-circle-3 { width: 80px; height: 80px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(200,151,58,0.08); border-color: rgba(200,151,58,0.3); }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
+    .hero-container { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
     .grid-3 { grid-template-columns: repeat(2, 1fr); }
-    .hero-bg-gear { width: 400px; height: 400px; right: -80px; }
+    .hero-headline { font-size: clamp(3rem, 7vw, 5rem); }
   }
 
   @media (max-width: 768px) {
@@ -629,7 +791,6 @@ const latestPosts = allPosts
     .hero-stats { flex-direction: column; width: 100%; }
     .stat-divider { width: auto; height: 1px; }
     .stat-item { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-md); }
-    .hero-bg-gear { opacity: 0.5; width: 280px; height: 280px; right: -60px; top: 10%; transform: none; }
     .cta-banner { padding: var(--space-2xl) var(--space-xl); }
     .cta-banner-deco { display: none; }
   }

@@ -1,4 +1,5 @@
 ---
+import TechBadge from '../ui/TechBadge.astro';
 import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
 import { getTranslations } from '../../i18n/utils';
@@ -14,24 +15,33 @@ const { product, featured = false } = Astro.props;
 const locale = (Astro.currentLocale ?? 'pt') as Locale;
 const t = getTranslations(locale);
 const base = locale === 'en' ? '/en' : '';
+const tp = (t.productsContent as Record<string, { tagline: string; description: string }>)[product.id];
+
+const tagline = tp?.tagline ?? product.tagline;
+const description = tp?.description ?? product.description;
 ---
 
 <article class:list={['product-card', { featured }]}>
   <div class="card-header">
-    <div class="card-meta">
+    <div class="card-header-row">
+      {product.logo && (
+        <div class="card-logo">
+          <img src={product.logo} alt={product.name} width="36" height="36" class="card-logo-img" />
+        </div>
+      )}
       <Badge variant={product.status === 'active' ? 'status-active' : 'status-wip'}>
         {product.status === 'active' ? t.components.productActive : t.components.productInDev}
       </Badge>
     </div>
     <h3 class="card-name">{product.name}</h3>
-    <p class="card-tagline">{product.tagline}</p>
+    <p class="card-tagline">{tagline}</p>
   </div>
 
-  <p class="card-description">{product.description}</p>
+  <p class="card-description">{description}</p>
 
   <div class="card-stack">
     {product.techStack.slice(0, 5).map(tech => (
-      <Badge variant="tech">{tech}</Badge>
+      <TechBadge tech={tech} />
     ))}
   </div>
 
@@ -64,9 +74,7 @@ const base = locale === 'en' ? '/en' : '';
   .product-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, var(--gold-primary), transparent);
     opacity: 0;
@@ -89,10 +97,32 @@ const base = locale === 'en' ? '/en' : '';
 
   .product-card.featured::before { opacity: 1; }
 
-  .card-header {
+  .card-header { display: flex; flex-direction: column; gap: var(--space-sm); }
+
+  .card-header-row {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .card-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(200, 151, 58, 0.08);
+    border: 1px solid rgba(200, 151, 58, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
   }
 
   .card-name {
@@ -115,15 +145,7 @@ const base = locale === 'en' ? '/en' : '';
     flex: 1;
   }
 
-  .card-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-  }
+  .card-stack { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 
-  .card-actions {
-    display: flex;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
-  }
+  .card-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
 </style>

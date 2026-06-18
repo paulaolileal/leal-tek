@@ -78,14 +78,14 @@ export const translations = {
         'Bacharelado em Ciência da Computação',
       ],
       timeline: [
-        { company: 'TOTVS', role: 'Staff Engineer', period: 'mar 2026 — presente', current: true },
-        { company: 'MindCircle', role: 'Fundadora', period: 'mar 2026 — presente', current: true },
-        { company: 'Blip', role: 'Staff Architect', period: 'mai 2024 — mar 2026', current: false },
-        { company: 'Blip', role: 'Arquiteta de Software', period: 'ago 2023 — mai 2024', current: false },
-        { company: 'Blip', role: 'Tech Lead', period: 'nov 2021 — ago 2023', current: false },
-        { company: 'dti digital', role: 'Tech Lead', period: 'jan 2021 — nov 2021', current: false },
-        { company: 'TCE-MG', role: 'Desenvolvedora Sênior', period: 'out 2019 — jan 2021', current: false },
-        { company: 'Raro Labs', role: 'Desenvolvedora Web', period: 'mar 2019 — set 2019', current: false },
+        { company: 'TOTVS', role: 'Staff Engineer', period: 'mar 2026 — presente', current: true, highlight: 'CLI plug-and-play e AI Registry para acelerar adoção de IA em escala corporativa' },
+        { company: 'MindCircle', role: 'Fundadora', period: 'mar 2026 — presente', current: true, highlight: 'Atuação ponta a ponta: da arquitetura ao produto, IA, colaboração em tempo real e UX' },
+        { company: 'Blip', role: 'Staff Architect', period: 'mai 2024 — mar 2026', current: false, highlight: '−40% incidentes críticos; arquitetura unificada de pagamentos (PIX + Open Finance + Fiserv/Cielo)' },
+        { company: 'Blip', role: 'Arquiteta de Software', period: 'ago 2023 — mai 2024', current: false, highlight: '−60% setup time de projetos; pipelines CI/CD Azure DevOps padronizados para todas as squads' },
+        { company: 'Blip', role: 'Tech Lead', period: 'nov 2021 — ago 2023', current: false, highlight: 'Liderança de 3 squads em produtos B2B modulares com micro-frontends React e APIs .NET' },
+        { company: 'dti digital', role: 'Tech Lead', period: 'jan 2021 — nov 2021', current: false, highlight: '−70% tempo de integração de parceiros com API PIX para o Grupo Martins' },
+        { company: 'TCE-MG', role: 'Desenvolvedora Sênior', period: 'out 2019 — jan 2021', current: false, highlight: '+35% performance do sistema; modernização com arquitetura hexagonal e DDD' },
+        { company: 'Raro Labs', role: 'Desenvolvedora Web', period: 'mar 2019 — set 2019', current: false, highlight: 'Automações e módulos administrativos para o Banco BMG' },
       ],
     },
 
@@ -255,6 +255,89 @@ export const translations = {
       blogReadMore: 'Leia Mais',
       blogViewLinkedIn: 'Ver no LinkedIn',
     },
+
+    gamesContent: {
+      impostor: {
+        tagline: 'Quem está se escondendo entre vocês?',
+        description: 'Jogo de engano em grupo onde um jogador selecionado aleatoriamente — o impostor — não sabe a palavra secreta. Jogadores normais veem a palavra e a categoria; o impostor vê apenas a categoria. Por meio de debates e pistas sutis, o grupo tenta desmascarar o impostor antes que ele adivinhe a palavra.',
+        features: [
+          '50 categorias com ~600 palavras',
+          'Atribuição automática de papéis',
+          'Sem servidor ou conta necessária',
+          'Tema claro/escuro',
+          'Funciona completamente offline',
+          'Pronto para PWA',
+        ],
+        howToPlay: [
+          'Cadastre 3 ou mais jogadores',
+          'Passe o celular para cada jogador em particular',
+          'Jogadores normais veem a palavra + categoria',
+          'O impostor vê apenas a categoria',
+          'Debata, dê pistas e vote no impostor',
+          'O impostor vence adivinhando a palavra antes de ser pego',
+        ],
+      },
+      stop: {
+        tagline: 'Corrida para preencher as categorias primeiro',
+        description: 'O clássico jogo brasileiro de palavras — Stop! / Adedanha — reinventado como PWA. Uma letra aleatória é sorteada, os jogadores preenchem categorias com aquela letra, e o primeiro a gritar "Stop!" encerra a rodada. Com 143+ categorias em 13 pacotes temáticos, configurações compartilháveis por URL e sistema de pontuação completo.',
+        features: [
+          '143+ categorias em 13 pacotes temáticos',
+          'Criação de categorias personalizadas',
+          'Configuração compartilhável por URL',
+          'Rodadas configuráveis (3, 5, 7, 10 ou infinito)',
+          '100% offline com Service Worker',
+          'Instalável como app nativo (PWA)',
+        ],
+        howToPlay: [
+          'Selecione seus pacotes de categorias (ou crie os seus)',
+          'Compartilhe o link do jogo com os amigos',
+          'Uma letra aleatória é revelada — preencha todas as categorias rápido',
+          'O primeiro a pressionar STOP encerra a rodada',
+          'Pontuação: 10pts (resposta única), 5pts (empatada), 0pts (inválida)',
+          'Jogue várias rodadas e veja o ranking final',
+        ],
+      },
+    },
+
+    labsContent: {
+      syncr: {
+        tagline: 'Acompanhamento de mídia com discussões assíncronas por timestamp',
+        description: 'Rastreador multiplataforma para filmes, séries, anime e jogos. Diferencial: comentários ancorados por timestamp que sincronizam com momentos específicos de reprodução, reações com emoji visíveis como marcadores na linha do tempo e agendamento semanal.',
+      },
+      buddy: {
+        tagline: 'Pet desktop com IA, voz e personalidade',
+        description: 'Companheiro desktop interativo com IA para Windows. Escuta via wake-word ou atalho, responde com Edge TTS, reage à sua atividade e exibe sprites animados com estados emocionais.',
+      },
+      deca: {
+        tagline: 'Motor de raciocínio distribuído para assistentes de voz',
+        description: 'Arquitetura que separa o raciocínio de IA (Mind) da I/O de hardware (Node). O Mind cuida de memória, classificação de intenção e personalidade — enquanto os Nodes executam ações. Construído para fluxos de voz distribuídos e multi-dispositivo.',
+      },
+      'sheet-budget': {
+        tagline: 'Controle financeiro pessoal — Google Sheets como banco de dados',
+        description: 'Rastreador financeiro sem backend que usa sua própria planilha Google. Gerencia despesas recorrentes, parcelamentos, faturas de cartão de crédito e visualiza tendências de gastos em 6 meses. Seus dados ficam no seu Drive.',
+      },
+    },
+
+    productsContent: {
+      mindcircle: {
+        tagline: 'Pensamento visual, potencializado por IA',
+        description: 'Plataforma SaaS colaborativa para gestão do conhecimento e organização de ideias, com assistência de IA, colaboração em tempo real e ferramentas poderosas de visualização.',
+        longDescription: 'MindCircle é uma plataforma colaborativa full-stack construída para pensamento visual e experiências assistidas por IA. Combina um backend .NET 8 com um frontend React 18, entregando colaboração em tempo real via SignalR, geração de conteúdo com IA (OpenAI GPT-4o), ferramentas de diagrama e uma interface internacionalizada — tudo construído sobre o ecossistema Myth.',
+        features: [
+          { title: 'Colaboração em Tempo Real', description: 'Edição ao vivo e indicadores de presença via hubs SignalR. Trabalhe junto sem fricção.' },
+          { title: 'Integração com IA', description: 'Geração de ideias, sumarização de conteúdo e sugestões inteligentes com GPT-4o.' },
+          { title: 'Workspace Visual', description: 'Diagramas com Excalidraw, gráficos Mermaid, mapas mentais e editor rich markdown.' },
+          { title: 'Feature Flags', description: 'Rollouts controlados em runtime com dashboard admin e suporte a A/B testing.' },
+          { title: 'Auth Enterprise', description: 'Autenticação JWT com cookies httpOnly e integração Google OAuth.' },
+          { title: 'Clean Architecture', description: 'Camadas Domain, Application, Data com CQRS, arquitetura event-driven e ecossistema Myth.' },
+        ],
+      },
+      myth: {
+        tagline: 'Bibliotecas .NET prontas para produção com arquitetura limpa',
+        description: 'Coleção abrangente de 11+ pacotes NuGet para construir aplicações .NET robustas e escaláveis — com APIs fluentes, configuração mínima e DDD no núcleo.',
+        longDescription: 'Myth é um ecossistema de bibliotecas .NET opinativo e battle-tested que elimina boilerplate enquanto impõe clean architecture, DDD e padrões modernos de engenharia. Cada biblioteca resolve uma preocupação específica — de validação e pipelines a CQRS, repositórios e clientes REST — integrados por um service provider global.',
+      },
+    },
   },
 
   en: {
@@ -334,14 +417,14 @@ export const translations = {
         'Bachelor in Computer Science',
       ],
       timeline: [
-        { company: 'TOTVS', role: 'Staff Engineer', period: 'Mar 2026 — present', current: true },
-        { company: 'MindCircle', role: 'Founder', period: 'Mar 2026 — present', current: true },
-        { company: 'Blip', role: 'Staff Architect', period: 'May 2024 — Mar 2026', current: false },
-        { company: 'Blip', role: 'Software Architect', period: 'Aug 2023 — May 2024', current: false },
-        { company: 'Blip', role: 'Tech Lead', period: 'Nov 2021 — Aug 2023', current: false },
-        { company: 'dti digital', role: 'Tech Lead', period: 'Jan 2021 — Nov 2021', current: false },
-        { company: 'TCE-MG', role: 'Senior Developer', period: 'Oct 2019 — Jan 2021', current: false },
-        { company: 'Raro Labs', role: 'Web Developer', period: 'Mar 2019 — Sep 2019', current: false },
+        { company: 'TOTVS', role: 'Staff Engineer', period: 'Mar 2026 — present', current: true, highlight: 'Plug-and-play internal CLI and AI Registry to accelerate corporate AI adoption at scale' },
+        { company: 'MindCircle', role: 'Founder', period: 'Mar 2026 — present', current: true, highlight: 'End-to-end ownership: architecture to product, AI integration, real-time collaboration and UX' },
+        { company: 'Blip', role: 'Staff Architect', period: 'May 2024 — Mar 2026', current: false, highlight: '−40% critical incidents; unified payment platform for PIX, Open Finance, Fiserv, Cielo' },
+        { company: 'Blip', role: 'Software Architect', period: 'Aug 2023 — May 2024', current: false, highlight: '−60% project setup time; standardized Azure DevOps CI/CD pipelines across all squads' },
+        { company: 'Blip', role: 'Tech Lead', period: 'Nov 2021 — Aug 2023', current: false, highlight: 'Led 3 squads building modular B2B products with React micro-frontends and .NET APIs' },
+        { company: 'dti digital', role: 'Tech Lead', period: 'Jan 2021 — Nov 2021', current: false, highlight: '−70% partner integration time with PIX payment API for Grupo Martins' },
+        { company: 'TCE-MG', role: 'Senior Developer', period: 'Oct 2019 — Jan 2021', current: false, highlight: '+35% system performance via query optimization and hexagonal architecture modernization' },
+        { company: 'Raro Labs', role: 'Web Developer', period: 'Mar 2019 — Sep 2019', current: false, highlight: 'Automation systems and administrative modules for Banco BMG' },
       ],
     },
 
@@ -510,6 +593,89 @@ export const translations = {
       gamePlayNow: 'Play Now',
       blogReadMore: 'Read More',
       blogViewLinkedIn: 'View on LinkedIn',
+    },
+
+    gamesContent: {
+      impostor: {
+        tagline: 'Who is hiding among you?',
+        description: "A group deception game where one randomly selected player — the impostor — doesn't know the secret word. Normal players see the word and category; the impostor only sees the category. Through debate and subtle clues, the group tries to unmask the impostor before they guess the word.",
+        features: [
+          '50 categories with ~600 words',
+          'Automatic role assignment',
+          'No server or account needed',
+          'Light/dark theme',
+          'Works fully offline',
+          'PWA-ready',
+        ],
+        howToPlay: [
+          'Register 3 or more players',
+          'Pass the phone to each player privately',
+          'Normal players see the word + category',
+          'The impostor sees only the category',
+          'Debate, give clues, and vote for the impostor',
+          'The impostor wins by guessing the word before being caught',
+        ],
+      },
+      stop: {
+        tagline: 'Race to fill the categories first',
+        description: 'The classic Brazilian word game — Stop! / Adedanha — reimagined as a PWA. A random letter is chosen, players fill categories that start with that letter, and the first to yell "Stop!" ends the round. Features 143+ categories in 13 themed packs, shareable configurations via URL, and a full scoring system.',
+        features: [
+          '143+ categories in 13 themed packs',
+          'Custom category creation',
+          'Shareable config via URL',
+          'Configurable rounds (3, 5, 7, 10, or infinite)',
+          '100% offline with Service Worker',
+          'Installable as native app (PWA)',
+        ],
+        howToPlay: [
+          'Select your category packs (or create custom ones)',
+          'Share the game link with friends',
+          'A random letter is revealed — fill all categories fast',
+          'First to press STOP ends the round',
+          'Score: 10pts (unique answer), 5pts (tied), 0pts (invalid)',
+          'Play multiple rounds and see the final ranking',
+        ],
+      },
+    },
+
+    labsContent: {
+      syncr: {
+        tagline: 'Media tracking with timestamp-based async discussions',
+        description: 'Multi-platform tracker for movies, series, anime, and games. Unique twist: timestamp-anchored comments that sync to specific moments of playback, plus emoji reactions visible as timeline markers and weekly scheduling.',
+      },
+      buddy: {
+        tagline: 'AI desktop pet with voice and personality',
+        description: 'Interactive AI-powered desktop companion for Windows. Listens via wake-word or hotkey, responds with Edge TTS, reacts to your activity, and displays animated sprites with emotional states.',
+      },
+      deca: {
+        tagline: 'Distributed reasoning engine for voice assistants',
+        description: 'Architecture that separates AI reasoning (Mind) from hardware I/O (Node). The Mind handles memory, intent classification, and personality — while Nodes execute actions. Built for distributed, multi-device voice workflows.',
+      },
+      'sheet-budget': {
+        tagline: 'Personal finance tracking — Google Sheets as your database',
+        description: 'Zero-backend finance tracker that uses your own Google Sheets. Manages recurring expenses, installments, credit card invoices, and visualizes 6-month spending trends. Your data stays in your Drive.',
+      },
+    },
+
+    productsContent: {
+      mindcircle: {
+        tagline: 'Visual thinking, powered by AI',
+        description: 'Collaborative SaaS platform for knowledge management and idea organization, with AI assistance, real-time collaboration, and powerful visualization tools.',
+        longDescription: 'MindCircle is a full-stack collaborative platform built for visual thinking and AI-assisted experiences. It combines a .NET 8 backend with a React 18 frontend, delivering real-time collaboration via SignalR, AI-powered content generation with OpenAI GPT-4o, diagram tools, and an internationalized interface — all built on top of the Myth ecosystem.',
+        features: [
+          { title: 'Real-time Collaboration', description: 'Live editing and presence indicators via SignalR hubs. Work together without friction.' },
+          { title: 'AI Integration', description: 'GPT-4o powered idea generation, content summarization, and smart suggestions.' },
+          { title: 'Visual Workspace', description: 'Diagrams with Excalidraw, Mermaid charts, mind maps, and rich markdown editor.' },
+          { title: 'Feature Flags', description: 'Runtime-controlled feature rollouts with admin dashboard and A/B testing support.' },
+          { title: 'Enterprise Auth', description: 'JWT authentication with httpOnly cookies and Google OAuth integration.' },
+          { title: 'Clean Architecture', description: 'Domain, Application, Data layers with CQRS, event-driven architecture, and Myth ecosystem.' },
+        ],
+      },
+      myth: {
+        tagline: 'Production-ready .NET libraries for clean architecture',
+        description: 'A comprehensive collection of 11+ NuGet packages for building robust, scalable .NET enterprise applications — with fluent APIs, minimal configuration, and DDD at the core.',
+        longDescription: 'Myth is an opinionated, battle-tested ecosystem of .NET libraries that eliminates boilerplate while enforcing clean architecture, DDD, and modern engineering patterns. Each library solves a specific concern — from validation and pipelines to CQRS, repositories, and REST clients — and they integrate seamlessly through a global service provider.',
+      },
     },
   },
 } as const;

@@ -64,6 +64,9 @@ const enURL = locale === 'en' ? canonicalURL : alternateURL;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, Astro.site)} />
 
+    <!-- Devicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" />
+
     <!-- Prevent flash of wrong theme -->
     <script is:inline>
       const saved = localStorage.getItem('lealtek-theme');

@@ -1,0 +1,41 @@
+---
+import { getTechIconClass } from '../../utils/techIcons';
+
+interface Props {
+  tech: string;
+}
+
+const { tech } = Astro.props;
+const iconClass = getTechIconClass(tech);
+---
+
+<span class="tech-badge">
+  {iconClass && <i class={`${iconClass} colored`} aria-hidden="true"></i>}
+  {tech}
+</span>
+
+<style>
+  .tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    background: rgba(200, 151, 58, 0.08);
+    border: 1px solid rgba(200, 151, 58, 0.2);
+    color: var(--gold-primary);
+    white-space: nowrap;
+  }
+
+  i {
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+  }
+</style>

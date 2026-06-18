@@ -8,6 +8,7 @@ export interface Game {
   techStack: string[];
   demoUrl: string;
   githubUrl?: string;
+  image?: string;
   players: string;
   playTime: string;
 }
@@ -38,6 +39,7 @@ export const games: Game[] = [
     techStack: ['HTML5', 'CSS3', 'JavaScript ES6+', 'Bootstrap 5'],
     demoUrl: 'https://paulaolileal.github.io/impostor-game/',
     githubUrl: 'https://github.com/paulaolileal/impostor-game',
+    image: '/images/impostor-game.png',
     players: '3+',
     playTime: '10–30 min',
   },
@@ -66,6 +68,7 @@ export const games: Game[] = [
     techStack: ['HTML5', 'CSS3', 'JavaScript ES2020+', 'Service Worker', 'Web App Manifest'],
     demoUrl: 'https://paulaolileal.github.io/stop-game/',
     githubUrl: 'https://github.com/paulaolileal/stop-game',
+    image: '/images/stop-game.png',
     players: '2+',
     playTime: '15–60 min',
   },

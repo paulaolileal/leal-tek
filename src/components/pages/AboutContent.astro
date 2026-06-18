@@ -87,6 +87,9 @@ const socialLinks = [
                   </div>
                   <span class="timeline-role">{item.role}</span>
                   <span class="timeline-period">{item.period}</span>
+                  {(item as { highlight?: string }).highlight && (
+                    <span class="timeline-highlight">{(item as { highlight?: string }).highlight}</span>
+                  )}
                 </div>
               </div>
             ))}
@@ -342,6 +345,15 @@ const socialLinks = [
 
   .timeline-role   { font-size: 0.875rem; font-weight: 600; color: var(--gold-primary); }
   .timeline-period { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.04em; }
+
+  .timeline-highlight {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    font-style: italic;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
 
   .skills-groups { display: flex; flex-direction: column; gap: var(--space-lg); }
   .skill-group   { display: flex; flex-direction: column; gap: var(--space-sm); }
