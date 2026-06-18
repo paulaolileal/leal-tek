@@ -1,0 +1,109 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  target?: string;
+  rel?: string;
+  class?: string;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  target,
+  rel,
+  class: className,
+  type = 'button',
+  disabled,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a
+    href={href}
+    target={target}
+    rel={rel}
+    class:list={['btn', `btn-${variant}`, `btn-${size}`, className]}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    disabled={disabled}
+    class:list={['btn', `btn-${variant}`, `btn-${size}`, className]}
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Sizes */
+  .btn-sm { font-size: 0.8rem;   padding: 7px 14px; }
+  .btn-md { font-size: 0.875rem; padding: 10px 20px; }
+  .btn-lg { font-size: 1rem;     padding: 14px 28px; }
+
+  /* Variants */
+  .btn-primary {
+    background: var(--gold-primary);
+    color: #0C0D0F;
+    border-color: var(--gold-primary);
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    color: #0C0D0F;
+    box-shadow: 0 4px 20px rgba(200, 151, 58, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold-primary);
+    border-color: var(--gold-primary);
+  }
+  .btn-secondary:hover {
+    background: rgba(200, 151, 58, 0.08);
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border);
+  }
+  .btn-ghost:hover {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-accent);
+  }
+</style>

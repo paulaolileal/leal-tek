@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Now"
+  description="What I'm currently working on, learning, and thinking about — updated June 2026."
+>
+  <article class="now-page section">
+    <div class="container">
+      <div class="now-header reveal">
+        <h1 class="now-title">Now</h1>
+        <span class="now-date">Updated June 2026 — Contagem, MG, Brasil</span>
+      </div>
+
+      <div class="now-body">
+        <section class="now-section reveal reveal-delay-1">
+          <h2 class="now-section-title">Working on</h2>
+          <ul class="now-list">
+            <li>
+              <span class="now-item-label">Staff Engineer at TOTVS</span>
+              <span class="now-item-desc">Leading Engineering Experience — developer tooling, internal standards, and platform enablement across engineering teams.</span>
+            </li>
+            <li>
+              <span class="now-item-label">MindCircle</span>
+              <span class="now-item-desc">Building the platform as founder — from architecture to UI. Real-time collaboration, AI integration, and visual workspace tooling.</span>
+            </li>
+            <li>
+              <span class="now-item-label">Myth Ecosystem</span>
+              <span class="now-item-desc">Evolving the library suite — adding new packages, refining APIs, and improving documentation based on real-world usage.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="now-section reveal reveal-delay-2">
+          <h2 class="now-section-title">Learning</h2>
+          <ul class="now-list">
+            <li>
+              <span class="now-item-label">AI tooling for developer workflows</span>
+              <span class="now-item-desc">Exploring how LLMs integrate into development pipelines, code review automation, and engineering enablement tools.</span>
+            </li>
+            <li>
+              <span class="now-item-label">Distributed systems patterns</span>
+              <span class="now-item-desc">Going deeper on event sourcing, sagas, and eventual consistency — moving from theory to practical implementation.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="now-section reveal reveal-delay-3">
+          <h2 class="now-section-title">Reading / Watching</h2>
+          <p class="now-empty">Nothing specific right now — this space will be updated soon.</p>
+        </section>
+
+        <section class="now-section reveal reveal-delay-4">
+          <h2 class="now-section-title">Based in</h2>
+          <p class="now-location">Contagem, Minas Gerais, Brasil</p>
+        </section>
+      </div>
+
+      <footer class="now-footer reveal">
+        <p>
+          This page is inspired by the /now movement —
+          <a href="https://nownownow.com" target="_blank" rel="noopener noreferrer">nownownow.com</a>
+        </p>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .now-page {
+    padding-bottom: var(--space-4xl);
+  }
+
+  .now-header {
+    margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .now-title {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: var(--space-md);
+  }
+
+  .now-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .now-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+    max-width: 680px;
+  }
+
+  .now-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .now-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-primary);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .now-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .now-list li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding-left: var(--space-lg);
+    position: relative;
+  }
+
+  .now-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  .now-item-label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+  }
+
+  .now-item-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .now-empty {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .now-location {
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .now-footer {
+    margin-top: var(--space-4xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border);
+  }
+
+  .now-footer p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .now-footer a {
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .now-footer a:hover {
+    color: var(--gold-primary);
+  }
+</style>

@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import GameCard from '../components/sections/GameCard.astro';
+import { games } from '../data/games';
+---
+
+<BaseLayout
+  title="Games"
+  description="Two browser games built for groups — no installation, no account. Play Impostor or Stop! Adedanha directly in your browser."
+>
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-inner reveal">
+        <span class="section-label">Games</span>
+        <span class="gold-line"></span>
+        <h1>Play Something</h1>
+        <p class="hero-sub">
+          Two browser games built for groups — no installation, no account.
+          Works offline, runs on any device.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="games-section section-sm">
+    <div class="container">
+      <div class="games-grid">
+        {games.map((game, i) => (
+          <div class={`reveal reveal-delay-${i + 1}`}>
+            <GameCard game={game} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="origin-section section-sm reveal">
+    <div class="container">
+      <div class="origin-inner">
+        <span class="section-label">How it started</span>
+        <span class="gold-line"></span>
+        <div class="origin-content">
+          <p>
+            These games started as a way to explore browser-native capabilities —
+            Service Workers, PWA manifests, offline-first architecture — without
+            the overhead of a backend or a framework. The challenge was to build
+            something genuinely useful and fun using only HTML, CSS, and vanilla JavaScript.
+          </p>
+          <p>
+            Both games were born from real social situations: needing something to play at
+            a gathering with no preparation. They ended up becoming solid examples of what
+            you can build when you lean fully into the web platform. No servers, no accounts,
+            no friction — just open the link and play.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-inner {
+    max-width: 600px;
+  }
+
+  .hero-inner h1 {
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  @media (max-width: 768px) {
+    .games-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .origin-section {
+    border-top: 1px solid var(--border);
+  }
+
+  .origin-inner {
+    max-width: 720px;
+  }
+
+  .origin-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-top: var(--space-md);
+  }
+
+  .origin-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+</style>

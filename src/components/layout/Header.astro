@@ -1,0 +1,245 @@
+---
+const navLinks = [
+  { href: '/home',     label: 'Home' },
+  { href: '/products', label: 'Products' },
+  { href: '/labs',     label: 'Labs' },
+  { href: '/games',    label: 'Games' },
+  { href: '/blog',     label: 'Blog' },
+  { href: '/about',    label: 'About' },
+  { href: '/now',      label: 'Now' },
+  { href: '/contact',  label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/home" class="logo" aria-label="LealTEK Home">
+      <img src="/images/logo-completa.png" alt="LealTEK" class="logo-full" width="140" height="44" />
+      <img src="/images/logo-quadrada.png" alt="LealTEK" class="logo-square" width="40" height="40" />
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: currentPath.startsWith(link.href) }]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <button
+        id="theme-toggle"
+        class="theme-btn"
+        aria-label="Toggle theme"
+        title="Toggle dark/light mode"
+      >
+        <span class="icon-dark">☀</span>
+        <span class="icon-light">☽</span>
+      </button>
+
+      <button
+        id="mobile-menu-btn"
+        class="mobile-menu-btn"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile navigation">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class:list={['nav-link-mobile', { active: currentPath.startsWith(link.href) }]}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition-slow);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    gap: var(--space-xl);
+  }
+
+  /* Logo */
+  .logo {
+    flex-shrink: 0;
+    line-height: 0;
+    transition: opacity var(--transition);
+  }
+  .logo:hover { opacity: 0.85; }
+
+  .logo-full { display: block; }
+  .logo-square { display: none; }
+
+  @media (max-width: 480px) {
+    .logo-full  { display: none; }
+    .logo-square { display: block; }
+  }
+
+  /* Desktop nav */
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    transition: color var(--transition), background var(--transition);
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+    background: var(--bg-card);
+  }
+
+  .nav-link.active {
+    color: var(--gold-primary);
+    background: rgba(200, 151, 58, 0.08);
+  }
+
+  @media (max-width: 900px) {
+    .nav-desktop { display: none; }
+  }
+
+  /* Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  /* Theme toggle */
+  .theme-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all var(--transition);
+  }
+
+  .theme-btn:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-primary);
+  }
+
+  :global([data-theme="dark"]) .icon-light  { display: none; }
+  :global([data-theme="dark"]) .icon-dark   { display: block; }
+  :global([data-theme="light"]) .icon-dark  { display: none; }
+  :global([data-theme="light"]) .icon-light { display: block; }
+
+  /* Mobile menu btn */
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    height: 1.5px;
+    background: var(--text-secondary);
+    border-radius: 2px;
+    transition: all var(--transition);
+  }
+
+  @media (max-width: 900px) {
+    .mobile-menu-btn { display: flex; }
+  }
+
+  /* Mobile nav */
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+    background: var(--bg-surface);
+    padding: var(--space-md) var(--space-xl);
+    gap: var(--space-xs);
+  }
+
+  .nav-mobile.open { display: flex; }
+
+  .nav-link-mobile {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition);
+  }
+
+  .nav-link-mobile:hover,
+  .nav-link-mobile.active {
+    color: var(--gold-primary);
+    background: rgba(200, 151, 58, 0.08);
+  }
+</style>
+
+<script is:inline>
+  // Theme toggle
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const html = document.documentElement;
+    const next = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    html.dataset.theme = next;
+    localStorage.setItem('lealtek-theme', next);
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = mobileNav?.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>

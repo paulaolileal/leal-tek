@@ -1,0 +1,266 @@
+/* ============================================================
+   LEALTEK — Global CSS
+   Fonts: Barlow Condensed (display) + Mulish (body) + JetBrains Mono
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Mulish:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── CSS Custom Properties ────────────────────────────────── */
+:root {
+  /* Brand colors (from logo) */
+  --gold-primary:   #C8973A;
+  --gold-light:     #E0B05A;
+  --gold-dim:       #8A651F;
+  --gray-logo:      #555A60;
+
+  /* Default: dark theme */
+  --bg:             #0C0D0F;
+  --bg-surface:     #111316;
+  --bg-card:        #161820;
+  --bg-card-hover:  #1C1F28;
+  --border:         #1E2229;
+  --border-accent:  #2A2E3A;
+  --text-primary:   #EAE8E4;
+  --text-secondary: #B0ADA8;
+  --text-muted:     #7A7874;
+  --shadow-card:    0 4px 24px rgba(0,0,0,0.5);
+  --shadow-gold:    0 0 20px rgba(200, 151, 58, 0.15);
+
+  /* Typography */
+  --font-display:   'Barlow Condensed', system-ui, sans-serif;
+  --font-body:      'Mulish', system-ui, sans-serif;
+  --font-mono:      'JetBrains Mono', monospace;
+
+  /* Spacing scale */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 64px;
+
+  /* Transitions */
+  --transition: 200ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ── Light Theme ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:             #F4F2EE;
+  --bg-surface:     #FFFFFF;
+  --bg-card:        #FFFFFF;
+  --bg-card-hover:  #F8F6F2;
+  --border:         #E2DED8;
+  --border-accent:  #D4D0CA;
+  --text-primary:   #1A1816;
+  --text-secondary: #4A4744;
+  --text-muted:     #8A8784;
+  --shadow-card:    0 2px 16px rgba(0,0,0,0.08);
+  --shadow-gold:    0 0 20px rgba(200, 151, 58, 0.1);
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; }
+h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.875rem); }
+h4 { font-size: 1.25rem; font-weight: 600; }
+
+p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover { color: var(--gold-light); }
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+/* ── Layout Utilities ─────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .container { padding-inline: var(--space-lg); }
+}
+
+.section {
+  padding-block: var(--space-4xl);
+}
+
+.section-sm {
+  padding-block: var(--space-3xl);
+}
+
+/* ── Gold Accent Elements ─────────────────────────────────── */
+.gold { color: var(--gold-primary); }
+
+.gold-line {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--gold-primary);
+  margin-block: var(--space-md);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+}
+
+/* ── Scroll Reveal Animation ──────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── Image ────────────────────────────────────────────────── */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Focus Styles ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Selection ────────────────────────────────────────────── */
+::selection {
+  background-color: var(--gold-primary);
+  color: var(--bg);
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--border-accent);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* ── Tech Tag / Badge ─────────────────────────────────────── */
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  background: rgba(200, 151, 58, 0.08);
+  border: 1px solid rgba(200, 151, 58, 0.2);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Status Badge ─────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.status-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status-badge.active {
+  color: #4ADE80;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.status-badge.wip {
+  color: #FBBF24;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.status-badge.complete {
+  color: #60A5FA;
+  background: rgba(96, 165, 250, 0.1);
+}

@@ -1,0 +1,142 @@
+---
+import Badge from '../ui/Badge.astro';
+import Button from '../ui/Button.astro';
+import type { Game } from '../../data/games';
+
+interface Props {
+  game: Game;
+}
+
+const { game } = Astro.props;
+---
+
+<article class="game-card">
+  <div class="game-header">
+    <div class="game-meta">
+      <span class="game-players">👥 {game.players} players</span>
+      <span class="game-time">⏱ {game.playTime}</span>
+    </div>
+    <h3 class="game-name">{game.name}</h3>
+    <p class="game-tagline">{game.tagline}</p>
+  </div>
+
+  <p class="game-description">{game.description}</p>
+
+  <div class="game-features">
+    {game.features.slice(0, 4).map(f => (
+      <span class="feature-item">✓ {f}</span>
+    ))}
+  </div>
+
+  <div class="game-stack">
+    {game.techStack.map(tech => (
+      <Badge variant="tech">{tech}</Badge>
+    ))}
+  </div>
+
+  <div class="game-actions">
+    <Button href={game.demoUrl} variant="primary" size="sm" target="_blank" rel="noopener noreferrer">
+      Play Now
+    </Button>
+    {game.githubUrl && (
+      <Button href={game.githubUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">
+        GitHub
+      </Button>
+    )}
+  </div>
+</article>
+
+<style>
+  .game-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .game-card:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .game-card:hover::before { opacity: 1; }
+
+  .game-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .game-meta {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .game-players, .game-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .game-name {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .game-tagline {
+    font-size: 0.9rem;
+    color: var(--gold-primary);
+    font-weight: 600;
+  }
+
+  .game-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .game-features {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .feature-item {
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+  }
+
+  .game-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .game-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+</style>
