@@ -1,13 +1,17 @@
 ---
 import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
+import { getTranslations } from '../../i18n/utils';
 import type { Game } from '../../data/games';
+import type { Locale } from '../../i18n/translations';
 
 interface Props {
   game: Game;
 }
 
 const { game } = Astro.props;
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const t = getTranslations(locale);
 ---
 
 <article class="game-card">
@@ -36,7 +40,7 @@ const { game } = Astro.props;
 
   <div class="game-actions">
     <Button href={game.demoUrl} variant="primary" size="sm" target="_blank" rel="noopener noreferrer">
-      Play Now
+      {t.components.gamePlayNow}
     </Button>
     {game.githubUrl && (
       <Button href={game.githubUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">

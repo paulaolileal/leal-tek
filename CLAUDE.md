@@ -22,6 +22,7 @@ src/
     layout/   BaseLayout, Header, Footer
     ui/       Button, Badge
     sections/ ProductCard, GameCard, BlogPostCard
+    pages/    *Content.astro (conteúdo completo de cada página — ver i18n abaixo)
   content/
     blog/     *.md  (posts do blog)
     config.ts (schema da Content Collection)
@@ -29,13 +30,31 @@ src/
     products.ts  (MindCircle, Myth Ecosystem)
     labs.ts      (Syncr, Buddy, Deca, SheetBudget, BlipPayments)
     games.ts     (Impostor, Stop! Adedanha)
+  i18n/
+    translations.ts  (strings PT/EN — type Locale = 'pt' | 'en')
+    utils.ts         (getTranslations(locale) helper)
   pages/
-    home, about, now, contact, labs, games
-    products/index, mindcircle, myth
+    home, about, now, contact, labs, games  (thin wrappers → *Content)
+    products/index, mindcircle, myth        (thin wrappers → *Content)
     blog/index, blog/[slug]
+    en/   (espelho de todas as páginas acima, exceto blog/[slug])
   styles/
     global.css   (CSS vars, tipografia, utilitários)
 ```
+
+## i18n (PT-BR / English)
+
+- **Roteamento**: Astro v5 built-in i18n — PT é o locale padrão (sem prefixo), EN em `/en/...`
+- **Config** (`astro.config.mjs`): `i18n.defaultLocale: 'pt'`, `prefixDefaultLocale: false`
+- **Detecção de locale**: `Astro.currentLocale` em todos os componentes — sem prop-drilling
+- **Traduções**: `src/i18n/translations.ts` — objeto com chaves `pt` e `en`
+- **Blog**: independente de idioma — posts só em `/blog/[slug]`, com `alternatePath="/en/blog"` apontando para o índice EN
+- **Padrão thin wrapper**: cada página PT e EN importa o `*Content.astro` correspondente em `src/components/pages/`; o componente auto-detecta o locale
+- **Links internos**: usar `const base = locale === 'en' ? '/en' : ''` antes de links como `${base}/contact`
+
+### Adicionar nova string traduzida
+1. Adicionar a chave em `src/i18n/translations.ts` nos objetos `pt` e `en`
+2. Usar no componente: `const t = getTranslations(Astro.currentLocale); t.secao.chave`
 
 ## Design System
 - **Gold**: `#C8973A` (`--gold-primary`)

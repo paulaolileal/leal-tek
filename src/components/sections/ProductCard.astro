@@ -1,7 +1,9 @@
 ---
 import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
+import { getTranslations } from '../../i18n/utils';
 import type { Product } from '../../data/products';
+import type { Locale } from '../../i18n/translations';
 
 interface Props {
   product: Product;
@@ -9,13 +11,16 @@ interface Props {
 }
 
 const { product, featured = false } = Astro.props;
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const t = getTranslations(locale);
+const base = locale === 'en' ? '/en' : '';
 ---
 
 <article class:list={['product-card', { featured }]}>
   <div class="card-header">
     <div class="card-meta">
       <Badge variant={product.status === 'active' ? 'status-active' : 'status-wip'}>
-        {product.status === 'active' ? 'Active' : 'In Development'}
+        {product.status === 'active' ? t.components.productActive : t.components.productInDev}
       </Badge>
     </div>
     <h3 class="card-name">{product.name}</h3>
@@ -31,7 +36,9 @@ const { product, featured = false } = Astro.props;
   </div>
 
   <div class="card-actions">
-    <Button href={product.href} variant="primary" size="sm">View Details</Button>
+    <Button href={`${base}${product.href}`} variant="primary" size="sm">
+      {t.components.productViewDetails}
+    </Button>
     {product.gitlabUrl && (
       <Button href={product.gitlabUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">
         GitLab

@@ -2,29 +2,51 @@
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import '../../../src/styles/global.css';
+import { getTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/translations';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  alternatePath?: string;
+  showLangSwitcher?: boolean;
 }
 
 const {
   title,
   description = 'LealTEK — Software engineering, open-source ecosystems, and digital products built for impact.',
   image = '/images/og-default.png',
+  alternatePath,
+  showLangSwitcher = true,
 } = Astro.props;
 
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const htmlLang = locale === 'en' ? 'en' : 'pt-BR';
+
+const computedAlternate = alternatePath ?? (
+  locale === 'pt'
+    ? `/en${Astro.url.pathname}`
+    : Astro.url.pathname.replace(/^\/en/, '') || '/'
+);
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const alternateURL = new URL(computedAlternate, Astro.site);
+const ptURL = locale === 'pt' ? canonicalURL : alternateURL;
+const enURL = locale === 'en' ? canonicalURL : alternateURL;
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+
+    <link rel="alternate" hreflang="pt-BR" href={ptURL} />
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="x-default" href={ptURL} />
 
     <title>{title} — LealTEK</title>
     <meta name="description" content={description} />
@@ -50,7 +72,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </script>
   </head>
   <body>
-    <Header />
+    <Header alternatePath={computedAlternate} showLangSwitcher={showLangSwitcher} />
     <main>
       <slot />
     </main>

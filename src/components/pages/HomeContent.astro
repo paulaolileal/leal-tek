@@ -1,0 +1,640 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+import Button from '../ui/Button.astro';
+import ProductCard from '../sections/ProductCard.astro';
+import GameCard from '../sections/GameCard.astro';
+import BlogPostCard from '../sections/BlogPostCard.astro';
+import { products } from '../../data/products';
+import { games } from '../../data/games';
+import { labProjects } from '../../data/labs';
+import { getCollection } from 'astro:content';
+import { getTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/translations';
+
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const t = getTranslations(locale);
+const th = t.home;
+const base = locale === 'en' ? '/en' : '';
+
+const allPosts = await getCollection('blog');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout title={th.meta.title} description={th.meta.description}>
+
+  <!-- ═══════════════════════════════════════════════════════ HERO -->
+  <section class="hero">
+    <div class="hero-bg-gear" aria-hidden="true">
+      <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.04">
+          <path
+            d="M300 80
+               L320 60 L340 80 L360 60 L380 80
+               A220 220 0 0 1 520 300
+               L540 320 L520 340 L540 360 L520 380
+               A220 220 0 0 1 300 520
+               L280 540 L260 520 L240 540 L220 520
+               A220 220 0 0 1 80 300
+               L60 280 L80 260 L60 240 L80 220
+               A220 220 0 0 1 300 80Z"
+            stroke="var(--gold-primary)" stroke-width="2" fill="none"
+          />
+          <circle cx="300" cy="300" r="120" stroke="var(--gold-primary)" stroke-width="1.5" fill="none" />
+          <circle cx="300" cy="300" r="60" stroke="var(--gold-primary)" stroke-width="1" fill="none" />
+          <circle cx="300" cy="300" r="20" fill="var(--gold-primary)" />
+          <path d="M285 80 L285 40 L315 40 L315 80" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <path d="M285 520 L285 560 L315 560 L315 520" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <path d="M80 285 L40 285 L40 315 L80 315" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <path d="M520 285 L560 285 L560 315 L520 315" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <path d="M132 132 L103 103 L124 82 L153 111" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <path d="M468 132 L497 103 L476 82 L447 111" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <path d="M132 468 L103 497 L124 518 L153 489" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <path d="M468 468 L497 497 L476 518 L447 489" stroke="var(--gold-primary)" stroke-width="2" fill="none"/>
+          <line x1="300" y1="180" x2="300" y2="420" stroke="var(--gold-primary)" stroke-width="0.5" stroke-dasharray="4 8"/>
+          <line x1="180" y1="300" x2="420" y2="300" stroke="var(--gold-primary)" stroke-width="0.5" stroke-dasharray="4 8"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="container hero-container">
+      <div class="hero-content">
+        <span class="section-label hero-label">LealTEK</span>
+
+        <h1 class="hero-headline">
+          {th.heroHeadline1}<br />
+          <em>{th.heroHeadline2}</em>
+        </h1>
+
+        <p class="hero-sub">{th.heroSub}</p>
+
+        <div class="hero-actions">
+          <Button href={`${base}/products`} variant="primary" size="lg">{th.cta1}</Button>
+          <Button href={`${base}/about`} variant="secondary" size="lg">{th.cta2}</Button>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-value">10+</span>
+          <span class="stat-label">{th.statYears}</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-value">11</span>
+          <span class="stat-label">{th.statPackages}</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-value">40%</span>
+          <span class="stat-label">{th.statIncidents}</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-value">2</span>
+          <span class="stat-label">{th.statGames}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span class="scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ PRODUCTS -->
+  <section class="section reveal" id="products">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{th.productsLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{th.productsHeading}</h2>
+        <p class="section-description">{th.productsDesc}</p>
+      </div>
+      <div class="grid-2">
+        {products.map(product => (
+          <ProductCard product={product} featured />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ LABS -->
+  <section class="section reveal section-alt" id="labs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{th.labsLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{th.labsHeading}</h2>
+        <p class="section-description">{th.labsDesc}</p>
+      </div>
+      <div class="grid-3">
+        {labProjects.map(lab => (
+          <article class="lab-card">
+            <div class="lab-card-top">
+              <span class:list={['lab-status', lab.status]}>
+                {lab.status === 'active' ? th.labActive : lab.status === 'wip' ? th.labWip : th.labComplete}
+              </span>
+              <h3 class="lab-name">{lab.name}</h3>
+              <p class="lab-tagline">{lab.tagline}</p>
+            </div>
+            <div class="lab-tags">
+              {lab.techStack.slice(0, 2).map(tech => (
+                <span class="tech-tag">{tech}</span>
+              ))}
+            </div>
+            {(lab.gitlabUrl || lab.githubUrl || lab.demoUrl) && (
+              <a
+                href={lab.demoUrl ?? lab.gitlabUrl ?? lab.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="lab-link"
+              >
+                {th.labViewProject}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ GAMES -->
+  <section class="section reveal" id="games">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{th.gamesLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{th.gamesHeading}</h2>
+        <p class="section-description">{th.gamesDesc}</p>
+      </div>
+      <div class="grid-2">
+        {games.map(game => (
+          <GameCard game={game} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ BLOG -->
+  <section class="section reveal section-alt" id="writing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">{th.writingLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{th.writingHeading}</h2>
+        <p class="section-description">{th.writingDesc}</p>
+      </div>
+      <div class="grid-3">
+        {latestPosts.map(post => (
+          <BlogPostCard
+            title={post.data.title}
+            date={post.data.date}
+            excerpt={post.data.excerpt}
+            tags={post.data.tags}
+            slug={post.slug}
+            linkedinUrl={post.data.linkedinUrl}
+          />
+        ))}
+      </div>
+      <div class="section-cta">
+        <a
+          href="https://www.linkedin.com/in/paulaolileal/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="linkedin-cta"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          {th.followLinkedIn}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ FINAL CTA -->
+  <section class="section-cta-banner reveal">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="cta-banner-inner">
+          <span class="section-label">{th.ctaLabel}</span>
+          <h2 class="cta-banner-headline">{th.ctaHeading}</h2>
+          <p class="cta-banner-text">{th.ctaText}</p>
+          <Button href={`${base}/contact`} variant="primary" size="lg">{th.ctaBtn}</Button>
+        </div>
+        <div class="cta-banner-deco" aria-hidden="true">
+          <div class="deco-circle deco-circle-1"></div>
+          <div class="deco-circle deco-circle-2"></div>
+          <div class="deco-circle deco-circle-3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    padding-block: var(--space-4xl);
+  }
+
+  .hero-bg-gear {
+    position: absolute;
+    right: -120px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 640px;
+    height: 640px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .hero-label {
+    display: inline-block;
+    animation: fadeSlideDown 0.6s ease both;
+  }
+
+  .hero-headline {
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    animation: fadeSlideUp 0.7s 0.1s ease both;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: var(--gold-primary);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-headline em::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-primary), var(--gold-light), transparent);
+    border-radius: 2px;
+    animation: lineGrow 0.8s 0.6s ease both;
+    transform-origin: left;
+  }
+
+  @keyframes lineGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.7;
+    animation: fadeSlideUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    animation: fadeSlideUp 0.7s 0.3s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    animation: fadeSlideUp 0.7s 0.4s ease both;
+    width: fit-content;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--space-lg) var(--space-xl);
+    position: relative;
+  }
+
+  .stat-item:hover { background: var(--bg-card-hover); }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--gold-primary);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .scroll-line {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gold-primary), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+    50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+  }
+
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-alt {
+    background: var(--bg-surface);
+    position: relative;
+  }
+
+  .section-alt::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+  }
+
+  .section-alt::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+  }
+
+  .section-header { margin-bottom: var(--space-2xl); }
+
+  .section-description {
+    margin-top: var(--space-sm);
+    max-width: 560px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .lab-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lab-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-primary), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+  }
+
+  .lab-card:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .lab-card:hover::before { opacity: 1; }
+
+  .lab-card-top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    flex: 1;
+  }
+
+  .lab-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    width: fit-content;
+  }
+
+  .lab-status::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .lab-status.active  { color: #4ADE80; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2); }
+  .lab-status.wip     { color: #FBBF24; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2); }
+  .lab-status.complete{ color: #60A5FA; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.2); }
+
+  .lab-name    { font-size: 1.125rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; }
+  .lab-tagline { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+  .lab-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .lab-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold-primary);
+    text-decoration: none;
+    transition: gap var(--transition), color var(--transition);
+    margin-top: auto;
+  }
+
+  .lab-link:hover { color: var(--gold-light); gap: 10px; }
+
+  .section-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-2xl);
+  }
+
+  .linkedin-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #0A66C2;
+    background: rgba(10, 102, 194, 0.08);
+    border: 1px solid rgba(10, 102, 194, 0.2);
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    transition: all var(--transition);
+    text-decoration: none;
+  }
+
+  .linkedin-cta:hover {
+    background: rgba(10, 102, 194, 0.15);
+    border-color: rgba(10, 102, 194, 0.4);
+    color: #0A66C2;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(10, 102, 194, 0.15);
+  }
+
+  .section-cta-banner { padding-block: var(--space-4xl); }
+
+  .cta-banner {
+    background: linear-gradient(135deg, rgba(200,151,58,0.12) 0%, rgba(200,151,58,0.04) 50%, rgba(200,151,58,0.08) 100%);
+    border: 1px solid rgba(200, 151, 58, 0.25);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4xl) var(--space-3xl);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cta-banner-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    max-width: 560px;
+  }
+
+  .cta-banner-headline {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .cta-banner-text { font-size: 1rem; color: var(--text-secondary); max-width: 440px; }
+
+  .cta-banner-deco {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 151, 58, 0.15);
+  }
+
+  .deco-circle-1 { width: 320px; height: 320px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .deco-circle-2 { width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(200,151,58,0.2); }
+  .deco-circle-3 { width: 80px; height: 80px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(200,151,58,0.08); border-color: rgba(200,151,58,0.3); }
+
+  @media (max-width: 1024px) {
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .hero-bg-gear { width: 400px; height: 400px; right: -80px; }
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; width: 100%; }
+    .stat-divider { width: auto; height: 1px; }
+    .stat-item { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-md); }
+    .hero-bg-gear { opacity: 0.5; width: 280px; height: 280px; right: -60px; top: 10%; transform: none; }
+    .cta-banner { padding: var(--space-2xl) var(--space-xl); }
+    .cta-banner-deco { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-actions { flex-direction: column; }
+  }
+</style>

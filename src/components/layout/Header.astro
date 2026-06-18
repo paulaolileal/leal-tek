@@ -1,21 +1,36 @@
 ---
+import { getTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/translations';
+
+interface Props {
+  alternatePath?: string;
+  showLangSwitcher?: boolean;
+}
+
+const { alternatePath = '/', showLangSwitcher = true } = Astro.props;
+
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const t = getTranslations(locale);
+const base = locale === 'en' ? '/en' : '';
+
 const navLinks = [
-  { href: '/home',     label: 'Home' },
-  { href: '/products', label: 'Products' },
-  { href: '/labs',     label: 'Labs' },
-  { href: '/games',    label: 'Games' },
-  { href: '/blog',     label: 'Blog' },
-  { href: '/about',    label: 'About' },
-  { href: '/now',      label: 'Now' },
-  { href: '/contact',  label: 'Contact' },
+  { href: `${base}/home`,     label: t.nav.home },
+  { href: `${base}/products`, label: t.nav.products },
+  { href: `${base}/labs`,     label: t.nav.labs },
+  { href: `${base}/games`,    label: t.nav.games },
+  { href: '/blog',            label: t.nav.blog },
+  { href: `${base}/about`,    label: t.nav.about },
+  { href: `${base}/now`,      label: t.nav.now },
+  { href: `${base}/contact`,  label: t.nav.contact },
 ];
 
 const currentPath = Astro.url.pathname;
+const homeHref = `${base}/home`;
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a href="/home" class="logo" aria-label="LealTEK Home">
+    <a href={homeHref} class="logo" aria-label="LealTEK Home">
       <img src="/images/logo-completa.png" alt="LealTEK" class="logo-full" width="140" height="44" />
       <img src="/images/logo-quadrada.png" alt="LealTEK" class="logo-square" width="40" height="40" />
     </a>
@@ -24,7 +39,7 @@ const currentPath = Astro.url.pathname;
       {navLinks.map(link => (
         <a
           href={link.href}
-          class:list={['nav-link', { active: currentPath.startsWith(link.href) }]}
+          class:list={['nav-link', { active: currentPath === link.href || (link.href.length > 1 && currentPath.startsWith(link.href)) }]}
         >
           {link.label}
         </a>
@@ -32,6 +47,16 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="header-actions">
+      {showLangSwitcher && (
+        <a
+          href={alternatePath}
+          class="lang-btn"
+          aria-label={locale === 'pt' ? 'Switch to English' : 'Mudar para Português'}
+        >
+          {t.langSwitch}
+        </a>
+      )}
+
       <button
         id="theme-toggle"
         class="theme-btn"
@@ -60,11 +85,16 @@ const currentPath = Astro.url.pathname;
     {navLinks.map(link => (
       <a
         href={link.href}
-        class:list={['nav-link-mobile', { active: currentPath.startsWith(link.href) }]}
+        class:list={['nav-link-mobile', { active: currentPath === link.href || (link.href.length > 1 && currentPath.startsWith(link.href)) }]}
       >
         {link.label}
       </a>
     ))}
+    {showLangSwitcher && (
+      <a href={alternatePath} class="nav-link-mobile lang-mobile">
+        {t.langSwitch}
+      </a>
+    )}
   </nav>
 </header>
 
@@ -145,6 +175,32 @@ const currentPath = Astro.url.pathname;
     gap: var(--space-sm);
   }
 
+  /* Language switcher */
+  .lang-btn {
+    height: 36px;
+    padding: 0 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .lang-btn:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-primary);
+  }
+
   /* Theme toggle */
   .theme-btn {
     width: 36px;
@@ -217,12 +273,23 @@ const currentPath = Astro.url.pathname;
     padding: 10px 12px;
     border-radius: var(--radius-md);
     transition: all var(--transition);
+    text-decoration: none;
   }
 
   .nav-link-mobile:hover,
   .nav-link-mobile.active {
     color: var(--gold-primary);
     background: rgba(200, 151, 58, 0.08);
+  }
+
+  .lang-mobile {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-top: 1px solid var(--border);
+    margin-top: var(--space-xs);
+    padding-top: var(--space-md);
   }
 </style>
 
