@@ -16,7 +16,7 @@ const tp = (t.productsContent as any).mindcircle;
 const tagline = tp?.tagline ?? product.tagline;
 const longDescription = tp?.longDescription ?? product.longDescription;
 const features = tp?.features ?? product.features;
-const ctaUrl = product.externalUrl ?? 'https://linkedin.com/in/paulaolileal';
+const ctaUrl = product.externalUrl!;
 ---
 
 <BaseLayout title={tm.meta.title} description={tm.meta.description}>
@@ -43,6 +43,21 @@ const ctaUrl = product.externalUrl ?? 'https://linkedin.com/in/paulaolileal';
             {tm.ctaBtn}
           </Button>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screenshots-section section-sm">
+    <div class="container">
+      <div class="screenshots-grid">
+        <figure class="screenshot-card reveal reveal-delay-1">
+          <img src="/images/mc-home.png" alt="MindCircle — página inicial" loading="lazy" />
+          <figcaption>{tm.screenshotHomeCaption}</figcaption>
+        </figure>
+        <figure class="screenshot-card reveal reveal-delay-2">
+          <img src="/images/mc-diagram.png" alt="MindCircle — canvas de diagrama" loading="lazy" />
+          <figcaption>{tm.screenshotDiagramCaption}</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -182,6 +197,28 @@ const ctaUrl = product.externalUrl ?? 'https://linkedin.com/in/paulaolileal';
 
   .section-header { margin-bottom: var(--space-2xl); }
   .section-header h2 { margin-top: var(--space-sm); }
+
+  /* Screenshots */
+  .screenshots-section { border-top: 1px solid var(--border); }
+  .screenshots-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+  @media (max-width: 768px) { .screenshots-grid { grid-template-columns: 1fr; } }
+
+  .screenshot-card {
+    margin: 0; border-radius: var(--radius-lg); overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .screenshot-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .screenshot-card img { width: 100%; height: auto; display: block; }
+  .screenshot-card figcaption {
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-mono); font-size: 0.75rem;
+    color: var(--text-muted); background: var(--bg-card);
+    text-align: center;
+  }
 
   /* Problems */
   .problems-section { border-top: 1px solid var(--border); }
