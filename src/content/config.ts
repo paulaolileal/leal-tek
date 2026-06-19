@@ -8,6 +8,7 @@ const blog = defineCollection({
     excerpt: z.string(),
     tags: z.array(z.string()).default([]),
     linkedinUrl: z.string().url(),
+    linkedinEmbedSrc: z.string().url().optional(),
     coverImage: z.string().optional(),
     featured: z.boolean().default(false),
   }),

@@ -21,17 +21,7 @@ const formattedDate = post.data.date.toLocaleDateString('pt-BR', {
   day: 'numeric',
 });
 
-let embedHtml: string | null = null;
-try {
-  const oembedUrl = `https://www.linkedin.com/oembed?url=${encodeURIComponent(post.data.linkedinUrl)}&format=json`;
-  const response = await fetch(oembedUrl);
-  if (response.ok) {
-    const data = await response.json();
-    embedHtml = data.html ?? null;
-  }
-} catch {
-  embedHtml = null;
-}
+const embedSrc = post.data.linkedinEmbedSrc ?? null;
 ---
 
 <BaseLayout title={post.data.title} description={post.data.excerpt} alternatePath="/en/blog">
@@ -79,8 +69,18 @@ try {
             <span>Originally shared on LinkedIn</span>
           </div>
 
-          {embedHtml ? (
-            <div class="linkedin-embed" set:html={embedHtml} />
+          {embedSrc ? (
+            <div class="linkedin-embed">
+              <iframe
+                src={embedSrc}
+                height="628"
+                width="504"
+                frameborder="0"
+                allowfullscreen
+                title="LinkedIn post"
+                loading="lazy"
+              ></iframe>
+            </div>
           ) : (
             <div class="linkedin-fallback">
               <div class="fallback-inner">

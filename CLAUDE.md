@@ -9,7 +9,7 @@ Site estático portfolio/empresa da Paula Leal. Deploy em `lealtek.com` via Digi
 ## Commands
 ```bash
 npm run dev       # dev server em localhost:4321
-npm run build     # gera dist/ (output estático — faz fetch do LinkedIn oEmbed neste momento)
+npm run build     # gera dist/ (output estático)
 npm run preview   # preview local do dist/
 ```
 
@@ -119,12 +119,14 @@ title: "Título do post"
 date: 2026-06-18
 excerpt: "Resumo curto para o card"
 tags: [tag1, tag2]
-linkedinUrl: "https://www.linkedin.com/posts/paulaolileal_..."
+linkedinUrl: "https://www.linkedin.com/feed/update/urn:li:ugcPost:XXXX"
+linkedinEmbedSrc: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:XXXX?collapsed=1"
 featured: false
 ---
 Conteúdo markdown aqui...
 ```
-2. `npm run build` — o embed LinkedIn é buscado via LinkedIn oEmbed API em build time; se a API retornar erro, o fallback exibe um card com link para o post original
+- `linkedinEmbedSrc` é opcional — se presente, renderiza um `<iframe>` do LinkedIn na página do post. Obter via "Incorporar post" no LinkedIn → copiar o atributo `src` do iframe.
+- Se omitido, exibe card de fallback com link para o `linkedinUrl`.
 
 ### Novo produto/lab
 - Editar `src/data/products.ts` ou `src/data/labs.ts` — tipagem TypeScript orienta os campos obrigatórios
