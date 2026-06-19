@@ -5,6 +5,7 @@ export interface LabProject {
   description: string;
   status: 'active' | 'wip' | 'complete';
   techStack: string[];
+  screenshots?: string[];
   demoUrl?: string;
   gitlabUrl?: string;
   githubUrl?: string;
@@ -27,7 +28,7 @@ export const labProjects: LabProject[] = [
     tagline: 'AI desktop pet with voice and personality',
     description:
       'Interactive AI-powered desktop companion for Windows. Listens via wake-word or hotkey, responds with Edge TTS, reacts to your activity, and displays animated sprites with emotional states.',
-    status: 'complete',
+    status: 'wip',
     techStack: ['Python', 'PyQt6', 'OpenAI Whisper', 'Edge TTS', 'GPT-4'],
     gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
   },
@@ -46,9 +47,18 @@ export const labProjects: LabProject[] = [
     name: 'Sheet Budget',
     tagline: 'Personal finance tracking — Google Sheets as your database',
     description:
-      'Zero-backend finance tracker that uses your own Google Sheets. Manages recurring expenses, installments, credit card invoices, and visualizes 6-month spending trends. Your data stays in your Drive.',
+      'Zero-backend personal finance tracker that uses your own Google Sheets as a database. Handles recurring expenses with automatic monthly generation (idempotent), installment tracking with full visibility per month, credit card invoice grouping, and a 6-month spending trends dashboard. Your data never leaves your Google Drive.',
     status: 'complete',
     techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Google Sheets API', 'Recharts'],
+    screenshots: [
+      '/images/sheet-budget/sb-dashboard.png',
+      '/images/sheet-budget/sb-tema-claro.png',
+      '/images/sheet-budget/sb-lancamentos.png',
+      '/images/sheet-budget/sb-receita.png',
+      '/images/sheet-budget/sb-recorrencias.png',
+      '/images/sheet-budget/sb-configuracoes.png',
+      '/images/sheet-budget/sb-login.png',
+    ],
     gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
   },
 ];

@@ -19,15 +19,22 @@ export interface Product {
   logo?: string;
 }
 
+export interface MythPackage {
+  name: string;
+  logo?: string;
+  description: string;
+  nugetUrl: string;
+}
+
 export const products: Product[] = [
   {
     id: 'mindcircle',
     name: 'MindCircle',
-    tagline: 'Visual thinking, powered by AI',
+    tagline: 'Your ideas deserve better than messy notes',
     description:
-      'Collaborative SaaS platform for knowledge management and idea organization, with AI assistance, real-time collaboration, and powerful visualization tools.',
+      'AI-powered visual workspace for brainstorming, documentation, and execution. Real-time collaboration, contextual AI suggestions, and one-click document generation.',
     longDescription:
-      'MindCircle is a full-stack collaborative platform built for visual thinking and AI-assisted experiences. It combines a .NET 8 backend with a React 18 frontend, delivering real-time collaboration via SignalR, AI-powered content generation with OpenAI GPT-4o, diagram tools, and an internationalized interface — all built on top of the Myth ecosystem.',
+      'MindCircle transforms creative chaos into structured execution. An infinite collaborative canvas combined with AI that reads your full context and suggests next steps — not just words, but ideas that actually fit. From the first sticky note to the final stakeholder brief, everything happens in one visual workspace.',
     status: 'active',
     techStack: [
       '.NET 8',
@@ -35,44 +42,46 @@ export const products: Product[] = [
       'React 18',
       'TypeScript',
       'SignalR',
-      'OpenAI',
+      'GPT-4o-mini',
       'PostgreSQL',
       'Tailwind CSS',
-      'Excalidraw',
+      'Stripe',
+      'Myth Ecosystem',
     ],
     features: [
       {
-        title: 'Real-time Collaboration',
+        title: 'Infinite Canvas',
         description:
-          'Live editing and presence indicators via SignalR hubs. Work together without friction.',
+          'Capture ideas anywhere on an infinite collaborative canvas. Speed over perfection — raw, incomplete, messy ideas are welcome.',
       },
       {
-        title: 'AI Integration',
+        title: 'Contextual AI',
         description:
-          'GPT-4o powered idea generation, content summarization, and smart suggestions.',
+          'AI reads your entire canvas before suggesting. Never gets stuck. Click any node and get 1-3 ideas that actually fit the context.',
       },
       {
-        title: 'Visual Workspace',
+        title: 'Structured Execution',
         description:
-          'Diagrams with Excalidraw, Mermaid charts, mind maps, and rich markdown editor.',
+          'Evolve nodes from Idea → Refining → Progress → Done. Generate a professional document from your canvas in one click.',
       },
       {
-        title: 'Feature Flags',
+        title: 'Presentation Mode',
         description:
-          'Runtime-controlled feature rollouts with admin dashboard and A/B testing support.',
+          'Lock the canvas into presentation mode. Guide your audience through your thinking step by step, with AI panels fully active.',
       },
       {
-        title: 'Enterprise Auth',
+        title: 'Perspectives',
         description:
-          'JWT authentication with httpOnly cookies and Google OAuth integration.',
+          'Color nodes by type: Risk, Opportunity, Action, Decision, Assumption. Instant visual clarity on what needs attention.',
       },
       {
-        title: 'Clean Architecture',
+        title: 'AI Insights',
         description:
-          'Domain, Application, Data layers with CQRS, event-driven architecture, and Myth ecosystem.',
+          'Proactive analysis of your full canvas before momentum fades. Tells you what is solid, what is missing, and exactly what to do next.',
       },
     ],
     href: '/products/mindcircle',
+    externalUrl: 'https://mindcircle.app',
     gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
     logo: '/images/mindcircle-icon.svg',
   },
@@ -81,7 +90,7 @@ export const products: Product[] = [
     name: 'Myth Ecosystem',
     tagline: 'Production-ready .NET libraries for clean architecture',
     description:
-      'A comprehensive collection of 11+ NuGet packages for building robust, scalable .NET enterprise applications — with fluent APIs, minimal configuration, and DDD at the core.',
+      'A comprehensive collection of 12 NuGet packages for building robust, scalable .NET enterprise applications — with fluent APIs, minimal configuration, and DDD at the core.',
     longDescription:
       'Myth is an opinionated, battle-tested ecosystem of .NET libraries that eliminates boilerplate while enforcing clean architecture, DDD, and modern engineering patterns. Each library solves a specific concern — from validation and pipelines to CQRS, repositories, and REST clients — and they integrate seamlessly through a global service provider.',
     status: 'active',
@@ -109,7 +118,7 @@ export const products: Product[] = [
       },
       {
         title: 'Myth.Morph',
-        description: 'Compile-time safe object mapping with zero reflection at runtime.',
+        description: 'Schema-based object transformation with async support and DI integration.',
       },
     ],
     href: '/products/myth',
@@ -119,16 +128,77 @@ export const products: Product[] = [
   },
 ];
 
-export const mythPackages = [
-  { name: 'Myth.Commons',                   logo: '/images/myth-logo.png',                       description: 'Foundation utilities, value objects, global service provider, pagination.' },
-  { name: 'Myth.DependencyInjection',        logo: '/images/myth-dependency-injection-logo.png',  description: 'Convention-based auto-registration and assembly scanning.' },
-  { name: 'Myth.Flow',                       logo: '/images/myth-flow-logo.png',                  description: 'Pipeline orchestration with fluent API, retry, OpenTelemetry.' },
-  { name: 'Myth.Flow.Actions',               logo: '/images/myth-flow-actions-logo.png',          description: 'CQRS and event-driven architecture with IDispatcher and event bus.' },
-  { name: 'Myth.Guard',                      logo: '/images/myth-guard-logo.png',                 description: 'Fluent, context-aware validation with async integration.' },
-  { name: 'Myth.Repository',                 logo: '/images/myth-repository-logo.png',            description: 'Clean read/write repository abstractions.' },
-  { name: 'Myth.Repository.EntityFramework', logo: '/images/myth-repository-ef-logo.png',        description: 'EF Core implementations with BaseContext and Unit of Work.' },
-  { name: 'Myth.Specification',              logo: '/images/myth-specification-logo.png',         description: 'Composable query specifications with fluent API.' },
-  { name: 'Myth.Rest',                       logo: '/images/myth-rest-logo.png',                  description: 'Modern REST client with resilience and circuit breaker.' },
-  { name: 'Myth.Morph',                      logo: '/images/myth-morph-logo.png',                 description: 'Compile-time safe object transformations, zero reflection.' },
-  { name: 'Myth.Testing',                    logo: '/images/myth-testing-logo.png',               description: 'Pre-configured test base classes, HTTP mocking, Bogus, FluentAssertions.' },
+export const mythPackages: MythPackage[] = [
+  {
+    name: 'Myth.Commons',
+    logo: '/images/myth-logo.png',
+    description: 'Foundation utilities, value objects, JSON extensions, and global service provider management for clean architecture applications.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Commons',
+  },
+  {
+    name: 'Myth.DependencyInjection',
+    logo: '/images/myth-dependency-injection-logo.png',
+    description: 'Convention-based auto-registration and assembly scanning. Eliminate manual DI wiring with TypeProvider and interface mapping.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.DependencyInjection',
+  },
+  {
+    name: 'Myth.Flow',
+    logo: '/images/myth-flow-logo.png',
+    description: 'Fluent pipeline orchestration with Result pattern, OpenTelemetry tracing, retry with exponential backoff, and per-step DI resolution.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Flow',
+  },
+  {
+    name: 'Myth.Flow.Actions',
+    logo: '/images/myth-flow-actions-logo.png',
+    description: 'CQRS and event-driven architecture with IDispatcher, ICommandHandler, IQueryHandler, and event bus (InMemory, RabbitMQ, Kafka).',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Flow.Actions',
+  },
+  {
+    name: 'Myth.Guard',
+    logo: '/images/myth-guard-logo.png',
+    description: '100+ fluent validation rules with context-aware scoping (Create, Update, Delete). ASP.NET Core middleware returns RFC 9457 Problem Details.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Guard',
+  },
+  {
+    name: 'Myth.Morph',
+    logo: '/images/myth-morph-logo.png',
+    description: 'Schema-based object transformation with async support, DI integration, and IMorphable<T> for custom mapping scenarios.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Morph',
+  },
+  {
+    name: 'Myth.Repository',
+    logo: '/images/myth-repository-logo.png',
+    description: 'Clean read/write repository abstractions: IReadRepositoryAsync<T>, IWriteRepositoryAsync<T>, Specification support, and pagination.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Repository',
+  },
+  {
+    name: 'Myth.Repository.EntityFramework',
+    logo: '/images/myth-repository-ef-logo.png',
+    description: 'EF Core implementations with BaseContext (auto-discovers IEntityTypeConfiguration<T>), Unit of Work, savepoints, and AddRepositories() DI.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Repository.EntityFramework',
+  },
+  {
+    name: 'Myth.Specification',
+    logo: '/images/myth-specification-logo.png',
+    description: 'Composable query specifications via SpecBuilder<T>. Chain .And()/.Or()/.Not()/.AndIf()/.OrIf() with ordering, skip/take, and DistinctBy.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Specification',
+  },
+  {
+    name: 'Myth.Rest',
+    logo: '/images/myth-rest-logo.png',
+    description: 'Fluent REST client with retry (fixed, exponential, jitter), circuit breaker, Bearer/Basic/certificate auth, and IHttpClientFactory integration.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Rest',
+  },
+  {
+    name: 'Myth.Testing',
+    logo: '/images/myth-testing-logo.png',
+    description: 'xUnit base classes with DI via AddService<T>(), Bogus Faker, EF Core in-memory database, Moq, FluentAssertions, and HTTP mocking.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Testing',
+  },
+  {
+    name: 'Myth.Tool',
+    logo: '/images/myth-logo.png',
+    description: 'Global CLI for CQRS, DDD, and Clean Architecture code generation. Scaffold commands, queries, entities, and models with Scriban templates.',
+    nugetUrl: 'https://www.nuget.org/packages/Myth.Tool',
+  },
 ];

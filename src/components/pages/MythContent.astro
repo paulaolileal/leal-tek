@@ -3,7 +3,7 @@ import BaseLayout from '../layout/BaseLayout.astro';
 import Button from '../ui/Button.astro';
 import Badge from '../ui/Badge.astro';
 import TechBadge from '../ui/TechBadge.astro';
-import { products, mythPackages } from '../../data/products';
+import { products, mythPackages, type MythPackage } from '../../data/products';
 import { getTranslations } from '../../i18n/utils';
 import type { Locale } from '../../i18n/translations';
 
@@ -57,15 +57,18 @@ const longDescription = tp?.longDescription ?? product.longDescription;
         <p class="section-sub">{tm.packagesSub}</p>
       </div>
       <div class="packages-grid">
-        {mythPackages.map((pkg, i) => (
+        {mythPackages.map((pkg: MythPackage, i: number) => (
           <div class={`package-card reveal reveal-delay-${(i % 4) + 1}`}>
-            {(pkg as { logo?: string }).logo && (
+            {pkg.logo && (
               <div class="pkg-logo">
-                <img src={(pkg as { logo?: string }).logo} alt={pkg.name} width="32" height="32" loading="lazy" />
+                <img src={pkg.logo} alt={pkg.name} width="32" height="32" loading="lazy" />
               </div>
             )}
             <span class="pkg-name">{pkg.name}</span>
             <p class="pkg-desc">{pkg.description}</p>
+            <a class="pkg-nuget" href={pkg.nugetUrl} target="_blank" rel="noopener noreferrer">
+              {tm.packageNuget} →
+            </a>
           </div>
         ))}
       </div>
@@ -176,7 +179,21 @@ const longDescription = tp?.longDescription ?? product.longDescription;
   .pkg-logo img { width: 100%; height: 100%; object-fit: contain; }
 
   .pkg-name { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 500; color: var(--gold-primary); letter-spacing: 0.02em; word-break: break-word; }
-  .pkg-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+  .pkg-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.55; margin: 0; flex: 1; }
+
+  .pkg-nuget {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--gold-dim);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--border);
+    transition: color var(--transition);
+    display: block;
+  }
+  .pkg-nuget:hover { color: var(--gold-primary); }
 
   .why-section { border-top: 1px solid var(--border); }
   .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-xl); }

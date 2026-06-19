@@ -55,6 +55,17 @@ const enrichedLabs = labProjects.map((project, i) => {
       <div class="projects-grid">
         {enrichedLabs.map(project => (
             <article class={project.delayClass}>
+              {project.screenshots && project.screenshots.length > 0 && (
+                <div class="card-screenshot">
+                  <img
+                    src={project.screenshots[0]}
+                    alt={`${project.name} screenshot`}
+                    loading="lazy"
+                    width="640"
+                    height="360"
+                  />
+                </div>
+              )}
               <div class="card-top">
                 <div class="card-header">
                   <Badge variant={project.statusVariant}>
@@ -143,4 +154,21 @@ const enrichedLabs = labProjects.map((project, i) => {
     display: flex; gap: var(--space-sm); flex-wrap: wrap;
     padding-top: var(--space-sm); border-top: 1px solid var(--border);
   }
+
+  .card-screenshot {
+    margin: calc(-1 * var(--space-xl)) calc(-1 * var(--space-xl)) 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .card-screenshot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+  .project-card:hover .card-screenshot img { transform: scale(1.02); }
 </style>

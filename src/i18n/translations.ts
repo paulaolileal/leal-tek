@@ -186,17 +186,31 @@ export const translations = {
     mindcircle: {
       meta: {
         title: 'MindCircle',
-        description: 'Pensamento visual, potencializado por IA. Uma plataforma SaaS colaborativa para gestão do conhecimento.',
+        description: 'Workspace visual com IA para brainstorming, documentação e execução. Canvas colaborativo infinito, IA contextual e geração de documentos em um clique.',
       },
       category: 'Plataforma SaaS',
       statusActive: 'Ativo',
-      featuresLabel: 'Funcionalidades Principais',
+      problemsLabel: 'O Problema',
+      problemsHeading: 'Suas ideias merecem mais do que notas bagunçadas',
+      problems: [
+        { title: 'Notas Espalhadas', description: 'Ideias no Slack, Notion, bloco de notas — que nunca se conectam entre si.' },
+        { title: 'Reuniões Sem Fim', description: 'Alinhamento acontece na reunião, mas cada um sai com um plano diferente.' },
+        { title: 'Momentum Perdido', description: 'Ótimas ideias morrem entre sessões. O contexto desaparece.' },
+      ],
+      featuresLabel: 'Como Funciona',
       featuresHeading: 'Construído para a forma que você pensa',
+      pricingLabel: 'Planos',
+      pricingHeading: 'Comece grátis. Evolua quando precisar.',
+      plans: [
+        { name: 'Free', price: '$0',  period: '/mês', credits: '100 créditos/mês',    cta: 'Começar Grátis' },
+        { name: 'Plus', price: '$9',  period: '/mês', credits: '1.000 créditos/mês', cta: 'Assinar Plus'   },
+        { name: 'Pro',  price: '$22', period: '/mês', credits: '5.000 créditos/mês', cta: 'Assinar Pro'    },
+      ],
       stackLabel: 'Stack Tecnológica',
       stackHeading: 'O que faz funcionar',
-      ctaHeading: 'Fique ligado — acesso antecipado chegando em breve.',
-      ctaText: 'O MindCircle está sendo ativamente construído. Acompanhe no LinkedIn para atualizações e anúncios de acesso antecipado.',
-      ctaBtn: 'Seguir no LinkedIn',
+      ctaHeading: 'Comece a pensar com clareza.',
+      ctaText: 'MindCircle está disponível agora. Experimente grátis com 100 créditos — sem cartão de crédito.',
+      ctaBtn: 'Começar Grátis',
     },
 
     myth: {
@@ -207,8 +221,9 @@ export const translations = {
       category: 'Ecossistema de Bibliotecas .NET',
       statusActive: 'Ativo',
       packagesLabel: 'Pacotes NuGet',
-      packagesHeading: '11 bibliotecas focadas',
+      packagesHeading: '12 bibliotecas focadas',
       packagesSub: 'Cada pacote resolve uma preocupação — e todos se encaixam juntos.',
+      packageNuget: 'Ver no NuGet',
       philosophyLabel: 'Filosofia',
       whyHeading: 'Por que Myth?',
       builtWithLabel: 'Construído Com',
@@ -221,7 +236,7 @@ export const translations = {
       whyPoints: [
         { title: 'Zero boilerplate', description: 'APIs fluentes e convenções inteligentes eliminam configuração repetitiva. Escreva o que importa.' },
         { title: 'DDD nativo', description: 'Domain-Driven Design é de primeira classe. Cada biblioteca é projetada em torno de bounded contexts e aggregate roots.' },
-        { title: 'Integração perfeita', description: 'Todos os 11 pacotes compartilham um service provider global e seguem as mesmas convenções — eles simplesmente funcionam juntos.' },
+        { title: 'Integração perfeita', description: 'Todos os 12 pacotes compartilham um service provider global e seguem as mesmas convenções — eles simplesmente funcionam juntos.' },
       ],
     },
 
@@ -314,22 +329,22 @@ export const translations = {
       },
       'sheet-budget': {
         tagline: 'Controle financeiro pessoal — Google Sheets como banco de dados',
-        description: 'Rastreador financeiro sem backend que usa sua própria planilha Google. Gerencia despesas recorrentes, parcelamentos, faturas de cartão de crédito e visualiza tendências de gastos em 6 meses. Seus dados ficam no seu Drive.',
+        description: 'Rastreador financeiro pessoal sem backend que usa o Google Sheets como banco de dados. Gerencia despesas recorrentes com geração mensal automática (idempotente), parcelamentos com visibilidade por mês, agrupamento de faturas de cartão de crédito e dashboard de tendências de gastos em 6 meses. Seus dados nunca saem do seu Google Drive.',
       },
     },
 
     productsContent: {
       mindcircle: {
-        tagline: 'Pensamento visual, potencializado por IA',
-        description: 'Plataforma SaaS colaborativa para gestão do conhecimento e organização de ideias, com assistência de IA, colaboração em tempo real e ferramentas poderosas de visualização.',
-        longDescription: 'MindCircle é uma plataforma colaborativa full-stack construída para pensamento visual e experiências assistidas por IA. Combina um backend .NET 8 com um frontend React 18, entregando colaboração em tempo real via SignalR, geração de conteúdo com IA (OpenAI GPT-4o), ferramentas de diagrama e uma interface internacionalizada — tudo construído sobre o ecossistema Myth.',
+        tagline: 'Suas ideias merecem mais do que notas bagunçadas',
+        description: 'Workspace visual com IA para brainstorming, documentação e execução. Canvas colaborativo infinito, sugestões de IA contextuais e geração de documentos profissionais em um clique.',
+        longDescription: 'MindCircle transforma o caos criativo em execução estruturada. Um canvas colaborativo infinito combinado com IA que lê o contexto completo e sugere próximos passos — não apenas palavras, mas ideias que realmente se encaixam. Da primeira nota ao briefing final para stakeholders, tudo acontece em um único workspace visual.',
         features: [
-          { title: 'Colaboração em Tempo Real', description: 'Edição ao vivo e indicadores de presença via hubs SignalR. Trabalhe junto sem fricção.' },
-          { title: 'Integração com IA', description: 'Geração de ideias, sumarização de conteúdo e sugestões inteligentes com GPT-4o.' },
-          { title: 'Workspace Visual', description: 'Diagramas com Excalidraw, gráficos Mermaid, mapas mentais e editor rich markdown.' },
-          { title: 'Feature Flags', description: 'Rollouts controlados em runtime com dashboard admin e suporte a A/B testing.' },
-          { title: 'Auth Enterprise', description: 'Autenticação JWT com cookies httpOnly e integração Google OAuth.' },
-          { title: 'Clean Architecture', description: 'Camadas Domain, Application, Data com CQRS, arquitetura event-driven e ecossistema Myth.' },
+          { title: 'Canvas Infinito', description: 'Capture ideias em qualquer lugar do canvas colaborativo. Velocidade sobre perfeição — ideias brutas e incompletas são bem-vindas.' },
+          { title: 'IA Contextual', description: 'A IA lê todo o canvas antes de sugerir. Clique em qualquer nó e receba 1-3 ideias que realmente se encaixam no contexto.' },
+          { title: 'Execução Estruturada', description: 'Evolua nós de Ideia → Refinando → Progresso → Concluído. Gere um documento profissional do canvas em um clique.' },
+          { title: 'Modo Apresentação', description: 'Trave o canvas em modo apresentação. Guie sua audiência passo a passo com os painéis de IA totalmente ativos.' },
+          { title: 'Perspectivas', description: 'Colora nós por tipo: Risco, Oportunidade, Ação, Decisão, Premissa. Clareza visual instantânea sobre o que precisa de atenção.' },
+          { title: 'AI Insights', description: 'Análise proativa do canvas completo antes do momentum acabar. Diz o que está sólido, o que falta e exatamente o que fazer a seguir.' },
         ],
       },
       myth: {
@@ -525,17 +540,31 @@ export const translations = {
     mindcircle: {
       meta: {
         title: 'MindCircle',
-        description: 'Visual thinking, powered by AI. A collaborative SaaS platform for knowledge management with real-time collaboration and GPT-4o integration.',
+        description: 'AI-powered visual workspace for brainstorming, documentation, and execution. Infinite collaborative canvas, contextual AI, and one-click document generation.',
       },
       category: 'SaaS Platform',
       statusActive: 'Active',
-      featuresLabel: 'Core Features',
+      problemsLabel: 'The Problem',
+      problemsHeading: 'Your ideas deserve better than messy notes',
+      problems: [
+        { title: 'Scattered Notes', description: 'Ideas live in Slack, Notion, sticky notes — and they never connect.' },
+        { title: 'Endless Meetings', description: 'Alignment happens in the meeting, but everyone leaves with a different plan.' },
+        { title: 'Lost Momentum', description: 'Great ideas die between sessions. The context disappears.' },
+      ],
+      featuresLabel: 'How It Works',
       featuresHeading: 'Built for the way you think',
+      pricingLabel: 'Plans',
+      pricingHeading: 'Start free. Grow when you need to.',
+      plans: [
+        { name: 'Free', price: '$0',  period: '/mo', credits: '100 credits/mo',    cta: 'Start for Free' },
+        { name: 'Plus', price: '$9',  period: '/mo', credits: '1,000 credits/mo', cta: 'Get Plus'       },
+        { name: 'Pro',  price: '$22', period: '/mo', credits: '5,000 credits/mo', cta: 'Get Pro'        },
+      ],
       stackLabel: 'Tech Stack',
       stackHeading: 'What powers it',
-      ctaHeading: 'Stay tuned — early access coming soon.',
-      ctaText: 'MindCircle is actively being built. Follow along on LinkedIn for updates and early access announcements.',
-      ctaBtn: 'Follow on LinkedIn',
+      ctaHeading: 'Start thinking clearly.',
+      ctaText: 'MindCircle is live now. Try it free with 100 credits — no credit card required.',
+      ctaBtn: 'Start for Free',
     },
 
     myth: {
@@ -546,8 +575,9 @@ export const translations = {
       category: '.NET Library Ecosystem',
       statusActive: 'Active',
       packagesLabel: 'NuGet Packages',
-      packagesHeading: '11 focused libraries',
+      packagesHeading: '12 focused libraries',
       packagesSub: 'Each package solves one concern — and they all fit together.',
+      packageNuget: 'View on NuGet',
       philosophyLabel: 'Philosophy',
       whyHeading: 'Why Myth?',
       builtWithLabel: 'Built With',
@@ -560,7 +590,7 @@ export const translations = {
       whyPoints: [
         { title: 'Zero boilerplate', description: 'Fluent APIs and smart conventions eliminate repetitive setup. Write what matters.' },
         { title: 'DDD native', description: 'Domain-Driven Design is first-class. Every library is designed around bounded contexts and aggregate roots.' },
-        { title: 'Perfect integration', description: 'All 11 packages share a global service provider and follow the same conventions — they just work together.' },
+        { title: 'Perfect integration', description: 'All 12 packages share a global service provider and follow the same conventions — they just work together.' },
       ],
     },
 
@@ -653,22 +683,22 @@ export const translations = {
       },
       'sheet-budget': {
         tagline: 'Personal finance tracking — Google Sheets as your database',
-        description: 'Zero-backend finance tracker that uses your own Google Sheets. Manages recurring expenses, installments, credit card invoices, and visualizes 6-month spending trends. Your data stays in your Drive.',
+        description: 'Zero-backend personal finance tracker that uses your own Google Sheets as a database. Handles recurring expenses with automatic monthly generation (idempotent), installment tracking with full visibility per month, credit card invoice grouping, and a 6-month spending trends dashboard. Your data never leaves your Google Drive.',
       },
     },
 
     productsContent: {
       mindcircle: {
-        tagline: 'Visual thinking, powered by AI',
-        description: 'Collaborative SaaS platform for knowledge management and idea organization, with AI assistance, real-time collaboration, and powerful visualization tools.',
-        longDescription: 'MindCircle is a full-stack collaborative platform built for visual thinking and AI-assisted experiences. It combines a .NET 8 backend with a React 18 frontend, delivering real-time collaboration via SignalR, AI-powered content generation with OpenAI GPT-4o, diagram tools, and an internationalized interface — all built on top of the Myth ecosystem.',
+        tagline: 'Your ideas deserve better than messy notes',
+        description: 'AI-powered visual workspace for brainstorming, documentation, and execution. Infinite collaborative canvas, contextual AI suggestions, and one-click professional document generation.',
+        longDescription: 'MindCircle transforms creative chaos into structured execution. An infinite collaborative canvas combined with AI that reads your full context and suggests next steps — not just words, but ideas that actually fit. From the first sticky note to the final stakeholder brief, everything happens in one visual workspace.',
         features: [
-          { title: 'Real-time Collaboration', description: 'Live editing and presence indicators via SignalR hubs. Work together without friction.' },
-          { title: 'AI Integration', description: 'GPT-4o powered idea generation, content summarization, and smart suggestions.' },
-          { title: 'Visual Workspace', description: 'Diagrams with Excalidraw, Mermaid charts, mind maps, and rich markdown editor.' },
-          { title: 'Feature Flags', description: 'Runtime-controlled feature rollouts with admin dashboard and A/B testing support.' },
-          { title: 'Enterprise Auth', description: 'JWT authentication with httpOnly cookies and Google OAuth integration.' },
-          { title: 'Clean Architecture', description: 'Domain, Application, Data layers with CQRS, event-driven architecture, and Myth ecosystem.' },
+          { title: 'Infinite Canvas', description: 'Capture ideas anywhere on an infinite collaborative canvas. Speed over perfection — raw, incomplete ideas are welcome.' },
+          { title: 'Contextual AI', description: 'AI reads your entire canvas before suggesting. Click any node and get 1-3 ideas that actually fit the context.' },
+          { title: 'Structured Execution', description: 'Evolve nodes from Idea → Refining → Progress → Done. Generate a professional document from your canvas in one click.' },
+          { title: 'Presentation Mode', description: 'Lock the canvas into presentation mode. Guide your audience step by step with AI panels fully active.' },
+          { title: 'Perspectives', description: 'Color nodes by type: Risk, Opportunity, Action, Decision, Assumption. Instant visual clarity on what needs attention.' },
+          { title: 'AI Insights', description: 'Proactive analysis of your full canvas before momentum fades. Tells you what is solid, what is missing, and exactly what to do next.' },
         ],
       },
       myth: {
