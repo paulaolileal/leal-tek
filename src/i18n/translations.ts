@@ -152,6 +152,7 @@ export const translations = {
       wip: 'Em Andamento',
       complete: 'Concluído',
       viewDetails: 'Ver Detalhes →',
+      privateRepo: 'repositório privado',
     },
 
     sheetBudget: {
@@ -282,11 +283,11 @@ export const translations = {
       whyHeading: 'Por que Myth?',
       builtWithLabel: 'Construído Com',
       viewOnNuget: 'Ver no NuGet',
-      gitlabSource: 'Código no GitLab',
+      githubSource: 'Código no GitHub',
       ctaHeading: 'Pronto para usar o Myth no seu projeto?',
-      ctaText: 'Todos os pacotes estão disponíveis no NuGet. Código-fonte e documentação vivem no GitLab.',
+      ctaText: 'Todos os pacotes estão disponíveis no NuGet. Código-fonte e documentação vivem no GitHub.',
       browseNuget: 'Explorar no NuGet',
-      exploreGitlab: 'Explorar no GitLab',
+      exploreGithub: 'Explorar no GitHub',
       whyPoints: [
         { title: 'Zero boilerplate', description: 'APIs fluentes e convenções inteligentes eliminam configuração repetitiva. Escreva o que importa.' },
         { title: 'DDD nativo', description: 'Domain-Driven Design é de primeira classe. Cada biblioteca é projetada em torno de bounded contexts e aggregate roots.' },
@@ -376,10 +377,6 @@ export const translations = {
       buddy: {
         tagline: 'Pet desktop com IA, voz e personalidade',
         description: 'Companheiro desktop interativo com IA para Windows. Escuta via wake-word ou atalho, responde com Edge TTS, reage à sua atividade e exibe sprites animados com estados emocionais.',
-      },
-      deca: {
-        tagline: 'Motor de raciocínio distribuído para assistentes de voz',
-        description: 'Arquitetura que separa o raciocínio de IA (Mind) da I/O de hardware (Node). O Mind cuida de memória, classificação de intenção e personalidade — enquanto os Nodes executam ações. Construído para fluxos de voz distribuídos e multi-dispositivo.',
       },
       'sheet-budget': {
         tagline: 'Controle financeiro pessoal — Google Sheets como banco de dados',
@@ -560,6 +557,7 @@ export const translations = {
       wip: 'In Progress',
       complete: 'Complete',
       viewDetails: 'View Details →',
+      privateRepo: 'private repository',
     },
 
     sheetBudget: {
@@ -690,11 +688,11 @@ export const translations = {
       whyHeading: 'Why Myth?',
       builtWithLabel: 'Built With',
       viewOnNuget: 'View on NuGet',
-      gitlabSource: 'GitLab Source',
+      githubSource: 'GitHub Source',
       ctaHeading: 'Ready to use Myth in your project?',
-      ctaText: 'All packages are available on NuGet. Source code and documentation live on GitLab.',
+      ctaText: 'All packages are available on NuGet. Source code and documentation live on GitHub.',
       browseNuget: 'Browse on NuGet',
-      exploreGitlab: 'Explore on GitLab',
+      exploreGithub: 'Explore on GitHub',
       whyPoints: [
         { title: 'Zero boilerplate', description: 'Fluent APIs and smart conventions eliminate repetitive setup. Write what matters.' },
         { title: 'DDD native', description: 'Domain-Driven Design is first-class. Every library is designed around bounded contexts and aggregate roots.' },
@@ -784,10 +782,6 @@ export const translations = {
       buddy: {
         tagline: 'AI desktop pet with voice and personality',
         description: 'Interactive AI-powered desktop companion for Windows. Listens via wake-word or hotkey, responds with Edge TTS, reacts to your activity, and displays animated sprites with emotional states.',
-      },
-      deca: {
-        tagline: 'Distributed reasoning engine for voice assistants',
-        description: 'Architecture that separates AI reasoning (Mind) from hardware I/O (Node). The Mind handles memory, intent classification, and personality — while Nodes execute actions. Built for distributed, multi-device voice workflows.',
       },
       'sheet-budget': {
         tagline: 'Personal finance tracking — Google Sheets as your database',

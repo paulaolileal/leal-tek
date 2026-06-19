@@ -15,7 +15,7 @@ export interface Product {
   href: string;
   externalUrl?: string;
   nugetUrl?: string;
-  gitlabUrl?: string;
+  githubUrl?: string;
   logo?: string;
 }
 
@@ -82,7 +82,6 @@ export const products: Product[] = [
     ],
     href: '/products/mindcircle',
     externalUrl: 'https://mindcircle.app',
-    gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
     logo: '/images/mindcircle-icon.svg',
   },
   {
@@ -123,7 +122,7 @@ export const products: Product[] = [
     ],
     href: '/products/myth',
     nugetUrl: 'https://www.nuget.org/profiles/paulaolileal',
-    gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
+    githubUrl: 'https://github.com/paulaolileal/myth',
     logo: '/images/myth-logo.png',
   },
 ];

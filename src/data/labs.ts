@@ -22,7 +22,6 @@ export const labProjects: LabProject[] = [
       'Multi-platform tracker for movies, series, anime, and games. Unique twist: timestamp-anchored comments that sync to specific moments of playback, plus emoji reactions visible as timeline markers and weekly scheduling.',
     status: 'wip',
     techStack: ['React 19', 'TanStack Start', '.NET 10', 'Myth Ecosystem', 'TMDB', 'IGDB', 'Trakt'],
-    gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
   },
   {
     id: 'buddy',
@@ -32,17 +31,7 @@ export const labProjects: LabProject[] = [
       'Interactive AI-powered desktop companion for Windows. Listens via wake-word or hotkey, responds with Edge TTS, reacts to your activity, and displays animated sprites with emotional states.',
     status: 'wip',
     techStack: ['Python', 'PyQt6', 'OpenAI Whisper', 'Edge TTS', 'GPT-4'],
-    gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
-  },
-  {
-    id: 'deca',
-    name: 'Deca',
-    tagline: 'Distributed reasoning engine for voice assistants',
-    description:
-      'Architecture that separates AI reasoning (Mind) from hardware I/O (Node). The Mind handles memory, intent classification, and personality — while Nodes execute actions. Built for distributed, multi-device voice workflows.',
-    status: 'wip',
-    techStack: ['.NET 10', 'Clean Architecture', 'SQLite', 'EF Core', 'Docker'],
-    gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
+    githubUrl: 'https://github.com/paulaolileal/buddy',
   },
   {
     id: 'sheet-budget',
@@ -63,6 +52,6 @@ export const labProjects: LabProject[] = [
       '/images/sheet-budget/sb-configuracoes.png',
       '/images/sheet-budget/sb-login.png',
     ],
-    gitlabUrl: 'https://gitlab.com/users/paulaolileal/',
+    githubUrl: 'https://github.com/paulaolileal/sheet-budget',
   },
 ];
