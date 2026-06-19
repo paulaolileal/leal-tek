@@ -9,7 +9,6 @@ export const translations = {
       games: 'Jogos',
       blog: 'Blog',
       about: 'Sobre',
-      now: 'Agora',
       contact: 'Contato',
     },
     langSwitch: 'EN',
@@ -98,45 +97,6 @@ export const translations = {
       heading: 'Entre em Contato',
       sub: 'Uma colaboração, um projeto ou apenas uma boa conversa sobre arquitetura.',
       note: 'Sem formulário — fale diretamente.',
-    },
-
-    now: {
-      meta: {
-        title: 'Agora',
-        description: 'No que estou trabalhando, aprendendo e pensando — atualizado em junho de 2026.',
-      },
-      updated: 'Atualizado em junho de 2026 — Contagem, MG, Brasil',
-      workingOn: 'Trabalhando em',
-      learning: 'Aprendendo',
-      readingWatching: 'Lendo / Assistindo',
-      basedIn: 'Baseado em',
-      readingEmpty: 'Nada específico no momento — este espaço será atualizado em breve.',
-      location: 'Contagem, Minas Gerais, Brasil',
-      nowMovement: 'Esta página é inspirada pelo movimento /now —',
-      workItems: [
-        {
-          label: 'Staff Engineer na TOTVS',
-          desc: 'Liderando Engineering Experience — ferramentas para desenvolvedores, padrões internos e enablement de plataforma em times de engenharia.',
-        },
-        {
-          label: 'MindCircle',
-          desc: 'Construindo a plataforma como fundadora — da arquitetura à UI. Colaboração em tempo real, integração com IA e ferramentas de workspace visual.',
-        },
-        {
-          label: 'Myth Ecosystem',
-          desc: 'Evoluindo a suite de bibliotecas — adicionando novos pacotes, refinando APIs e melhorando a documentação com base no uso real.',
-        },
-      ],
-      learnItems: [
-        {
-          label: 'Ferramentas de IA para workflows de desenvolvimento',
-          desc: 'Explorando como LLMs se integram em pipelines de desenvolvimento, automação de code review e ferramentas de enablement.',
-        },
-        {
-          label: 'Padrões de sistemas distribuídos',
-          desc: 'Aprofundando em event sourcing, sagas e consistência eventual — passando da teoria para a implementação prática.',
-        },
-      ],
     },
 
     labs: {
@@ -416,7 +376,6 @@ export const translations = {
       games: 'Games',
       blog: 'Blog',
       about: 'About',
-      now: 'Now',
       contact: 'Contact',
     },
     langSwitch: 'PT',
@@ -505,45 +464,6 @@ export const translations = {
       heading: 'Get in Touch',
       sub: "Whether it's a collaboration, a project, or just a great conversation about architecture.",
       note: 'No contact form — just reach out directly.',
-    },
-
-    now: {
-      meta: {
-        title: 'Now',
-        description: "What I'm currently working on, learning, and thinking about — updated June 2026.",
-      },
-      updated: 'Updated June 2026 — Contagem, MG, Brazil',
-      workingOn: 'Working on',
-      learning: 'Learning',
-      readingWatching: 'Reading / Watching',
-      basedIn: 'Based in',
-      readingEmpty: 'Nothing specific right now — this space will be updated soon.',
-      location: 'Contagem, Minas Gerais, Brazil',
-      nowMovement: 'This page is inspired by the /now movement —',
-      workItems: [
-        {
-          label: 'Staff Engineer at TOTVS',
-          desc: 'Leading Engineering Experience — developer tooling, internal standards, and platform enablement across engineering teams.',
-        },
-        {
-          label: 'MindCircle',
-          desc: 'Building the platform as founder — from architecture to UI. Real-time collaboration, AI integration, and visual workspace tooling.',
-        },
-        {
-          label: 'Myth Ecosystem',
-          desc: 'Evolving the library suite — adding new packages, refining APIs, and improving documentation based on real-world usage.',
-        },
-      ],
-      learnItems: [
-        {
-          label: 'AI tooling for developer workflows',
-          desc: 'Exploring how LLMs integrate into development pipelines, code review automation, and engineering enablement tools.',
-        },
-        {
-          label: 'Distributed systems patterns',
-          desc: 'Going deeper on event sourcing, sagas, and eventual consistency — moving from theory to practical implementation.',
-        },
-      ],
     },
 
     labs: {
