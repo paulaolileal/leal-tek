@@ -5,6 +5,8 @@ export interface LabProject {
   description: string;
   status: 'active' | 'wip' | 'complete';
   techStack: string[];
+  logo?: string;
+  href?: string;
   screenshots?: string[];
   demoUrl?: string;
   gitlabUrl?: string;
@@ -49,6 +51,8 @@ export const labProjects: LabProject[] = [
     description:
       'Zero-backend personal finance tracker that uses your own Google Sheets as a database. Handles recurring expenses with automatic monthly generation (idempotent), installment tracking with full visibility per month, credit card invoice grouping, and a 6-month spending trends dashboard. Your data never leaves your Google Drive.',
     status: 'complete',
+    logo: '/images/sheet-budget/sb-logo.png',
+    href: '/labs/sheet-budget',
     techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'Google Sheets API', 'Recharts'],
     screenshots: [
       '/images/sheet-budget/sb-dashboard.png',

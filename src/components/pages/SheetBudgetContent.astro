@@ -1,0 +1,319 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+import Button from '../ui/Button.astro';
+import Badge from '../ui/Badge.astro';
+import TechBadge from '../ui/TechBadge.astro';
+import { getTranslations } from '../../i18n/utils';
+import type { Locale } from '../../i18n/translations';
+
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const t = getTranslations(locale);
+const ts = t.sheetBudget;
+
+const base = locale === 'en' ? '/en' : '';
+const labsHref = `${base}/labs`;
+
+const techStack = [
+  'React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'shadcn/ui',
+  'TanStack Query', 'TanStack Table', 'Recharts', 'Zustand',
+  'React Hook Form', 'Zod', 'Google Sheets API',
+];
+---
+
+<BaseLayout title={ts.meta.title} description={ts.meta.description}>
+
+  <!-- Hero -->
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-meta reveal">
+          <a href={labsHref} class="hero-back">{ts.backToLabs}</a>
+          <span class="hero-slash">/</span>
+          <Badge variant="status-complete">{ts.statusComplete}</Badge>
+          <span class="hero-slash">/</span>
+          <span class="hero-category section-label">{ts.category}</span>
+        </div>
+        <div class="hero-title-row reveal reveal-delay-1">
+          <div class="hero-logo">
+            <img src="/images/sheet-budget/sb-logo.png" alt="Sheet Budget" width="64" height="64" />
+          </div>
+          <h1 class="hero-title">Sheet Budget</h1>
+        </div>
+        <p class="hero-tagline reveal reveal-delay-2">{ts.tagline}</p>
+        <p class="hero-desc reveal reveal-delay-3">{ts.description}</p>
+        <div class="hero-actions reveal reveal-delay-4">
+          <Button href="https://gitlab.com/users/paulaolileal/" variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+            {ts.ctaBtn}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Screenshot -->
+  <div class="featured-screenshot-wrap reveal">
+    <div class="container">
+      <div class="featured-screenshot">
+        <img
+          src="/images/sheet-budget/sb-dashboard.png"
+          alt="Sheet Budget Dashboard"
+          width="1200"
+          height="675"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Concept: 3 differentiators -->
+  <section class="concept-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.conceptLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.conceptHeading}</h2>
+      </div>
+      <div class="concept-grid">
+        {ts.concept.map((item, i) => (
+          <div class={`concept-card reveal reveal-delay-${i + 1}`}>
+            <span class="concept-num">0{i + 1}</span>
+            <h3 class="concept-title">{item.title}</h3>
+            <p class="concept-desc">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.featuresLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.featuresHeading}</h2>
+      </div>
+      <div class="features-grid">
+        {ts.features.map((feature, i) => (
+          <div class={`feature-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <span class="feature-num">0{i + 1}</span>
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-desc">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots Grid -->
+  <section class="screenshots-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.screenshotsLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.screenshotsHeading}</h2>
+      </div>
+      <div class="screenshots-grid">
+        {ts.screenshots.map((shot, i) => (
+          <div class={`screenshot-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <div class="screenshot-img">
+              <img
+                src={shot.src}
+                alt={shot.caption}
+                loading="lazy"
+                width="640"
+                height="400"
+              />
+            </div>
+            <p class="screenshot-caption">{shot.caption}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="arch-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.archLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.archHeading}</h2>
+        <p class="section-description">{ts.archDesc}</p>
+      </div>
+      <div class="arch-layers">
+        {ts.archLayers.map((layer, i) => (
+          <div class={`layer-card reveal reveal-delay-${i + 1}`}>
+            <span class="layer-arrow">{i < ts.archLayers.length - 1 ? '↓' : ''}</span>
+            <div class="layer-content">
+              <span class="layer-name">{layer.name}</span>
+              <p class="layer-desc">{layer.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="stack-section section-sm">
+    <div class="container">
+      <div class="stack-inner reveal">
+        <span class="section-label">{ts.stackLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.stackHeading}</h2>
+        <div class="stack-row">
+          {techStack.map(tech => (
+            <TechBadge tech={tech} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section section reveal">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>{ts.ctaHeading}</h2>
+        <p>{ts.ctaText}</p>
+        <div class="cta-actions">
+          <Button href="https://gitlab.com/users/paulaolileal/" variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+            {ts.ctaBtn}
+          </Button>
+          <Button href={labsHref} variant="ghost" size="lg">
+            {ts.backToLabs}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero-inner { max-width: 760px; }
+
+  .hero-meta { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); flex-wrap: wrap; }
+  .hero-back { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.06em; transition: color var(--transition); }
+  .hero-back:hover { color: var(--gold-primary); }
+  .hero-slash { color: var(--border-accent); font-size: 1.1rem; }
+  .hero-category { color: var(--text-muted); }
+
+  .hero-title-row { display: flex; align-items: center; gap: var(--space-xl); margin-bottom: var(--space-lg); }
+
+  .hero-logo {
+    width: 72px; height: 72px;
+    border-radius: 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    display: flex; align-items: center; justify-content: center;
+    padding: 4px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+  .hero-title   { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
+  .hero-tagline { font-size: clamp(1rem, 2.2vw, 1.3rem); color: var(--gold-primary); font-weight: 600; font-family: var(--font-display); margin-bottom: var(--space-xl); }
+  .hero-desc    { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 620px; margin-bottom: var(--space-2xl); }
+  .hero-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+
+  /* Featured Screenshot */
+  .featured-screenshot-wrap { padding-bottom: var(--space-4xl); }
+  .featured-screenshot {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-accent);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+    background: var(--bg-surface);
+  }
+  .featured-screenshot img { width: 100%; height: auto; display: block; }
+
+  /* Section header */
+  .section-header { margin-bottom: var(--space-2xl); }
+  .section-header h2 { margin-top: var(--space-sm); margin-bottom: var(--space-sm); }
+  .section-description { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; max-width: 640px; }
+
+  /* Concept */
+  .concept-section { border-top: 1px solid var(--border); }
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+  @media (max-width: 900px) { .concept-grid { grid-template-columns: 1fr; } }
+
+  .concept-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);
+    border-left: 2px solid var(--gold-primary);
+  }
+  .concept-num   { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-dim); letter-spacing: 0.1em; }
+  .concept-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+  .concept-desc  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
+
+  /* Features */
+  .features-section { border-top: 1px solid var(--border); }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+  @media (max-width: 900px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
+
+  .feature-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .feature-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .feature-num   { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-dim); letter-spacing: 0.1em; }
+  .feature-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
+  .feature-desc  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
+
+  /* Screenshots */
+  .screenshots-section { border-top: 1px solid var(--border); }
+  .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  @media (max-width: 900px) { .screenshots-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .screenshots-grid { grid-template-columns: 1fr; } }
+
+  .screenshot-card { display: flex; flex-direction: column; gap: var(--space-sm); }
+  .screenshot-img {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    aspect-ratio: 16 / 10;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .screenshot-card:hover .screenshot-img { border-color: var(--border-accent); transform: translateY(-2px); }
+  .screenshot-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .screenshot-caption { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.04em; }
+
+  /* Architecture */
+  .arch-section { border-top: 1px solid var(--border); }
+  .arch-layers { display: flex; flex-direction: column; gap: 0; max-width: 640px; }
+
+  .layer-card {
+    display: flex; flex-direction: column; gap: var(--space-xs);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--bg-card); border: 1px solid var(--border);
+    position: relative;
+  }
+  .layer-card:first-child { border-radius: var(--radius-md) var(--radius-md) 0 0; }
+  .layer-card:last-child  { border-radius: 0 0 var(--radius-md) var(--radius-md); }
+  .layer-card + .layer-card { border-top: none; }
+
+  .layer-content { display: flex; flex-direction: column; gap: var(--space-xs); }
+  .layer-arrow { position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--gold-dim); z-index: 1; line-height: 1; background: var(--bg-card); padding: 0 4px; }
+  .layer-name  { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--gold-primary); letter-spacing: 0.06em; }
+  .layer-desc  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Stack */
+  .stack-section { border-top: 1px solid var(--border); }
+  .stack-inner   { max-width: 760px; }
+  .stack-inner h2 { margin-top: var(--space-sm); margin-bottom: var(--space-xl); }
+  .stack-row { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+
+  /* CTA */
+  .cta-section { border-top: 1px solid var(--border); }
+  .cta-inner   { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-lg); padding-block: var(--space-2xl); max-width: 560px; margin-inline: auto; }
+  .cta-inner h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+  .cta-inner p  { font-size: 0.95rem; color: var(--text-secondary); }
+  .cta-actions  { display: flex; gap: var(--space-md); flex-wrap: wrap; justify-content: center; }
+</style>
