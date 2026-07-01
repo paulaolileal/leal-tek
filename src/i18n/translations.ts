@@ -168,6 +168,60 @@ export const translations = {
       ctaBtn: 'Ver no GitLab',
     },
 
+    metaBoard: {
+      meta: {
+        title: 'MetaBoard — Kanban direto na sua planilha Google Sheets',
+        description: 'Transforma qualquer Google Sheets em um quadro Kanban interativo. Drag & drop, 17 tipos de campo, criação de cards com IA e responsivo por design. Sem backend próprio.',
+      },
+      category: 'Lab · Projeto Pessoal',
+      statusActive: 'Ativo',
+      backToLabs: '← Labs',
+      tagline: 'Kanban board direto na sua planilha Google Sheets',
+      description: 'Você usa Google Sheets para organizar tarefas? A planilha resolve o problema de armazenar dados, mas não oferece uma visão de board para acompanhar o fluxo de trabalho. MetaBoard transforma qualquer Google Sheets em um quadro Kanban interativo — sem backend, sem banco de dados próprio, sem mensalidade.',
+      conceptLabel: 'O Conceito',
+      conceptHeading: 'Sua planilha. Seu board. Sem backend.',
+      concept: [
+        { title: 'Google Sheets como BD', description: 'Sua planilha do Google é o banco de dados. Auditável, exportável e com backup automático pelo Google. Você pode abrir e editar qualquer dado diretamente.' },
+        { title: 'Zero Mensalidade', description: 'Sem servidor próprio, sem custo de infraestrutura. Você já tem uma conta Google e uma planilha — isso é suficiente para começar.' },
+        { title: 'IA Integrada', description: 'Cole qualquer texto — e-mail, anotação, conversa — e a IA extrai os campos do card automaticamente. Revise, aprove ou rejeite cada extração antes de criar.' },
+      ],
+      featuresLabel: 'Funcionalidades',
+      featuresHeading: 'Tudo que você espera de um Kanban moderno',
+      features: [
+        { title: 'Boards Múltiplos por Planilha', description: 'Cada aba de configuração vira um board independente. Organize projetos, treinos, tarefas ou qualquer lista na mesma planilha.' },
+        { title: 'Drag & Drop Nativo', description: 'Arraste cards entre colunas ou reordene dentro da mesma coluna com dnd-kit. Tudo sincroniza de volta na planilha em tempo real.' },
+        { title: '17 Tipos de Campo', description: 'Texto, número, data, URL, imagem, checklist, seleção, multi-seleção, chip, email, cor, localização, duração e mais. Cada campo com editor especializado.' },
+        { title: 'Criação de Cards com IA', description: 'Cole texto livre e a IA extrai campos automaticamente com indicação da fonte: extraído do texto ou inferido. Interface de revisão card a card antes de criar.' },
+        { title: 'Configuração Visual de Board', description: 'Escolha o campo de agrupamento, defina quais campos aparecem no card fechado, reordene campos com drag & drop e configure ícone e cor do board.' },
+        { title: 'Responsivo por Design', description: 'Desktop exibe colunas em scroll horizontal. Mobile usa tabs por coluna com drag & drop adaptado para touch — mesma experiência em qualquer dispositivo.' },
+      ],
+      screenshotsLabel: 'Capturas de Tela',
+      screenshotsHeading: 'Veja funcionando',
+      screenshots: [
+        { src: '/images/meta-board/mb-boards.png', caption: 'Lista de boards da planilha' },
+        { src: '/images/meta-board/mb-board-treino.png', caption: 'Board Kanban com colunas e cards' },
+        { src: '/images/meta-board/mb-criar-card-padrao.png', caption: 'Modal de criação de card' },
+        { src: '/images/meta-board/mb-criar-com-ia.png', caption: 'Criação de card com IA' },
+        { src: '/images/meta-board/mb-edicao-board-01.png', caption: 'Configurações gerais do board' },
+        { src: '/images/meta-board/mb-edicao-board-02.png', caption: 'Gerenciamento de campos' },
+        { src: '/images/meta-board/mb-edicao-board-03.png', caption: 'Configuração de agrupamento' },
+      ],
+      archLabel: 'Arquitetura',
+      archHeading: 'Frontend-only com zero backend próprio',
+      archDesc: 'UI e módulos dependem da interface ISheetProvider — nunca da implementação. Trocar o Google Sheets por qualquer outro backend significa criar uma nova classe e mudar uma linha no providerFactory. Zero mudanças na UI.',
+      archLayers: [
+        { name: 'Routes / Páginas', description: 'HomePage (login), SpreadsheetPage (lista de boards), BoardPage (kanban). Dependem de módulos, nunca de providers diretamente.' },
+        { name: 'Modules', description: 'board/, project/ e fields/ — lógica de domínio, hooks TanStack Query e stores Zustand. Dependem do contrato ISheetProvider.' },
+        { name: 'ISheetProvider (contrato)', description: 'Interface única de acesso a dados. Todo o sistema depende dela, não da implementação.' },
+        { name: 'GoogleSheetProvider', description: 'Implementação concreta via Sheets API v4. Instanciada pelo providerFactory.ts com env vars — único ponto de acoplamento real.' },
+      ],
+      stackLabel: 'Stack Tecnológica',
+      stackHeading: 'O que faz funcionar',
+      ctaHeading: 'Veja o código-fonte',
+      ctaText: 'Projeto pessoal de código aberto. Disponível no GitHub.',
+      ctaBtn: 'Ver no GitHub',
+    },
+
     games: {
       meta: {
         title: 'Jogos',
@@ -343,6 +397,10 @@ export const translations = {
       'sheet-budget': {
         tagline: 'Controle financeiro pessoal — Google Sheets como banco de dados',
         description: 'Rastreador financeiro pessoal sem backend que usa o Google Sheets como banco de dados. Gerencia despesas recorrentes com geração mensal automática (idempotente), parcelamentos com visibilidade por mês, agrupamento de faturas de cartão de crédito e dashboard de tendências de gastos em 6 meses. Seus dados nunca saem do seu Google Drive.',
+      },
+      'meta-board': {
+        tagline: 'Kanban board direto na sua planilha Google Sheets',
+        description: 'Transforma qualquer Google Sheets em um quadro Kanban interativo — sem backend, sem banco de dados próprio, sem mensalidade. Drag & drop, 17 tipos de campo, criação de cards com IA e responsivo por design.',
       },
     },
 
@@ -535,6 +593,60 @@ export const translations = {
       ctaBtn: 'View on GitLab',
     },
 
+    metaBoard: {
+      meta: {
+        title: 'MetaBoard — Kanban board from your Google Sheets',
+        description: 'Turns any Google Sheets into an interactive Kanban board. Drag & drop, 17 field types, AI-powered card creation, and responsive by design. No own backend.',
+      },
+      category: 'Lab · Personal Project',
+      statusActive: 'Active',
+      backToLabs: '← Labs',
+      tagline: 'Kanban board straight from your Google Sheets',
+      description: 'Do you use Google Sheets to organize tasks? Spreadsheets are great for storing data, but they offer no board view for tracking workflow. MetaBoard turns any Google Sheets into an interactive Kanban board — no backend, no own database, no monthly fee.',
+      conceptLabel: 'The Concept',
+      conceptHeading: 'Your spreadsheet. Your board. No backend.',
+      concept: [
+        { title: 'Google Sheets as DB', description: 'Your Google spreadsheet is the database. Auditable, exportable, and automatically backed up by Google. You can open and edit any data directly.' },
+        { title: 'Zero Fees', description: 'No own server, no infrastructure cost. You already have a Google account and a spreadsheet — that is enough to get started.' },
+        { title: 'AI Integrated', description: 'Paste any text — email, note, conversation — and the AI extracts card fields automatically. Review, approve or reject each extraction before creating.' },
+      ],
+      featuresLabel: 'Features',
+      featuresHeading: 'Everything you expect from a modern Kanban',
+      features: [
+        { title: 'Multiple Boards per Sheet', description: 'Each configuration tab becomes an independent board. Organize projects, workouts, tasks, or any list in the same spreadsheet.' },
+        { title: 'Native Drag & Drop', description: 'Drag cards between columns or reorder within the same column with dnd-kit. Everything syncs back to the spreadsheet in real time.' },
+        { title: '17 Field Types', description: 'Text, number, date, URL, image, checklist, select, multiselect, chip, email, color, location, duration, and more. Each field with a specialized editor.' },
+        { title: 'AI Card Creation', description: 'Paste free text and AI extracts fields automatically, indicating the source: extracted from text or inferred. Card-by-card review interface before creating.' },
+        { title: 'Visual Board Configuration', description: 'Choose the grouping field, define which fields appear on the closed card, reorder fields with drag & drop, and configure board icon and color.' },
+        { title: 'Responsive by Design', description: 'Desktop displays columns in horizontal scroll. Mobile uses tabs per column with touch-adapted drag & drop — same experience on any device.' },
+      ],
+      screenshotsLabel: 'Screenshots',
+      screenshotsHeading: 'See it in action',
+      screenshots: [
+        { src: '/images/meta-board/mb-boards.png', caption: 'Board list from the spreadsheet' },
+        { src: '/images/meta-board/mb-board-treino.png', caption: 'Kanban board with columns and cards' },
+        { src: '/images/meta-board/mb-criar-card-padrao.png', caption: 'Card creation modal' },
+        { src: '/images/meta-board/mb-criar-com-ia.png', caption: 'AI-powered card creation' },
+        { src: '/images/meta-board/mb-edicao-board-01.png', caption: 'Board general settings' },
+        { src: '/images/meta-board/mb-edicao-board-02.png', caption: 'Field management' },
+        { src: '/images/meta-board/mb-edicao-board-03.png', caption: 'Grouping configuration' },
+      ],
+      archLabel: 'Architecture',
+      archHeading: 'Frontend-only with zero own backend',
+      archDesc: 'UI and modules depend on the ISheetProvider interface — never on the implementation. Swapping Google Sheets for any other backend means creating one new class and changing one line in providerFactory. Zero UI changes.',
+      archLayers: [
+        { name: 'Routes / Pages', description: 'HomePage (login), SpreadsheetPage (board list), BoardPage (kanban). Depend on modules, never on providers directly.' },
+        { name: 'Modules', description: 'board/, project/, and fields/ — domain logic, TanStack Query hooks, and Zustand stores. Depend on the ISheetProvider contract.' },
+        { name: 'ISheetProvider (contract)', description: 'Single data access interface. The entire system depends on it, not on the implementation.' },
+        { name: 'GoogleSheetProvider', description: 'Concrete implementation via Sheets API v4. Instantiated by providerFactory.ts with env vars — the only real coupling point.' },
+      ],
+      stackLabel: 'Tech Stack',
+      stackHeading: 'What powers it',
+      ctaHeading: 'View the source code',
+      ctaText: 'Open-source personal project. Available on GitHub.',
+      ctaBtn: 'View on GitHub',
+    },
+
     games: {
       meta: {
         title: 'Games',
@@ -710,6 +822,10 @@ export const translations = {
       'sheet-budget': {
         tagline: 'Personal finance tracking — Google Sheets as your database',
         description: 'Zero-backend personal finance tracker that uses your own Google Sheets as a database. Handles recurring expenses with automatic monthly generation (idempotent), installment tracking with full visibility per month, credit card invoice grouping, and a 6-month spending trends dashboard. Your data never leaves your Google Drive.',
+      },
+      'meta-board': {
+        tagline: 'Kanban board straight from your Google Sheets',
+        description: 'Turns any Google Sheets into an interactive Kanban board — no backend, no own database, no monthly fee. Drag & drop, 17 field types, AI-powered card creation, and responsive by design.',
       },
     },
 

@@ -15,6 +15,27 @@ export interface LabProject {
 
 export const labProjects: LabProject[] = [
   {
+    id: 'meta-board',
+    name: 'MetaBoard',
+    tagline: 'Kanban board direto na sua planilha Google Sheets',
+    description:
+      'Transforma qualquer Google Sheets em um quadro Kanban interativo — sem backend, sem banco de dados próprio, sem mensalidade. Drag & drop, 17 tipos de campo, criação de cards com IA e responsivo por design.',
+    status: 'active',
+    logo: '/images/meta-board/mb-logo.png',
+    href: '/labs/meta-board',
+    techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'shadcn/ui', 'dnd-kit', 'Framer Motion', 'TanStack Query', 'Zustand', 'Google Sheets API', 'OpenAI API'],
+    screenshots: [
+      '/images/meta-board/mb-boards.png',
+      '/images/meta-board/mb-board-treino.png',
+      '/images/meta-board/mb-criar-card-padrao.png',
+      '/images/meta-board/mb-criar-com-ia.png',
+      '/images/meta-board/mb-edicao-board-01.png',
+      '/images/meta-board/mb-edicao-board-02.png',
+      '/images/meta-board/mb-edicao-board-03.png',
+    ],
+    githubUrl: 'https://github.com/paulaolileal/meta-board',
+  },
+  {
     id: 'syncr',
     name: 'Syncr',
     tagline: 'Media tracking with timestamp-based async discussions',
