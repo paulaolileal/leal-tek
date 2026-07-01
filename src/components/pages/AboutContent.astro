@@ -18,11 +18,12 @@ const skillGroups = [
 ];
 
 const companyLogos: Record<string, string> = {
-  'TOTVS':     '/images/companies/totvs-logo.jpg',
-  'MindCircle':'/images/mindcircle-icon.svg',
-  'Blip':      '/images/companies/blip-logo.jpg',
-  'TCE-MG':    '/images/companies/tce-logo.jpg',
-  'Raro Labs': '/images/companies/raro-logo.jpg',
+  'TOTVS':       '/images/companies/totvs-logo.jpg',
+  'MindCircle':  '/images/mindcircle-icon.svg',
+  'Blip':        '/images/companies/blip-logo.jpg',
+  'TCE-MG':      '/images/companies/tce-logo.jpg',
+  'Raro Labs':   '/images/companies/raro-logo.jpg',
+  'dti digital': '/images/companies/dti-logo.jpg',
 };
 
 const education = [
@@ -362,17 +363,12 @@ const socialLinks = [
     overflow: hidden;
     border: 1px solid var(--border);
     flex-shrink: 0;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px;
   }
 
   .timeline-logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
   }
 
