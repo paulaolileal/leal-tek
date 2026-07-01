@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+import Button from '../ui/Button.astro';
+import TechBadge from '../ui/TechBadge.astro';
+import { getTranslations } from '../../i18n/utils';
+import { games } from '../../data/games';
+import type { Locale } from '../../i18n/translations';
+
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const t = getTranslations(locale);
+const ts = t.impostorGame;
+const tc = (t.gamesContent as Record<string, { tagline: string; description: string; features: string[]; howToPlay: string[] }>).impostor;
+
+const game = games.find(g => g.id === 'impostor')!;
+const base = locale === 'en' ? '/en' : '';
+const gamesHref = `${base}/games`;
+---
+
+<BaseLayout title={ts.meta.title} description={ts.meta.description}>
+
+  <!-- Hero -->
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-meta reveal">
+          <a href={gamesHref} class="hero-back">{ts.backToGames}</a>
+          <span class="hero-slash">/</span>
+          <span class="hero-category section-label">{ts.category}</span>
+        </div>
+        <div class="hero-title-row reveal reveal-delay-1">
+          <div class="hero-logo">
+            <img src="/images/games/impostor/impostor-logo-square.png" alt="Impostor" width="64" height="64" />
+          </div>
+          <h1 class="hero-title">{game.name}</h1>
+        </div>
+        <p class="hero-tagline reveal reveal-delay-2">{tc.tagline}</p>
+        <div class="hero-badges reveal reveal-delay-3">
+          <span class="badge-meta">👥 {game.players}</span>
+          <span class="badge-meta">⏱ {game.playTime}</span>
+        </div>
+        <p class="hero-desc reveal reveal-delay-3">{tc.description}</p>
+        <div class="hero-actions reveal reveal-delay-4">
+          <Button href={game.demoUrl} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+            {ts.ctaPlayNow}
+          </Button>
+          {game.githubUrl && (
+            <Button href={game.githubUrl} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Screenshot -->
+  <div class="featured-screenshot-wrap reveal">
+    <div class="container">
+      <div class="featured-screenshot">
+        <img
+          src="/images/games/impostor/imp-home.png"
+          alt={`${game.name} — Tela inicial`}
+          width="1200"
+          height="675"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Play -->
+  <section class="how-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.howToPlayLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.howToPlayHeading}</h2>
+      </div>
+      <ol class="steps-list">
+        {tc.howToPlay.map((step, i) => (
+          <li class={`step-item reveal reveal-delay-${(i % 4) + 1}`}>
+            <span class="step-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="step-text">{step}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.featuresLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.featuresHeading}</h2>
+      </div>
+      <div class="features-grid">
+        {tc.features.map((feature, i) => (
+          <div class={`feature-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <span class="feature-check">✓</span>
+            <p class="feature-text">{feature}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section class="screenshots-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.screenshotsLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.screenshotsHeading}</h2>
+      </div>
+      <div class="screenshots-grid">
+        {ts.screenshots.map((shot, i) => (
+          <div class={`screenshot-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <div class="screenshot-img">
+              <img src={shot.src} alt={shot.caption} loading="lazy" width="400" height="720" />
+            </div>
+            <p class="screenshot-caption">{shot.caption}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="stack-section section-sm">
+    <div class="container">
+      <div class="stack-inner reveal">
+        <span class="section-label">{ts.stackLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.stackHeading}</h2>
+        <div class="stack-row">
+          {game.techStack.map(tech => (
+            <TechBadge tech={tech} />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section section reveal">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>{ts.ctaHeading}</h2>
+        <p>{ts.ctaText}</p>
+        <div class="cta-actions">
+          <Button href={game.demoUrl} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+            {ts.ctaPlayNow}
+          </Button>
+          <Button href={gamesHref} variant="ghost" size="lg">
+            {ts.backToGames}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero-inner { max-width: 760px; }
+
+  .hero-meta { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); flex-wrap: wrap; }
+  .hero-back { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.06em; transition: color var(--transition); }
+  .hero-back:hover { color: var(--gold-primary); }
+  .hero-slash { color: var(--border-accent); font-size: 1.1rem; }
+  .hero-category { color: var(--text-muted); }
+
+  .hero-title-row { display: flex; align-items: center; gap: var(--space-xl); margin-bottom: var(--space-lg); }
+
+  .hero-logo {
+    width: 72px; height: 72px;
+    border-radius: 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    display: flex; align-items: center; justify-content: center;
+    padding: 4px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+  .hero-title   { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
+  .hero-tagline { font-size: clamp(1rem, 2.2vw, 1.3rem); color: var(--gold-primary); font-weight: 600; font-family: var(--font-display); margin-bottom: var(--space-md); }
+  .hero-badges  { display: flex; gap: var(--space-md); margin-bottom: var(--space-xl); }
+  .badge-meta   { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 4px 10px; }
+  .hero-desc    { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 620px; margin-bottom: var(--space-2xl); }
+  .hero-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+
+  /* Featured Screenshot */
+  .featured-screenshot-wrap { padding-bottom: var(--space-4xl); }
+  .featured-screenshot {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-accent);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+    background: var(--bg-surface);
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  .featured-screenshot img { width: 100%; height: auto; display: block; }
+
+  /* Section header */
+  .section-header { margin-bottom: var(--space-2xl); }
+  .section-header h2 { margin-top: var(--space-sm); margin-bottom: var(--space-sm); }
+
+  /* How to Play */
+  .how-section { border-top: 1px solid var(--border); }
+  .steps-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-md); max-width: 680px; }
+  .step-item { display: flex; align-items: flex-start; gap: var(--space-lg); }
+  .step-num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-dim); letter-spacing: 0.1em; min-width: 24px; padding-top: 3px; }
+  .step-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.65; }
+
+  /* Features */
+  .features-section { border-top: 1px solid var(--border); }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  @media (max-width: 900px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .features-grid { grid-template-columns: 1fr; } }
+
+  .feature-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--space-xl); display: flex; align-items: flex-start; gap: var(--space-md);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .feature-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .feature-check { color: var(--gold-primary); font-weight: 700; flex-shrink: 0; font-size: 1rem; }
+  .feature-text  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Screenshots */
+  .screenshots-section { border-top: 1px solid var(--border); }
+  .screenshots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  @media (max-width: 900px) { .screenshots-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .screenshots-grid { grid-template-columns: 1fr; } }
+
+  .screenshot-card { display: flex; flex-direction: column; gap: var(--space-sm); }
+  .screenshot-img {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    aspect-ratio: 9 / 16;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .screenshot-card:hover .screenshot-img { border-color: var(--border-accent); transform: translateY(-2px); }
+  .screenshot-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .screenshot-caption { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.04em; }
+
+  /* Stack */
+  .stack-section { border-top: 1px solid var(--border); }
+  .stack-inner   { max-width: 760px; }
+  .stack-inner h2 { margin-top: var(--space-sm); margin-bottom: var(--space-xl); }
+  .stack-row { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
+
+  /* CTA */
+  .cta-section { border-top: 1px solid var(--border); }
+  .cta-inner   { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-lg); padding-block: var(--space-2xl); max-width: 560px; margin-inline: auto; }
+  .cta-inner h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+  .cta-inner p  { font-size: 0.95rem; color: var(--text-secondary); }
+  .cta-actions  { display: flex; gap: var(--space-md); flex-wrap: wrap; justify-content: center; }
+</style>

@@ -14,6 +14,9 @@ const locale = (Astro.currentLocale ?? 'pt') as Locale;
 const t = getTranslations(locale);
 const tg = (t.gamesContent as Record<string, { tagline: string; description: string; features: string[] }>)[game.id];
 
+const base = locale === 'en' ? '/en' : '';
+const detailHref = `${base}/games/${game.id}`;
+
 const tagline = tg?.tagline ?? game.tagline;
 const description = tg?.description ?? game.description;
 const features = tg?.features ?? game.features;
@@ -59,11 +62,9 @@ const features = tg?.features ?? game.features;
     <Button href={game.demoUrl} variant="primary" size="sm" target="_blank" rel="noopener noreferrer">
       {t.components.gamePlayNow}
     </Button>
-    {game.githubUrl && (
-      <Button href={game.githubUrl} variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">
-        GitHub
-      </Button>
-    )}
+    <Button href={detailHref} variant="ghost" size="sm">
+      {t.components.gameViewDetails}
+    </Button>
   </div>
 </article>
 
@@ -104,7 +105,7 @@ const features = tg?.features ?? game.features;
 
   .game-screenshot {
     width: 100%;
-    height: 100%;
+    height: 200px;
     overflow: hidden;
     border-bottom: 1px solid var(--border);
     background: var(--bg);
