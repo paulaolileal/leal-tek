@@ -17,6 +17,14 @@ const skillGroups = [
   { label: 'Databases',    skills: ['PostgreSQL', 'MongoDB', 'SQLite', 'EF Core'] },
 ];
 
+const companyLogos: Record<string, string> = {
+  'TOTVS':     '/images/companies/totvs-logo.jpg',
+  'MindCircle':'/images/mindcircle-icon.svg',
+  'Blip':      '/images/companies/blip-logo.jpg',
+  'TCE-MG':    '/images/companies/tce-logo.jpg',
+  'Raro Labs': '/images/companies/raro-logo.jpg',
+};
+
 const education = [
   { institution: 'PUC-MG', degree: ta.eduDegrees[0], period: '2020 — 2021' },
   { institution: 'PUC-MG', degree: ta.eduDegrees[1], period: '2013 — 2018' },
@@ -82,6 +90,11 @@ const socialLinks = [
                 </div>
                 <div class="timeline-body">
                   <div class="timeline-header">
+                    {companyLogos[item.company] && (
+                      <div class="timeline-logo">
+                        <img src={companyLogos[item.company]} alt={item.company} loading="lazy" />
+                      </div>
+                    )}
                     <span class="timeline-company">{item.company}</span>
                     {item.current && <span class="current-badge">{ta.currentBadge}</span>}
                   </div>
@@ -341,6 +354,27 @@ const socialLinks = [
   .timeline-item:last-child .timeline-body { border-bottom: none; }
 
   .timeline-header { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
+
+  .timeline-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+  }
+
+  .timeline-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
 
   .timeline-company { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.01em; }
 
