@@ -68,6 +68,26 @@ const gamesHref = `${base}/games`;
     </div>
   </div>
 
+  <!-- Concept -->
+  <section class="concept-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.conceptLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.conceptHeading}</h2>
+      </div>
+      <div class="concept-grid">
+        {ts.concept.map((item, i) => (
+          <div class={`concept-card reveal reveal-delay-${i + 1}`}>
+            <span class="concept-num">0{i + 1}</span>
+            <h3 class="concept-title">{item.title}</h3>
+            <p class="concept-desc">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- How to Play -->
   <section class="how-section section-sm">
     <div class="container">
@@ -100,6 +120,25 @@ const gamesHref = `${base}/games`;
           <div class={`feature-card reveal reveal-delay-${(i % 3) + 1}`}>
             <span class="feature-check">✓</span>
             <p class="feature-text">{feature}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Ideal for -->
+  <section class="ideal-section section-sm">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">{ts.idealLabel}</span>
+        <span class="gold-line"></span>
+        <h2>{ts.idealHeading}</h2>
+      </div>
+      <div class="ideal-grid">
+        {ts.ideal.map((item, i) => (
+          <div class={`ideal-card reveal reveal-delay-${(i % 4) + 1}`}>
+            <h3 class="ideal-title">{item.title}</h3>
+            <p class="ideal-desc">{item.description}</p>
           </div>
         ))}
       </div>
@@ -210,6 +249,35 @@ const gamesHref = `${base}/games`;
   /* Section header */
   .section-header { margin-bottom: var(--space-2xl); }
   .section-header h2 { margin-top: var(--space-sm); margin-bottom: var(--space-sm); }
+
+  /* Concept */
+  .concept-section { border-top: 1px solid var(--border); }
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+  @media (max-width: 900px) { .concept-grid { grid-template-columns: 1fr; } }
+
+  .concept-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--space-xl); display: flex; flex-direction: column; gap: var(--space-md);
+    border-left: 2px solid var(--gold-primary);
+  }
+  .concept-num   { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold-dim); letter-spacing: 0.1em; }
+  .concept-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+  .concept-desc  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
+
+  /* Ideal for */
+  .ideal-section { border-top: 1px solid var(--border); }
+  .ideal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+  @media (max-width: 1000px) { .ideal-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px)  { .ideal-grid { grid-template-columns: 1fr; } }
+
+  .ideal-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-sm);
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .ideal-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+  .ideal-title { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); }
+  .ideal-desc  { font-size: 0.825rem; color: var(--text-secondary); line-height: 1.6; }
 
   /* How to Play */
   .how-section { border-top: 1px solid var(--border); }
