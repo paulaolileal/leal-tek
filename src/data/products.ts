@@ -82,7 +82,7 @@ export const products: Product[] = [
     ],
     href: '/products/mindcircle',
     externalUrl: 'https://mindcircle.app',
-    logo: '/images/mindcircle-icon.svg',
+    logo: '/images/mindcircle-icon.jpg',
   },
   {
     id: 'myth',
