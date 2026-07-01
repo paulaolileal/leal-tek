@@ -65,7 +65,7 @@ export const translations = {
         'Redução no tempo de integração de parceiros',
         'Anos de experiência em tecnologia',
       ],
-      experienceLabel: 'Experiência',
+      experienceLabel: 'Experiências (mais recentes)',
       currentBadge: 'Atual',
       skillsLabel: 'Habilidades',
       educationLabel: 'Educação',
