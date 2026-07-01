@@ -90,6 +90,13 @@ const socialLinks = [
                   {(item as { highlight?: string }).highlight && (
                     <span class="timeline-highlight">{(item as { highlight?: string }).highlight}</span>
                   )}
+                  {(item as { bullets?: string[] }).bullets && (item as { bullets?: string[] }).bullets!.length > 0 && (
+                    <ul class="timeline-bullets">
+                      {(item as { bullets?: string[] }).bullets!.map(b => (
+                        <li>{b}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
             ))}
@@ -353,6 +360,33 @@ const socialLinks = [
     font-style: italic;
     opacity: 0.85;
     margin-top: 2px;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-sm) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .timeline-bullets li {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding-left: var(--space-md);
+    position: relative;
+  }
+
+  .timeline-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--gold-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.2;
   }
 
   .skills-groups { display: flex; flex-direction: column; gap: var(--space-lg); }
