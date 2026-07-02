@@ -1,0 +1,368 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+import type { Locale } from '../../i18n/translations';
+
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const isPt = locale === 'pt';
+
+const lastUpdated = '2 de julho de 2026';
+const lastUpdatedEn = 'July 2, 2026';
+---
+
+<BaseLayout
+  title={isPt ? 'Termos de Uso — LealTEK' : 'Terms of Use — LealTEK'}
+  description={isPt
+    ? 'Termos de Uso das aplicações LealTEK Lab publicadas sob o domínio lealtek.com.'
+    : 'Terms of Use for LealTEK Lab applications published under the lealtek.com domain.'}
+  alternatePath={isPt ? '/en/terms' : '/terms'}
+>
+  <main class="container legal-page">
+    <header class="legal-header">
+      <span class="section-label">{isPt ? 'Legal' : 'Legal'}</span>
+      <span class="gold-line"></span>
+      <h1>{isPt ? 'Termos de Uso' : 'Terms of Use'}</h1>
+      <p class="legal-updated">
+        {isPt ? `Última atualização: ${lastUpdated}` : `Last updated: ${lastUpdatedEn}`}
+      </p>
+      <p class="legal-intro">
+        {isPt
+          ? 'Ao acessar ou utilizar qualquer aplicação disponível em *.lealtek.com, você concorda com os seguintes Termos de Uso. Se não concordar, não utilize os serviços.'
+          : 'By accessing or using any application available at *.lealtek.com, you agree to the following Terms of Use. If you do not agree, do not use the services.'}
+      </p>
+    </header>
+
+    <div class="legal-body">
+
+      <!-- 1. Acceptance -->
+      <section class="legal-section">
+        <h2>{isPt ? '1. Aceitação dos Termos' : '1. Acceptance of Terms'}</h2>
+        <p>
+          {isPt
+            ? 'Estes Termos de Uso regem o acesso e uso de todas as aplicações publicadas por Paula Victoria de Oliveira Leal sob o domínio lealtek.com e subdomínios (budget.lealtek.com, board.lealtek.com, story.lealtek.com e futuros). Ao utilizar qualquer uma dessas aplicações, você aceita estes termos integralmente.'
+            : 'These Terms of Use govern access to and use of all applications published by Paula Victoria de Oliveira Leal under the lealtek.com domain and subdomains (budget.lealtek.com, board.lealtek.com, story.lealtek.com, and future ones). By using any of these applications, you fully accept these terms.'}
+        </p>
+      </section>
+
+      <!-- 2. Nature of Applications -->
+      <section class="legal-section">
+        <h2>{isPt ? '2. Natureza das Aplicações' : '2. Nature of the Applications'}</h2>
+        <div class="legal-highlight">
+          <strong>{isPt ? 'Projetos laboratoriais / experimentais' : 'Laboratory / Experimental Projects'}</strong>
+          <p>
+            {isPt
+              ? 'Todas as aplicações disponíveis em *.lealtek.com são projetos pessoais, laboratoriais e experimentais. São desenvolvidos por uma pessoa para fins de aprendizado, exploração técnica e utilidade pessoal. Não são produtos comerciais, não possuem equipe de suporte dedicada e não há garantia de continuidade, disponibilidade ou ausência de bugs.'
+              : 'All applications available at *.lealtek.com are personal, laboratory, and experimental projects. They are developed by a single person for learning, technical exploration, and personal utility. They are not commercial products, do not have a dedicated support team, and there is no guarantee of continuity, availability, or freedom from bugs.'}
+          </p>
+        </div>
+        <p>
+          {isPt
+            ? 'As aplicações podem ser modificadas, suspensas ou descontinuadas a qualquer momento e sem aviso prévio. Novos apps podem ser adicionados ao portfólio conforme o laboratório cresce.'
+            : 'Applications may be modified, suspended, or discontinued at any time and without prior notice. New apps may be added to the portfolio as the lab grows.'}
+        </p>
+      </section>
+
+      <!-- 3. No Warranties -->
+      <section class="legal-section">
+        <h2>{isPt ? '3. Ausência de Garantias' : '3. No Warranties'}</h2>
+        <p>
+          {isPt
+            ? 'As aplicações LealTEK são fornecidas "no estado em que se encontram" (AS IS), sem qualquer garantia, expressa ou implícita, incluindo mas não se limitando a:'
+            : 'LealTEK applications are provided "as is", without any warranty, express or implied, including but not limited to:'}
+        </p>
+        <ul>
+          <li>{isPt ? 'Garantia de disponibilidade ou tempo de atividade (SLA)' : 'Availability or uptime guarantee (SLA)'}</li>
+          <li>{isPt ? 'Garantia de ausência de erros, bugs ou interrupções' : 'Freedom from errors, bugs, or interruptions'}</li>
+          <li>{isPt ? 'Garantia de adequação a qualquer finalidade específica' : 'Fitness for any particular purpose'}</li>
+          <li>{isPt ? 'Garantia de precisão ou completude dos resultados (especialmente conteúdo gerado por IA)' : 'Accuracy or completeness of results (especially AI-generated content)'}</li>
+          <li>{isPt ? 'Garantia de compatibilidade com todos os dispositivos ou navegadores' : 'Compatibility with all devices or browsers'}</li>
+        </ul>
+      </section>
+
+      <!-- 4. User Responsibility -->
+      <section class="legal-section">
+        <h2>{isPt ? '4. Responsabilidade do Usuário' : '4. User Responsibility'}</h2>
+        <p>
+          {isPt
+            ? 'Você é o único responsável por:'
+            : 'You are solely responsible for:'}
+        </p>
+        <ul>
+          <li>{isPt ? 'Seus próprios dados armazenados no Google Drive e Google Sheets' : 'Your own data stored in Google Drive and Google Sheets'}</li>
+          <li>{isPt ? 'A segurança da sua conta Google e credenciais de acesso' : 'The security of your Google account and access credentials'}</li>
+          <li>{isPt ? 'Fazer backups dos seus dados conforme necessário' : 'Making backups of your data as needed'}</li>
+          <li>{isPt ? 'Verificar a precisão do conteúdo gerado por IA antes de utilizá-lo' : 'Verifying the accuracy of AI-generated content before using it'}</li>
+          <li>{isPt ? 'Garantir que o uso das aplicações está em conformidade com as leis aplicáveis na sua jurisdição' : 'Ensuring that your use of the applications complies with applicable laws in your jurisdiction'}</li>
+        </ul>
+        <p>
+          {isPt
+            ? 'Como os dados ficam na sua conta Google, a LealTEK não tem acesso a eles e não é responsável por perda, corrupção ou acesso não autorizado aos seus dados.'
+            : 'Since data remains in your Google account, LealTEK does not have access to it and is not responsible for loss, corruption, or unauthorized access to your data.'}
+        </p>
+      </section>
+
+      <!-- 5. Acceptable Use -->
+      <section class="legal-section">
+        <h2>{isPt ? '5. Uso Aceitável' : '5. Acceptable Use'}</h2>
+        <p>{isPt ? 'Você concorda em utilizar as aplicações apenas para fins legítimos e pessoais. É expressamente proibido:' : 'You agree to use the applications only for legitimate and personal purposes. The following are expressly prohibited:'}</p>
+        <ul>
+          <li>{isPt ? 'Uso comercial sem autorização prévia por escrito' : 'Commercial use without prior written authorization'}</li>
+          <li>{isPt ? 'Uso para fins ilegais ou que violem direitos de terceiros' : 'Use for illegal purposes or that violate third-party rights'}</li>
+          <li>{isPt ? 'Tentativas de comprometer a segurança, disponibilidade ou integridade dos serviços' : 'Attempts to compromise the security, availability, or integrity of the services'}</li>
+          <li>{isPt ? 'Uso automatizado (bots, scrapers) sem autorização' : 'Automated use (bots, scrapers) without authorization'}</li>
+          <li>{isPt ? 'Revenda, sublicenciamento ou redistribuição dos serviços' : 'Resale, sublicensing, or redistribution of the services'}</li>
+          <li>{isPt ? 'Envio de conteúdo ilegal, difamatório, ofensivo ou que infrinja direitos autorais' : 'Submitting illegal, defamatory, offensive, or copyright-infringing content'}</li>
+        </ul>
+      </section>
+
+      <!-- 6. AI-Generated Content -->
+      <section class="legal-section">
+        <h2>{isPt ? '6. Conteúdo Gerado por Inteligência Artificial' : '6. AI-Generated Content'}</h2>
+        <p>
+          {isPt
+            ? 'Algumas aplicações (MetaBoard, StorySmith e potencialmente apps futuros) integram recursos de inteligência artificial via API da OpenAI. Ao utilizar esses recursos:'
+            : 'Some applications (MetaBoard, StorySmith, and potentially future apps) integrate artificial intelligence features via the OpenAI API. When using these features:'}
+        </p>
+        <ul>
+          <li>{isPt ? 'O conteúdo gerado por IA é de natureza assistiva e não deve ser considerado definitivo, preciso ou livre de erros' : 'AI-generated content is assistive in nature and should not be considered definitive, accurate, or error-free'}</li>
+          <li>{isPt ? 'Você é responsável por revisar e verificar qualquer conteúdo gerado antes de utilizá-lo' : 'You are responsible for reviewing and verifying any generated content before using it'}</li>
+          <li>{isPt ? 'Trechos de texto inseridos por você podem ser enviados à API da OpenAI para processamento; não insira informações confidenciais ou sensíveis nos campos de IA' : 'Text snippets you enter may be sent to the OpenAI API for processing; do not enter confidential or sensitive information in AI fields'}</li>
+          <li>{isPt ? 'A LealTEK não se responsabiliza por decisões tomadas com base em conteúdo gerado por IA' : 'LealTEK is not responsible for decisions made based on AI-generated content'}</li>
+        </ul>
+      </section>
+
+      <!-- 7. Intellectual Property -->
+      <section class="legal-section">
+        <h2>{isPt ? '7. Propriedade Intelectual' : '7. Intellectual Property'}</h2>
+        <p>
+          {isPt
+            ? 'O código-fonte, design, logotipos, marcas e demais elementos das aplicações LealTEK são de propriedade de Paula Victoria de Oliveira Leal, salvo indicação em contrário. Nenhuma parte deste material pode ser reproduzida, distribuída ou utilizada sem autorização prévia por escrito.'
+            : 'The source code, design, logos, trademarks, and other elements of LealTEK applications are the property of Paula Victoria de Oliveira Leal, unless otherwise indicated. No part of this material may be reproduced, distributed, or used without prior written authorization.'}
+        </p>
+        <p>
+          {isPt
+            ? 'Os dados que você cria e armazena nas aplicações (planilhas, tarefas, textos) são de sua propriedade. A LealTEK não reivindica direitos sobre seu conteúdo.'
+            : 'The data you create and store in the applications (spreadsheets, tasks, texts) is your property. LealTEK does not claim rights over your content.'}
+        </p>
+      </section>
+
+      <!-- 8. Limitation of Liability -->
+      <section class="legal-section">
+        <h2>{isPt ? '8. Limitação de Responsabilidade' : '8. Limitation of Liability'}</h2>
+        <p>
+          {isPt
+            ? 'Na extensão máxima permitida pela lei aplicável, Paula Leal e a LealTEK não serão responsáveis por quaisquer danos, diretos, indiretos, incidentais, especiais, consequenciais ou punitivos, incluindo mas não se limitando a:'
+            : 'To the fullest extent permitted by applicable law, Paula Leal and LealTEK shall not be liable for any damages, direct, indirect, incidental, special, consequential, or punitive, including but not limited to:'}
+        </p>
+        <ul>
+          <li>{isPt ? 'Perda de dados' : 'Loss of data'}</li>
+          <li>{isPt ? 'Interrupção de serviço' : 'Service interruption'}</li>
+          <li>{isPt ? 'Danos resultantes do uso ou impossibilidade de uso das aplicações' : 'Damages resulting from the use or inability to use the applications'}</li>
+          <li>{isPt ? 'Decisões tomadas com base em conteúdo gerado por IA' : 'Decisions made based on AI-generated content'}</li>
+          <li>{isPt ? 'Acesso não autorizado à sua conta Google por terceiros' : 'Unauthorized access to your Google account by third parties'}</li>
+        </ul>
+        <p>
+          {isPt
+            ? 'Essa limitação se aplica independentemente de a LealTEK ter sido avisada sobre a possibilidade de tais danos.'
+            : 'This limitation applies regardless of whether LealTEK has been advised of the possibility of such damages.'}
+        </p>
+      </section>
+
+      <!-- 9. Third-Party Services -->
+      <section class="legal-section">
+        <h2>{isPt ? '9. Serviços de Terceiros' : '9. Third-Party Services'}</h2>
+        <p>
+          {isPt
+            ? 'As aplicações LealTEK utilizam serviços de terceiros (Google APIs, OpenAI). Ao usar nossas aplicações, você também está sujeito aos termos e políticas desses fornecedores:'
+            : 'LealTEK applications use third-party services (Google APIs, OpenAI). By using our applications, you are also subject to the terms and policies of these providers:'}
+        </p>
+        <ul>
+          <li>
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
+              {isPt ? 'Termos de Serviço do Google' : 'Google Terms of Service'}
+            </a>
+          </li>
+          <li>
+            <a href="https://openai.com/policies/terms-of-use" target="_blank" rel="noopener noreferrer">
+              {isPt ? 'Termos de Uso da OpenAI' : 'OpenAI Terms of Use'}
+            </a>
+          </li>
+        </ul>
+        <p>
+          {isPt
+            ? 'A LealTEK não controla esses serviços e não é responsável por seus conteúdos, políticas ou interrupções.'
+            : 'LealTEK does not control these services and is not responsible for their content, policies, or interruptions.'}
+        </p>
+      </section>
+
+      <!-- 10. Governing Law -->
+      <section class="legal-section">
+        <h2>{isPt ? '10. Lei Aplicável e Foro' : '10. Governing Law and Jurisdiction'}</h2>
+        <p>
+          {isPt
+            ? 'Estes Termos de Uso são regidos pelas leis da República Federativa do Brasil. Para questões relacionadas a dados pessoais, aplica-se a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018). Quaisquer disputas decorrentes destes termos serão submetidas ao foro da comarca de domicílio do usuário, conforme previsto na legislação brasileira.'
+            : 'These Terms of Use are governed by the laws of the Federative Republic of Brazil. For personal data matters, the Brazilian General Data Protection Law (LGPD — Lei 13.709/2018) applies. Any disputes arising from these terms shall be submitted to the courts of the user\'s domicile, as provided by Brazilian law.'}
+        </p>
+      </section>
+
+      <!-- 11. Changes -->
+      <section class="legal-section">
+        <h2>{isPt ? '11. Alterações nos Termos' : '11. Changes to Terms'}</h2>
+        <p>
+          {isPt
+            ? 'A LealTEK pode atualizar estes Termos de Uso a qualquer momento. A versão mais recente estará sempre disponível em lealtek.com/terms. O uso continuado das aplicações após a publicação de alterações constitui aceitação dos novos termos. Se você não concordar com as alterações, deve cessar o uso das aplicações.'
+            : 'LealTEK may update these Terms of Use at any time. The most recent version will always be available at lealtek.com/terms. Continued use of the applications after changes are published constitutes acceptance of the new terms. If you do not agree with the changes, you must stop using the applications.'}
+        </p>
+      </section>
+
+      <!-- 12. Contact -->
+      <section class="legal-section">
+        <h2>{isPt ? '12. Contato' : '12. Contact'}</h2>
+        <p>
+          {isPt
+            ? 'Para dúvidas, solicitações ou qualquer questão relacionada a estes Termos:'
+            : 'For questions, requests, or any matter related to these Terms:'}
+        </p>
+        <div class="legal-contact-card">
+          <strong>Paula Victoria de Oliveira Leal</strong>
+          <a href="mailto:paulaolileal@gmail.com">paulaolileal@gmail.com</a>
+          <span>lealtek.com</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-block: var(--space-4xl);
+    max-width: 860px;
+  }
+
+  .legal-header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .legal-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--text-primary);
+    margin-block: var(--space-sm) var(--space-md);
+  }
+
+  .legal-updated {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-lg);
+  }
+
+  .legal-intro {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .legal-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-2xl);
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.02em;
+  }
+
+  .legal-section p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: var(--space-md);
+  }
+
+  .legal-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section ul,
+  .legal-section ol {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .legal-section li {
+    margin-bottom: var(--space-xs);
+  }
+
+  .legal-section a {
+    color: var(--gold-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal-section a:hover {
+    color: var(--gold-light);
+  }
+
+  .legal-highlight {
+    background: rgba(200, 151, 58, 0.08);
+    border: 1px solid rgba(200, 151, 58, 0.25);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .legal-highlight strong {
+    color: var(--gold-primary);
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .legal-highlight p {
+    margin-bottom: 0;
+  }
+
+  .legal-contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-top: var(--space-md);
+  }
+
+  .legal-contact-card strong {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+
+  .legal-contact-card span {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 640px) {
+    .legal-section {
+      padding: var(--space-lg);
+    }
+  }
+</style>

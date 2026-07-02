@@ -1,0 +1,598 @@
+---
+import BaseLayout from '../layout/BaseLayout.astro';
+import type { Locale } from '../../i18n/translations';
+
+const locale = (Astro.currentLocale ?? 'pt') as Locale;
+const isPt = locale === 'pt';
+
+const lastUpdated = '2 de julho de 2026';
+const lastUpdatedEn = 'July 2, 2026';
+---
+
+<BaseLayout
+  title={isPt ? 'Política de Privacidade — LealTEK' : 'Privacy Policy — LealTEK'}
+  description={isPt
+    ? 'Política de Privacidade das aplicações LealTEK Lab publicadas sob o domínio lealtek.com.'
+    : 'Privacy Policy for LealTEK Lab applications published under the lealtek.com domain.'}
+  alternatePath={isPt ? '/en/privacy' : '/privacy'}
+>
+  <main class="container legal-page">
+    <header class="legal-header">
+      <span class="section-label">{isPt ? 'Legal' : 'Legal'}</span>
+      <span class="gold-line"></span>
+      <h1>{isPt ? 'Política de Privacidade' : 'Privacy Policy'}</h1>
+      <p class="legal-updated">
+        {isPt ? `Última atualização: ${lastUpdated}` : `Last updated: ${lastUpdatedEn}`}
+      </p>
+      <p class="legal-intro">
+        {isPt
+          ? 'Esta Política de Privacidade descreve como as aplicações LealTEK Lab coletam, usam e protegem seus dados ao utilizar nossos serviços disponíveis em *.lealtek.com.'
+          : 'This Privacy Policy describes how LealTEK Lab applications collect, use, and protect your data when you use our services available at *.lealtek.com.'}
+      </p>
+    </header>
+
+    <div class="legal-body">
+
+      <!-- 1. Who We Are -->
+      <section class="legal-section">
+        <h2>{isPt ? '1. Quem Somos' : '1. Who We Are'}</h2>
+        <p>
+          {isPt
+            ? 'LealTEK é um portfólio pessoal de software mantido por Paula Victoria de Oliveira Leal. As aplicações disponíveis em subdomínios de lealtek.com (como budget.lealtek.com, board.lealtek.com, story.lealtek.com e outros futuros) são projetos laboratoriais/experimentais de caráter pessoal e educacional.'
+            : 'LealTEK is a personal software portfolio maintained by Paula Victoria de Oliveira Leal. Applications available at subdomains of lealtek.com (such as budget.lealtek.com, board.lealtek.com, story.lealtek.com, and future ones) are personal, educational, and experimental lab projects.'}
+        </p>
+        <div class="legal-contact-card">
+          <strong>{isPt ? 'Responsável pelos dados:' : 'Data Controller:'}</strong>
+          <span>Paula Victoria de Oliveira Leal</span>
+          <a href="mailto:paulaolileal@gmail.com">paulaolileal@gmail.com</a>
+        </div>
+      </section>
+
+      <!-- 2. Covered Applications -->
+      <section class="legal-section">
+        <h2>{isPt ? '2. Aplicações Cobertas' : '2. Covered Applications'}</h2>
+        <p>
+          {isPt
+            ? 'Esta política se aplica a todas as aplicações publicadas sob o domínio lealtek.com, incluindo:'
+            : 'This policy applies to all applications published under the lealtek.com domain, including:'}
+        </p>
+        <div class="legal-apps-grid">
+          <div class="legal-app-card">
+            <strong>Sheet Budget</strong>
+            <span>budget.lealtek.com</span>
+            <p>{isPt ? 'Controle financeiro pessoal via Google Sheets' : 'Personal finance management via Google Sheets'}</p>
+          </div>
+          <div class="legal-app-card">
+            <strong>MetaBoard</strong>
+            <span>board.lealtek.com</span>
+            <p>{isPt ? 'Kanban board com Google Sheets como banco de dados' : 'Kanban board using Google Sheets as database'}</p>
+          </div>
+          <div class="legal-app-card">
+            <strong>StorySmith</strong>
+            <span>story.lealtek.com</span>
+            <p>{isPt ? 'Plataforma de escrita assistida por IA' : 'AI-assisted writing platform'}</p>
+          </div>
+          <div class="legal-app-card legal-app-future">
+            <strong>{isPt ? 'Aplicações futuras' : 'Future applications'}</strong>
+            <span>*.lealtek.com</span>
+            <p>{isPt ? 'O portfólio tende a crescer; esta política será atualizada conforme necessário' : 'The portfolio may grow; this policy will be updated as needed'}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Data Collected -->
+      <section class="legal-section">
+        <h2>{isPt ? '3. Dados Coletados' : '3. Data Collected'}</h2>
+        <p>
+          {isPt
+            ? 'Coletamos apenas os dados necessários para operar cada aplicação:'
+            : 'We collect only the data necessary to operate each application:'}
+        </p>
+
+        <h3>{isPt ? 'Identidade Google (todas as aplicações)' : 'Google Identity (all applications)'}</h3>
+        <ul>
+          <li>{isPt ? 'Nome de exibição' : 'Display name'}</li>
+          <li>{isPt ? 'Endereço de e-mail' : 'Email address'}</li>
+          <li>{isPt ? 'Foto de perfil' : 'Profile picture'}</li>
+        </ul>
+        <p class="legal-note">
+          {isPt
+            ? 'Esses dados são usados apenas para exibir sua identidade dentro da aplicação. Não são armazenados em servidores da LealTEK.'
+            : 'This data is used only to display your identity within the application. It is not stored on LealTEK servers.'}
+        </p>
+
+        <h3>{isPt ? 'Dados do Google Sheets (Sheet Budget, MetaBoard, StorySmith)' : 'Google Sheets Data (Sheet Budget, MetaBoard, StorySmith)'}</h3>
+        <p>
+          {isPt
+            ? 'Com sua autorização, as aplicações leem e escrevem dados em planilhas do Google Sheets da sua própria conta Google. Esses dados (transações financeiras, cards de tarefas, textos de escrita) pertencem a você e ficam inteiramente na sua conta Google.'
+            : 'With your authorization, applications read and write data to Google Sheets spreadsheets in your own Google account. This data (financial transactions, task cards, writing texts) belongs to you and remains entirely in your Google account.'}
+        </p>
+
+        <h3>{isPt ? 'Dados do Google Drive (MetaBoard, StorySmith)' : 'Google Drive Data (MetaBoard, StorySmith)'}</h3>
+        <p>
+          {isPt
+            ? 'MetaBoard acessa a lista de planilhas do seu Drive para que você possa selecionar qual usar. StorySmith (quando implementado) poderá criar e gerenciar documentos no seu Drive. O acesso é limitado aos escopos autorizados por você.'
+            : 'MetaBoard accesses the list of spreadsheets in your Drive so you can select which one to use. StorySmith (when implemented) may create and manage documents in your Drive. Access is limited to the scopes you authorize.'}
+        </p>
+
+        <h3>{isPt ? 'Dados enviados para IA (MetaBoard, StorySmith)' : 'Data Sent to AI (MetaBoard, StorySmith)'}</h3>
+        <p>
+          {isPt
+            ? 'Ao usar recursos de inteligência artificial, trechos de texto que você inserir podem ser enviados à API da OpenAI para processamento. Não enviamos dados pessoais identificáveis (como nome, e-mail ou dados financeiros) para a IA.'
+            : 'When using artificial intelligence features, text snippets you enter may be sent to the OpenAI API for processing. We do not send personally identifiable data (such as name, email, or financial data) to the AI.'}
+        </p>
+      </section>
+
+      <!-- 4. Google OAuth Scopes -->
+      <section class="legal-section">
+        <h2>{isPt ? '4. Escopos Google OAuth Solicitados' : '4. Google OAuth Scopes Requested'}</h2>
+        <p>
+          {isPt
+            ? 'Cada aplicação solicita apenas os escopos necessários para seu funcionamento. Abaixo estão os escopos utilizados:'
+            : 'Each application requests only the scopes necessary for its operation. Below are the scopes used:'}
+        </p>
+        <div class="legal-scopes">
+          <div class="legal-scope-item">
+            <code>openid · email · profile</code>
+            <p>{isPt ? 'Identidade básica do usuário — todas as aplicações' : 'Basic user identity — all applications'}</p>
+          </div>
+          <div class="legal-scope-item">
+            <code>https://www.googleapis.com/auth/spreadsheets</code>
+            <p>
+              {isPt
+                ? 'Leitura e escrita em planilhas do Google Sheets — Sheet Budget, MetaBoard, StorySmith. Usado para armazenar seus dados na sua própria planilha.'
+                : 'Read and write access to Google Sheets spreadsheets — Sheet Budget, MetaBoard, StorySmith. Used to store your data in your own spreadsheet.'}
+            </p>
+          </div>
+          <div class="legal-scope-item">
+            <code>https://www.googleapis.com/auth/drive.file</code>
+            <p>
+              {isPt
+                ? 'Acesso apenas a arquivos criados ou abertos pelo aplicativo no Drive — MetaBoard. Não acessa outros arquivos do seu Drive.'
+                : 'Access only to files created or opened by the application in Drive — MetaBoard. Does not access other files in your Drive.'}
+            </p>
+          </div>
+          <div class="legal-scope-item">
+            <code>https://www.googleapis.com/auth/drive</code>
+            <p>
+              {isPt
+                ? 'Acesso a arquivos do Drive para navegação e criação de documentos — StorySmith (planejado). Será solicitado somente quando este recurso estiver implementado.'
+                : 'Access to Drive files for document browsing and creation — StorySmith (planned). Will be requested only when this feature is implemented.'}
+            </p>
+          </div>
+        </div>
+        <p class="legal-note">
+          {isPt
+            ? 'Aplicações futuras podem solicitar escopos adicionais. Esta política será atualizada antes da implementação de novos escopos.'
+            : 'Future applications may request additional scopes. This policy will be updated before new scopes are implemented.'}
+        </p>
+      </section>
+
+      <!-- 5. How We Use Data -->
+      <section class="legal-section">
+        <h2>{isPt ? '5. Como Usamos os Dados' : '5. How We Use Data'}</h2>
+        <p>
+          {isPt
+            ? 'Os dados coletados são usados exclusivamente para:'
+            : 'Collected data is used exclusively to:'}
+        </p>
+        <ul>
+          <li>{isPt ? 'Autenticar você na aplicação' : 'Authenticate you in the application'}</li>
+          <li>{isPt ? 'Exibir sua identidade (nome e foto de perfil)' : 'Display your identity (name and profile photo)'}</li>
+          <li>{isPt ? 'Ler e escrever dados nas suas planilhas/Drive conforme as funcionalidades de cada app' : 'Read and write data to your spreadsheets/Drive according to each app\'s features'}</li>
+          <li>{isPt ? 'Enviar trechos de texto para processamento de IA quando você usar recursos de IA' : 'Send text snippets for AI processing when you use AI features'}</li>
+        </ul>
+        <p>
+          {isPt
+            ? 'Não vendemos, alugamos, compartilhamos ou monetizamos seus dados. Não usamos seus dados para publicidade.'
+            : 'We do not sell, rent, share, or monetize your data. We do not use your data for advertising.'}
+        </p>
+      </section>
+
+      <!-- 6. Data Storage -->
+      <section class="legal-section">
+        <h2>{isPt ? '6. Armazenamento de Dados' : '6. Data Storage'}</h2>
+        <div class="legal-highlight">
+          <strong>{isPt ? 'Arquitetura zero-backend:' : 'Zero-backend architecture:'}</strong>
+          <p>
+            {isPt
+              ? 'Nenhum dado seu é armazenado em servidores da LealTEK. Todos os seus dados ficam na sua própria conta Google (Google Drive e Google Sheets). Os tokens de acesso OAuth ficam apenas na memória do seu navegador durante a sessão ativa — nunca são salvos em cookies, localStorage ou enviados para servidores externos.'
+              : 'None of your data is stored on LealTEK servers. All your data remains in your own Google account (Google Drive and Google Sheets). OAuth access tokens exist only in your browser\'s memory during the active session — they are never saved to cookies, localStorage, or sent to external servers.'}
+          </p>
+        </div>
+        <p>
+          {isPt
+            ? 'O único dado local armazenado em localStorage é sua preferência de tema (claro/escuro), que não contém informações pessoais.'
+            : 'The only local data stored in localStorage is your theme preference (light/dark), which contains no personal information.'}
+        </p>
+      </section>
+
+      <!-- 7. Third-Party Services -->
+      <section class="legal-section">
+        <h2>{isPt ? '7. Serviços de Terceiros' : '7. Third-Party Services'}</h2>
+        <div class="legal-table-wrap">
+          <table class="legal-table">
+            <thead>
+              <tr>
+                <th>{isPt ? 'Serviço' : 'Service'}</th>
+                <th>{isPt ? 'Finalidade' : 'Purpose'}</th>
+                <th>{isPt ? 'Aplicações' : 'Applications'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google OAuth 2.0</td>
+                <td>{isPt ? 'Autenticação segura' : 'Secure authentication'}</td>
+                <td>{isPt ? 'Todas' : 'All'}</td>
+              </tr>
+              <tr>
+                <td>Google Sheets API v4</td>
+                <td>{isPt ? 'Armazenamento de dados do usuário' : 'User data storage'}</td>
+                <td>Sheet Budget, MetaBoard, StorySmith</td>
+              </tr>
+              <tr>
+                <td>Google Drive API v3</td>
+                <td>{isPt ? 'Listagem e criação de arquivos' : 'File listing and creation'}</td>
+                <td>MetaBoard, StorySmith</td>
+              </tr>
+              <tr>
+                <td>OpenAI API</td>
+                <td>{isPt ? 'Processamento de linguagem natural / IA' : 'Natural language processing / AI'}</td>
+                <td>MetaBoard, StorySmith</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          {isPt
+            ? 'Cada serviço de terceiro possui sua própria Política de Privacidade. Recomendamos que você as leia: '
+            : 'Each third-party service has its own Privacy Policy. We recommend you read them: '}
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google</a>
+          {' · '}
+          <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">OpenAI</a>
+        </p>
+      </section>
+
+      <!-- 8. Your Rights (LGPD) -->
+      <section class="legal-section">
+        <h2>{isPt ? '8. Seus Direitos (LGPD)' : '8. Your Rights (LGPD)'}</h2>
+        <p>
+          {isPt
+            ? 'Nos termos da Lei Geral de Proteção de Dados (Lei 13.709/2018), você tem os seguintes direitos:'
+            : 'Under the Brazilian General Data Protection Law (Lei 13.709/2018 — LGPD), you have the following rights:'}
+        </p>
+        <ul>
+          <li><strong>{isPt ? 'Acesso' : 'Access'}:</strong> {isPt ? 'saber quais dados temos sobre você' : 'know what data we hold about you'}</li>
+          <li><strong>{isPt ? 'Correção' : 'Correction'}:</strong> {isPt ? 'corrigir dados incorretos ou desatualizados' : 'correct inaccurate or outdated data'}</li>
+          <li><strong>{isPt ? 'Exclusão' : 'Deletion'}:</strong> {isPt ? 'solicitar a exclusão dos seus dados' : 'request deletion of your data'}</li>
+          <li><strong>{isPt ? 'Portabilidade' : 'Portability'}:</strong> {isPt ? 'receber seus dados em formato estruturado' : 'receive your data in a structured format'}</li>
+          <li><strong>{isPt ? 'Revogação do consentimento' : 'Consent withdrawal'}:</strong> {isPt ? 'retirar o acesso das aplicações à sua conta Google a qualquer momento' : 'withdraw application access to your Google account at any time'}</li>
+        </ul>
+        <p>
+          {isPt
+            ? 'Como toda informação fica na sua conta Google, você já tem controle total. Para revogar o acesso de qualquer aplicação LealTEK:'
+            : 'Since all information remains in your Google account, you already have full control. To revoke access from any LealTEK application:'}
+        </p>
+        <ol>
+          <li>{isPt ? 'Acesse sua Conta Google' : 'Go to your Google Account'}</li>
+          <li>{isPt ? 'Clique em Segurança → Apps com acesso à sua conta' : 'Click Security → Apps with access to your account'}</li>
+          <li>{isPt ? 'Encontre o app LealTEK e clique em Remover acesso' : 'Find the LealTEK app and click Remove Access'}</li>
+        </ol>
+        <p>
+          {isPt
+            ? 'Para exercer outros direitos ou tirar dúvidas, entre em contato:'
+            : 'To exercise other rights or for questions, contact us:'}
+          {' '}<a href="mailto:paulaolileal@gmail.com">paulaolileal@gmail.com</a>
+        </p>
+      </section>
+
+      <!-- 9. Cookies -->
+      <section class="legal-section">
+        <h2>{isPt ? '9. Cookies e Rastreamento' : '9. Cookies and Tracking'}</h2>
+        <p>
+          {isPt
+            ? 'As aplicações LealTEK não utilizam cookies de rastreamento, analytics de terceiros ou publicidade. O único dado armazenado localmente é a preferência de tema (claro/escuro) em localStorage, que não é compartilhado com ninguém.'
+            : 'LealTEK applications do not use tracking cookies, third-party analytics, or advertising. The only locally stored data is your theme preference (light/dark) in localStorage, which is not shared with anyone.'}
+        </p>
+      </section>
+
+      <!-- 10. Minors -->
+      <section class="legal-section">
+        <h2>{isPt ? '10. Menores de Idade' : '10. Minors'}</h2>
+        <p>
+          {isPt
+            ? 'As aplicações LealTEK não são destinadas a menores de 13 anos. Não coletamos intencionalmente dados de crianças. Se você é responsável por uma criança que acessou nossos serviços, entre em contato para que possamos remover os dados.'
+            : 'LealTEK applications are not intended for children under 13 years of age. We do not intentionally collect data from children. If you are a guardian of a child who accessed our services, please contact us so we can remove the data.'}
+        </p>
+      </section>
+
+      <!-- 11. Changes -->
+      <section class="legal-section">
+        <h2>{isPt ? '11. Alterações nesta Política' : '11. Changes to This Policy'}</h2>
+        <p>
+          {isPt
+            ? 'Esta política pode ser atualizada para refletir novas aplicações, escopos Google adicionais ou mudanças legais. A data de última atualização sempre estará indicada no topo desta página. O uso continuado dos serviços após mudanças constitui aceitação da nova versão.'
+            : 'This policy may be updated to reflect new applications, additional Google scopes, or legal changes. The last updated date will always be shown at the top of this page. Continued use of the services after changes constitutes acceptance of the new version.'}
+        </p>
+      </section>
+
+      <!-- 12. Contact -->
+      <section class="legal-section">
+        <h2>{isPt ? '12. Contato' : '12. Contact'}</h2>
+        <p>
+          {isPt
+            ? 'Para dúvidas, solicitações de direitos ou qualquer questão relacionada à privacidade:'
+            : 'For questions, rights requests, or any privacy-related matter:'}
+        </p>
+        <div class="legal-contact-card">
+          <strong>Paula Victoria de Oliveira Leal</strong>
+          <a href="mailto:paulaolileal@gmail.com">paulaolileal@gmail.com</a>
+          <span>lealtek.com</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-block: var(--space-4xl);
+    max-width: 860px;
+  }
+
+  .legal-header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .legal-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--text-primary);
+    margin-block: var(--space-sm) var(--space-md);
+  }
+
+  .legal-updated {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-lg);
+  }
+
+  .legal-intro {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  .legal-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .legal-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-2xl);
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--gold-primary);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.02em;
+  }
+
+  .legal-section h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .legal-section p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: var(--space-md);
+  }
+
+  .legal-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-section ul,
+  .legal-section ol {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .legal-section li {
+    margin-bottom: var(--space-xs);
+  }
+
+  .legal-section a {
+    color: var(--gold-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal-section a:hover {
+    color: var(--gold-light);
+  }
+
+  .legal-note {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    background: rgba(200, 151, 58, 0.06);
+    border-left: 3px solid var(--gold-dim);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .legal-highlight {
+    background: rgba(200, 151, 58, 0.08);
+    border: 1px solid rgba(200, 151, 58, 0.25);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .legal-highlight strong {
+    color: var(--gold-primary);
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .legal-highlight p {
+    margin-bottom: 0;
+  }
+
+  .legal-contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    margin-top: var(--space-md);
+  }
+
+  .legal-contact-card strong {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+  }
+
+  .legal-contact-card span {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-family: var(--font-mono);
+  }
+
+  .legal-apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .legal-app-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .legal-app-card strong {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+  }
+
+  .legal-app-card > span {
+    color: var(--gold-dim);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+  }
+
+  .legal-app-card p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+    margin-top: var(--space-xs);
+  }
+
+  .legal-app-future {
+    border-style: dashed;
+    opacity: 0.7;
+  }
+
+  .legal-scopes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .legal-scope-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .legal-scope-item code {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--gold-primary);
+    background: rgba(200, 151, 58, 0.08);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+    word-break: break-all;
+  }
+
+  .legal-scope-item p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  .legal-table-wrap {
+    overflow-x: auto;
+    margin-block: var(--space-md);
+  }
+
+  .legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .legal-table th {
+    text-align: left;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .legal-table td {
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .legal-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  @media (max-width: 640px) {
+    .legal-section {
+      padding: var(--space-lg);
+    }
+
+    .legal-apps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
