@@ -97,7 +97,7 @@ export const games: Game[] = [
     ],
     techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'PeerJS'],
     demoUrl: 'https://dino.lealtek.com',
-    githubUrl: 'https://gitlab.com/paulaolileal/dino-territory-wars',
+    githubUrl: 'https://github.com/paulaolileal/dino-territory-wars',
     image: '/images/dino-game.png',
     players: '2',
     playTime: '10–20 min',
