@@ -72,4 +72,33 @@ export const games: Game[] = [
     players: '2+',
     playTime: '15–60 min',
   },
+  {
+    id: 'dino',
+    name: 'ARK: Territory Wars',
+    tagline: 'Tribal warfare, battleship-style — with dinosaurs',
+    description:
+      'A "battleship"-style board game themed around ARK: Survival Evolved. Position your creatures on a grid, connect with a friend peer-to-peer, and attack the enemy territory until every creature is destroyed. Personal fan project, not affiliated with Studio Wildcard.',
+    howToPlay: [
+      'Choose Create, pick a grid size, and confirm',
+      'Share the room code with your opponent (copy, QR Code, or WhatsApp)',
+      'Wait for your opponent to join the room',
+      'Position your creatures on your territory, with rotate, randomize, or clear options',
+      'Take turns attacking one tile at a time',
+      'The game ends when every creature on one side is destroyed',
+    ],
+    features: [
+      'Peer-to-peer multiplayer via PeerJS — no game server needed',
+      'Configurable grid: 8x8, 10x10, 12x12, or 14x14',
+      '11 creatures with distinct shapes and auto-rotation',
+      'Join via code, QR Code scan, or shareable link',
+      'One-tap room code sharing via WhatsApp',
+      'Background music per phase and sound effects, with volume control',
+    ],
+    techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'PeerJS'],
+    demoUrl: 'https://dino.lealtek.com',
+    githubUrl: 'https://gitlab.com/paulaolileal/dino-territory-wars',
+    image: '/images/dino-game.png',
+    players: '2',
+    playTime: '10–20 min',
+  },
 ];
