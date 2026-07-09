@@ -85,6 +85,9 @@ O campo `translations.*.labsContent` é um objeto keyed por `lab.id` com `{ tagl
 - `.gold` — aplica `color: var(--gold-primary)`
 - `.reveal` — elemento começa invisível (`opacity: 0`, `translateY(24px)`) e anima para visível ao entrar no viewport; `BaseLayout` registra um `IntersectionObserver` que adiciona `.visible` à classe; adicionar `.reveal-delay-1` a `.reveal-delay-4` para staggers
 
+### Lightbox de imagens (BaseLayout)
+Qualquer `<img>` com o atributo `data-lightbox` fica clicável e abre em um overlay fullscreen (fecha com clique fora, no `×` ou `Esc`). Markup, estilos e script globais vivem em `BaseLayout.astro` — não duplicar por página. Usado nos prints de jogos e produtos (`.featured-screenshot img`, `.screenshot-img img`, screenshots do MindCircle); não usar em logos/ícones pequenos.
+
 ### Padrão de cabeçalho de seção
 ```astro
 <span class="section-label">Label</span>
