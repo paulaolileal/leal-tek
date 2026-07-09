@@ -33,7 +33,7 @@ src/
   data/
     products.ts  (MindCircle, Myth Ecosystem — interfaces Product, ProductFeature, mythPackages)
     labs.ts      (Syncr, Buddy, Deca, SheetBudget — interface LabProject)
-    games.ts     (Impostor, Stop! Adedanha — interface Game)
+    games.ts     (Impostor, Stop! Adedanha, ARK: Territory Wars — interface Game)
   i18n/
     translations.ts  (strings PT/EN — type Locale = 'pt' | 'en')
     utils.ts         (getTranslations(locale) helper)
