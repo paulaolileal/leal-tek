@@ -9,7 +9,7 @@ import type { Locale } from '../../i18n/translations';
 const locale = (Astro.currentLocale ?? 'pt') as Locale;
 const t = getTranslations(locale);
 const ts = t.dinoGame;
-const tc = (t.gamesContent as Record<string, { tagline: string; description: string; features: string[]; howToPlay: string[] }>).dino;
+const tc = (t.gamesContent as Record<string, { tagline: string; description: string; features: string[]; howToPlay: string[]; disclaimer?: string }>).dino;
 
 const game = games.find(g => g.id === 'dino')!;
 const base = locale === 'en' ? '/en' : '';
@@ -39,6 +39,9 @@ const gamesHref = `${base}/games`;
           <span class="badge-meta">⏱ {game.playTime}</span>
         </div>
         <p class="hero-desc reveal reveal-delay-3">{tc.description}</p>
+        {tc.disclaimer && (
+          <p class="hero-disclaimer reveal reveal-delay-3">⚠ {tc.disclaimer}</p>
+        )}
         <div class="hero-actions reveal reveal-delay-4">
           <Button href={game.demoUrl} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
             {ts.ctaPlayNow}
@@ -230,7 +233,8 @@ const gamesHref = `${base}/games`;
   .hero-tagline { font-size: clamp(1rem, 2.2vw, 1.3rem); color: var(--gold-primary); font-weight: 600; font-family: var(--font-display); margin-bottom: var(--space-md); }
   .hero-badges  { display: flex; gap: var(--space-md); margin-bottom: var(--space-xl); }
   .badge-meta   { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 4px 10px; }
-  .hero-desc    { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 620px; margin-bottom: var(--space-2xl); }
+  .hero-desc    { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; max-width: 620px; margin-bottom: var(--space-lg); }
+  .hero-disclaimer { font-size: 0.8rem; font-style: italic; color: var(--text-muted); line-height: 1.6; max-width: 620px; margin-bottom: var(--space-2xl); border-left: 2px solid var(--border-accent); padding-left: var(--space-md); }
   .hero-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; }
 
   /* Featured Screenshot */

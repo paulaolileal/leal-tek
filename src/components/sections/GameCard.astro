@@ -12,7 +12,7 @@ interface Props {
 const { game } = Astro.props;
 const locale = (Astro.currentLocale ?? 'pt') as Locale;
 const t = getTranslations(locale);
-const tg = (t.gamesContent as Record<string, { tagline: string; description: string; features: string[] }>)[game.id];
+const tg = (t.gamesContent as Record<string, { tagline: string; description: string; features: string[]; disclaimer?: string }>)[game.id];
 
 const base = locale === 'en' ? '/en' : '';
 const detailHref = `${base}/games/${game.id}`;
@@ -20,6 +20,7 @@ const detailHref = `${base}/games/${game.id}`;
 const tagline = tg?.tagline ?? game.tagline;
 const description = tg?.description ?? game.description;
 const features = tg?.features ?? game.features;
+const disclaimer = tg?.disclaimer ?? game.disclaimer;
 ---
 
 <article class="game-card">
@@ -57,6 +58,10 @@ const features = tg?.features ?? game.features;
       <TechBadge tech={tech} />
     ))}
   </div>
+
+  {disclaimer && (
+    <p class="game-disclaimer">⚠ {disclaimer}</p>
+  )}
 
   <div class="game-actions">
     <Button href={game.demoUrl} variant="primary" size="sm" target="_blank" rel="noopener noreferrer">
@@ -177,6 +182,14 @@ const features = tg?.features ?? game.features;
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
+    padding-inline: var(--space-xl);
+  }
+
+  .game-disclaimer {
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--text-muted);
+    line-height: 1.5;
     padding-inline: var(--space-xl);
   }
 

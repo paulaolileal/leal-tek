@@ -11,6 +11,7 @@ export interface Game {
   image?: string;
   players: string;
   playTime: string;
+  disclaimer?: string;
 }
 
 export const games: Game[] = [
@@ -100,5 +101,6 @@ export const games: Game[] = [
     image: '/images/dino-game.png',
     players: '2',
     playTime: '10–20 min',
+    disclaimer: 'Non-profit fan project, not affiliated with or endorsed by Studio Wildcard — made purely out of love for ARK: Survival Evolved.',
   },
 ];

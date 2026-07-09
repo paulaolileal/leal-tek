@@ -462,7 +462,8 @@ export const translations = {
       },
       dino: {
         tagline: 'Batalha de tribos com dinossauros, estilo batalha naval',
-        description: 'Um jogo de tabuleiro estilo "batalha naval" com tema de ARK: Survival Evolved. Posicione suas criaturas no grid, conecte-se com um amigo via P2P e ataque o território inimigo até destruir todas as criaturas dele. Projeto pessoal de fã, sem vínculo com a Studio Wildcard.',
+        description: 'Um jogo de tabuleiro estilo "batalha naval" com tema de ARK: Survival Evolved. Posicione suas criaturas no grid, conecte-se com um amigo via P2P e ataque o território inimigo até destruir todas as criaturas dele.',
+        disclaimer: 'Projeto de fã sem fins lucrativos — sem qualquer vínculo com a Studio Wildcard. Feito apenas por admiração a ARK: Survival Evolved.',
         features: [
           'Multiplayer peer-to-peer via PeerJS — sem servidor de jogo',
           'Grid configurável: 8x8, 10x10, 12x12 ou 14x14',
@@ -1113,7 +1114,8 @@ export const translations = {
       },
       dino: {
         tagline: 'Tribal warfare, battleship-style — with dinosaurs',
-        description: 'A "battleship"-style board game themed around ARK: Survival Evolved. Position your creatures on a grid, connect with a friend peer-to-peer, and attack the enemy territory until every creature is destroyed. Personal fan project, not affiliated with Studio Wildcard.',
+        description: 'A "battleship"-style board game themed around ARK: Survival Evolved. Position your creatures on a grid, connect with a friend peer-to-peer, and attack the enemy territory until every creature is destroyed.',
+        disclaimer: 'Non-profit fan project — no affiliation with Studio Wildcard whatsoever. Made purely out of love for ARK: Survival Evolved.',
         features: [
           'Peer-to-peer multiplayer via PeerJS — no game server needed',
           'Configurable grid: 8x8, 10x10, 12x12, or 14x14',
