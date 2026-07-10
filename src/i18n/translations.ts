@@ -470,7 +470,8 @@ export const translations = {
           '11 criaturas com formatos distintos e rotação automática',
           'Entrada por código, QR Code ou link compartilhável',
           'Compartilhamento do código da sala direto pelo WhatsApp',
-          'Música por fase e efeitos sonoros, com controle de volume',
+          'Música por fase e efeitos sonoros, com mixer de volume independente para cada canal',
+          'Interface mobile-friendly, com visão em abas e suporte a arrastar por toque',
         ],
         howToPlay: [
           'Escolha Criar, selecione o tamanho do grid e confirme',
@@ -1124,7 +1125,8 @@ export const translations = {
           '11 creatures with distinct shapes and auto-rotation',
           'Join via code, QR Code scan, or shareable link',
           'One-tap room code sharing via WhatsApp',
-          'Background music per phase and sound effects, with volume control',
+          'Background music per phase and sound effects, with independent per-channel volume mixer',
+          'Mobile-friendly interface, with tabbed view and touch drag support',
         ],
         howToPlay: [
           'Choose Create, pick a grid size, and confirm',
