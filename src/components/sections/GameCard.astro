@@ -7,9 +7,11 @@ import type { Locale } from '../../i18n/translations';
 
 interface Props {
   game: Game;
+  class?: string;
+  compact?: boolean;
 }
 
-const { game } = Astro.props;
+const { game, class: className, compact = false } = Astro.props;
 const locale = (Astro.currentLocale ?? 'pt') as Locale;
 const t = getTranslations(locale);
 const tg = (t.gamesContent as Record<string, { tagline: string; description: string; features: string[]; disclaimer?: string }>)[game.id];
@@ -23,7 +25,7 @@ const features = tg?.features ?? game.features;
 const disclaimer = tg?.disclaimer ?? game.disclaimer;
 ---
 
-<article class="game-card">
+<article class:list={['game-card', className, { compact }]}>
   {game.image && (
     <div class="game-screenshot">
       <img
@@ -45,21 +47,25 @@ const disclaimer = tg?.disclaimer ?? game.disclaimer;
     <p class="game-tagline">{tagline}</p>
   </div>
 
-  <p class="game-description">{description}</p>
+  {!compact && <p class="game-description">{description}</p>}
 
-  <div class="game-features">
-    {features.slice(0, 4).map(f => (
-      <span class="feature-item">✓ {f}</span>
-    ))}
-  </div>
+  {!compact && (
+    <div class="game-features">
+      {features.slice(0, 4).map(f => (
+        <span class="feature-item">✓ {f}</span>
+      ))}
+    </div>
+  )}
 
-  <div class="game-stack">
-    {game.techStack.map(tech => (
-      <TechBadge tech={tech} />
-    ))}
-  </div>
+  {!compact && (
+    <div class="game-stack">
+      {game.techStack.map(tech => (
+        <TechBadge tech={tech} />
+      ))}
+    </div>
+  )}
 
-  {disclaimer && (
+  {!compact && disclaimer && (
     <p class="game-disclaimer">⚠ {disclaimer}</p>
   )}
 
@@ -199,5 +205,9 @@ const disclaimer = tg?.disclaimer ?? game.disclaimer;
     flex-wrap: wrap;
     padding-inline: var(--space-xl);
     padding-bottom: var(--space-xl);
+  }
+
+  .game-card.compact .game-actions {
+    margin-top: var(--space-sm);
   }
 </style>

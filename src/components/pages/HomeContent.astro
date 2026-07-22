@@ -118,11 +118,52 @@ const enrichedHomeLabs = labProjects.map(lab => ({
           </div>
         </div>
 
-        <!-- Floating tech pills -->
-        <div class="vis-pill vp-1">TypeScript</div>
-        <div class="vis-pill vp-2">Clean Arch</div>
-        <div class="vis-pill vp-3">SignalR</div>
-        <div class="vis-pill vp-4">DDD</div>
+        <!-- Labs mini card -->
+        <div class="vis-card vis-card-mini vis-card-labs">
+          <div class="vis-card-row">
+            <div class="vis-logo-wrap vis-logo-labs">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6M10 3v5.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 8.5V3" />
+              </svg>
+            </div>
+            <div class="vis-card-info">
+              <span class="vis-name">Labs</span>
+              <span class="vis-type">{labProjects.length} projects</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Games mini card -->
+        <div class="vis-card vis-card-mini vis-card-games">
+          <div class="vis-card-row">
+            <div class="vis-logo-wrap vis-logo-games">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 12h4M8 10v4M15 13h.01M18 11h.01M7 6h10a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4Z" />
+              </svg>
+            </div>
+            <div class="vis-card-info">
+              <span class="vis-name">Games</span>
+              <span class="vis-type">{games.length} titles</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating tech pills, scattered across free space -->
+        <div class="vis-pill pill-csharp">C#</div>
+        <div class="vis-pill pill-ia">IA</div>
+
+        <div class="vis-pill pill-leadership">Leadership</div>
+        <div class="vis-pill pill-clean-arch">Clean Architecture</div>
+        <div class="vis-pill pill-ddd">DDD</div>
+        <div class="vis-pill pill-solid">SOLID</div>
+
+        <div class="vis-pill pill-postgres">PostgreSQL</div>
+        <div class="vis-pill pill-sql">SQL</div>
+        <div class="vis-pill pill-typescript">TypeScript</div>
+        <div class="vis-pill pill-signalr">SignalR</div>
+        <div class="vis-pill pill-kubernetes">Kubernetes</div>
+        <div class="vis-pill pill-helm">Helm</div>
+        <div class="vis-pill pill-azure">Azure</div>
 
         <!-- Background glow rings -->
         <div class="vis-ring vis-ring-1"></div>
@@ -137,34 +178,34 @@ const enrichedHomeLabs = labProjects.map(lab => ({
   </section>
 
   <!-- ═══════════════════════════════════════════════════════ PRODUCTS -->
-  <section class="section reveal" id="products">
+  <section class="section" id="products">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-label">{th.productsLabel}</span>
         <span class="gold-line"></span>
         <h2>{th.productsHeading}</h2>
         <p class="section-description">{th.productsDesc}</p>
       </div>
       <div class="grid-2">
-        {products.map(product => (
-          <ProductCard product={product} featured />
+        {products.map((product, i) => (
+          <ProductCard product={product} featured class={`reveal reveal-delay-${(i % 3) + 1}`} />
         ))}
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════ LABS -->
-  <section class="section reveal section-alt" id="labs">
+  <section class="section section-alt" id="labs">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-label">{th.labsLabel}</span>
         <span class="gold-line"></span>
         <h2>{th.labsHeading}</h2>
         <p class="section-description">{th.labsDesc}</p>
       </div>
       <div class="grid-3">
-        {enrichedHomeLabs.map(lab => (
-            <article class="lab-card">
+        {enrichedHomeLabs.map((lab, i) => (
+            <article class:list={['lab-card', 'reveal', `reveal-delay-${(i % 3) + 1}`]}>
               <div class="lab-card-top">
                 <span class:list={['lab-status', lab.status]}>
                   {lab.status === 'active' ? th.labActive : lab.status === 'wip' ? th.labWip : th.labComplete}
@@ -197,33 +238,33 @@ const enrichedHomeLabs = labProjects.map(lab => ({
   </section>
 
   <!-- ═══════════════════════════════════════════════════════ GAMES -->
-  <section class="section reveal" id="games">
+  <section class="section" id="games">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-label">{th.gamesLabel}</span>
         <span class="gold-line"></span>
         <h2>{th.gamesHeading}</h2>
         <p class="section-description">{th.gamesDesc}</p>
       </div>
       <div class="grid-2">
-        {games.map(game => (
-          <GameCard game={game} />
+        {games.map((game, i) => (
+          <GameCard game={game} compact class={`reveal reveal-delay-${(i % 3) + 1}`} />
         ))}
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════ BLOG -->
-  <section class="section reveal section-alt" id="writing">
+  <section class="section section-alt" id="writing">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <span class="section-label">{th.writingLabel}</span>
         <span class="gold-line"></span>
         <h2>{th.writingHeading}</h2>
         <p class="section-description">{th.writingDesc}</p>
       </div>
       <div class="grid-3">
-        {latestPosts.map(post => (
+        {latestPosts.map((post, i) => (
           <BlogPostCard
             title={post.data.title}
             date={post.data.date}
@@ -231,6 +272,7 @@ const enrichedHomeLabs = labProjects.map(lab => ({
             tags={post.data.tags}
             slug={post.slug}
             linkedinUrl={post.data.linkedinUrl}
+            class={`reveal reveal-delay-${(i % 3) + 1}`}
           />
         ))}
       </div>
@@ -453,6 +495,38 @@ const enrichedHomeLabs = labProjects.map(lab => ({
     animation: float 6s 1.5s ease-in-out infinite;
   }
 
+  .vis-card-mini {
+    padding: var(--space-sm) var(--space-md);
+    gap: 0;
+    min-width: 150px;
+  }
+
+  .vis-card-labs {
+    top: 46%; left: 0;
+    transform: translateY(-50%);
+    border-color: rgba(167, 139, 250, 0.3);
+    background: linear-gradient(135deg, var(--bg-card), rgba(167, 139, 250, 0.05));
+    animation: floatCenterLeft 6s 0.8s ease-in-out infinite;
+  }
+
+  .vis-card-games {
+    top: 46%; right: 0;
+    transform: translateY(-50%);
+    border-color: rgba(74, 222, 128, 0.3);
+    background: linear-gradient(135deg, var(--bg-card), rgba(74, 222, 128, 0.05));
+    animation: floatCenterRight 6s 2.2s ease-in-out infinite;
+  }
+
+  @keyframes floatCenterLeft {
+    0%, 100% { transform: translateY(-50%); }
+    50%       { transform: translateY(calc(-50% - 10px)); }
+  }
+
+  @keyframes floatCenterRight {
+    0%, 100% { transform: translateY(-50%); }
+    50%       { transform: translateY(calc(-50% - 10px)); }
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50%       { transform: translateY(-10px); }
@@ -474,6 +548,8 @@ const enrichedHomeLabs = labProjects.map(lab => ({
 
   .vis-logo-mc   { background: rgba(59, 158, 245, 0.12); border: 1px solid rgba(59, 158, 245, 0.2); }
   .vis-logo-myth { background: rgba(200, 151, 58, 0.10); border: 1px solid rgba(200, 151, 58, 0.2); }
+  .vis-logo-labs  { background: rgba(167, 139, 250, 0.10); border: 1px solid rgba(167, 139, 250, 0.2); color: #A78BFA; }
+  .vis-logo-games { background: rgba(74, 222, 128, 0.10); border: 1px solid rgba(74, 222, 128, 0.2); color: #4ADE80; }
 
   .vis-logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
 
@@ -534,9 +610,9 @@ const enrichedHomeLabs = labProjects.map(lab => ({
   .vis-pill {
     position: absolute;
     font-family: var(--font-mono);
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: 4px 10px;
     border-radius: 999px;
@@ -545,17 +621,48 @@ const enrichedHomeLabs = labProjects.map(lab => ({
     color: var(--text-muted);
     white-space: nowrap;
     pointer-events: none;
+    animation: floatPill 7s ease-in-out infinite;
   }
 
-  .vp-1 { top: 50%; left: 40%; transform: translateY(-50%); animation: floatPill 7s 0s ease-in-out infinite; }
-  .vp-2 { top: 35%; right: 10%; animation: floatPill 7s 1s ease-in-out infinite; }
-  .vp-3 { bottom: 20%; left: 30%; animation: floatPill 7s 2s ease-in-out infinite; }
-  .vp-4 { top: 15%; right: 20%; animation: floatPill 7s 0.5s ease-in-out infinite; }
+  /*
+    Positioning notes: MindCircle/Myth are fixed 220px-wide cards anchored to
+    left:0/right:0; Labs/Games mini cards are fixed 150px anchored the same way.
+    Pills below use left/right in px (not %) so their clearance from those
+    fixed-width cards holds regardless of the hero-visual's actual width —
+    a %-based offset would drift into the cards at narrower viewport widths.
+  */
+
+  /* center pair — sits in the gap between the Labs and Games mini cards */
+  .pill-csharp { top: 44%; left: 47%; transform: translateX(-50%); animation-name: floatPillCentered; animation-delay: 0s; }
+  .pill-ia     { top: 52%; left: 53%; transform: translateX(-50%); animation-name: floatPillCentered; animation-delay: 0.6s; }
+
+  /* top-right scatter — cleared of MindCircle's fixed 220px width */
+  .pill-leadership { top: 2%;  left: 250px; animation-delay: 0.2s; }
+  .pill-clean-arch { top: 15%; left: 246px; animation-delay: 1.4s; }
+  .pill-ddd        { top: 27%; left: 300px; animation-delay: 0.8s; }
+  .pill-solid      { top: 36%; left: 270px; animation-delay: 2s; }
+
+  /* bottom-left scatter — cleared of Myth's fixed 220px width */
+  .pill-postgres   { top: 56%; left: 4px;   animation-delay: 0.4s; }
+  .pill-azure      { top: 66%; left: 6px;   animation-delay: 1.2s; }
+  .pill-typescript { top: 74%; left: 4px;   animation-delay: 1s; }
+  .pill-sql        { top: 83%; left: 6px;   animation-delay: 1.8s; }
+  .pill-signalr    { top: 83%; left: 66px;  animation-delay: 0.2s; }
+
+  /* below Myth — full width free */
+  .pill-kubernetes { top: 93%; left: 4px;   animation-delay: 1.6s; }
+  .pill-helm       { top: 93%; left: 140px; animation-delay: 2.4s; }
 
   @keyframes floatPill {
     0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
     33%       { transform: translateY(-6px) translateX(3px); opacity: 1; }
     66%       { transform: translateY(4px) translateX(-2px); opacity: 0.8; }
+  }
+
+  @keyframes floatPillCentered {
+    0%, 100% { transform: translateX(-50%) translateY(0px); opacity: 0.6; }
+    33%       { transform: translateX(-50%) translateY(-6px); opacity: 1; }
+    66%       { transform: translateX(-50%) translateY(4px); opacity: 0.8; }
   }
 
   /* ── SCROLL HINT ── */
