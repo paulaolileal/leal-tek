@@ -13,6 +13,9 @@ const ts = t.metaBoard;
 const base = locale === 'en' ? '/en' : '';
 const labsHref = `${base}/labs`;
 
+const demoUrl = 'https://board.lealtek.com';
+const githubUrl = 'https://github.com/paulaolileal/meta-board';
+
 const techStack = [
   'React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'shadcn/ui',
   'dnd-kit', 'Framer Motion', 'TanStack Query', 'Zustand',
@@ -42,7 +45,10 @@ const techStack = [
         <p class="hero-tagline reveal reveal-delay-2">{ts.tagline}</p>
         <p class="hero-desc reveal reveal-delay-3">{ts.description}</p>
         <div class="hero-actions reveal reveal-delay-4">
-          <Button href="https://github.com/paulaolileal/meta-board" variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+          <Button href={demoUrl} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+            {ts.ctaBtnDemo}
+          </Button>
+          <Button href={githubUrl} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
             {ts.ctaBtn}
           </Button>
         </div>
@@ -180,7 +186,10 @@ const techStack = [
         <h2>{ts.ctaHeading}</h2>
         <p>{ts.ctaText}</p>
         <div class="cta-actions">
-          <Button href="https://github.com/paulaolileal/meta-board" variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+          <Button href={demoUrl} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+            {ts.ctaBtnDemo}
+          </Button>
+          <Button href={githubUrl} variant="ghost" size="lg" target="_blank" rel="noopener noreferrer">
             {ts.ctaBtn}
           </Button>
           <Button href={labsHref} variant="ghost" size="lg">

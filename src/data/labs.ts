@@ -33,6 +33,7 @@ export const labProjects: LabProject[] = [
       '/images/meta-board/mb-edicao-board-02.png',
       '/images/meta-board/mb-edicao-board-03.png',
     ],
+    demoUrl: 'https://board.lealtek.com',
     githubUrl: 'https://github.com/paulaolileal/meta-board',
   },
   {
@@ -73,6 +74,7 @@ export const labProjects: LabProject[] = [
       '/images/sheet-budget/sb-configuracoes.png',
       '/images/sheet-budget/sb-login.png',
     ],
+    demoUrl: 'https://budget.lealtek.com',
     githubUrl: 'https://github.com/paulaolileal/sheet-budget',
   },
   {

@@ -242,6 +242,7 @@ export const translations = {
       ctaHeading: 'Veja o código-fonte',
       ctaText: 'Projeto pessoal de código aberto. Disponível no GitLab.',
       ctaBtn: 'Ver no GitLab',
+      ctaBtnDemo: 'Acessar Sheet Budget',
     },
 
     metaBoard: {
@@ -296,6 +297,7 @@ export const translations = {
       ctaHeading: 'Veja o código-fonte',
       ctaText: 'Projeto pessoal de código aberto. Disponível no GitHub.',
       ctaBtn: 'Ver no GitHub',
+      ctaBtnDemo: 'Acessar MetaBoard',
     },
 
     homeStock: {
@@ -956,6 +958,7 @@ export const translations = {
       ctaHeading: 'View the source code',
       ctaText: 'Open-source personal project. Available on GitLab.',
       ctaBtn: 'View on GitLab',
+      ctaBtnDemo: 'Open Sheet Budget',
     },
 
     metaBoard: {
@@ -1010,6 +1013,7 @@ export const translations = {
       ctaHeading: 'View the source code',
       ctaText: 'Open-source personal project. Available on GitHub.',
       ctaBtn: 'View on GitHub',
+      ctaBtnDemo: 'Open MetaBoard',
     },
 
     homeStock: {
