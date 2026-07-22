@@ -75,4 +75,27 @@ export const labProjects: LabProject[] = [
     ],
     githubUrl: 'https://github.com/paulaolileal/sheet-budget',
   },
+  {
+    id: 'home-stock',
+    name: 'Home Stock',
+    tagline: 'Controle de estoque doméstico — Google Sheets como banco de dados',
+    description:
+      'Mantém o inventário da casa (despensa, geladeira, banheiro, limpeza) atualizado em segundos, com lista de compras gerada automaticamente a partir dos itens abaixo do mínimo. Scanner de código de barras preenche produtos automaticamente via Open Food Facts. Zero backend próprio, zero mensalidade — os dados vivem na sua própria planilha do Google Drive.',
+    status: 'complete',
+    logo: '/images/home-stock/hs-logo.png',
+    href: '/labs/home-stock',
+    techStack: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS v4', 'TanStack Query', 'Google Sheets API'],
+    screenshots: [
+      '/images/home-stock/hs-inventario-desktop.png',
+      '/images/home-stock/hs-busca-desktop.png',
+      '/images/home-stock/hs-compras-desktop.png',
+      '/images/home-stock/hs-novo-produto-desktop.png',
+      '/images/home-stock/hs-item-details-desktop.png',
+      '/images/home-stock/hs-item-details-2-desktop.png',
+      '/images/home-stock/hs-ajustes-desktop.png',
+      '/images/home-stock/hs-inventario-mobile.png',
+    ],
+    demoUrl: 'https://stock.lealtek.com',
+    githubUrl: 'https://github.com/paulaolileal/home-stock',
+  },
 ];

@@ -298,6 +298,61 @@ export const translations = {
       ctaBtn: 'Ver no GitHub',
     },
 
+    homeStock: {
+      meta: {
+        title: 'Home Stock — Controle de Estoque Doméstico com Google Sheets',
+        description: 'App de inventário doméstico sem backend próprio que usa o Google Sheets como banco de dados. Lista de compras automática, scanner de código de barras e PWA instalável.',
+      },
+      category: 'Lab · Projeto Pessoal',
+      statusComplete: 'Concluído',
+      backToLabs: '← Labs',
+      tagline: 'Controle de estoque doméstico — Google Sheets como banco de dados',
+      description: 'Mantenha o inventário da casa (despensa, geladeira, banheiro, limpeza) atualizado em segundos. A lista de compras é gerada automaticamente a partir dos itens abaixo do mínimo — sem servidor próprio, sem mensalidade, sem seus dados em um banco de terceiros: tudo fica na planilha do seu próprio Google Drive.',
+      conceptLabel: 'O Conceito',
+      conceptHeading: 'Zero backend. Sua planilha, seu controle.',
+      concept: [
+        { title: 'Google Sheets como BD', description: 'Sua planilha do Google é o banco de dados — aba de produtos, categorias e locais. Auditável, exportável e com backup automático pelo Google.' },
+        { title: 'Zero Mensalidade', description: 'Sem servidor próprio, sem custo de infraestrutura. O token de acesso Google vive apenas em memória — nunca persiste em disco.' },
+        { title: 'Scanner de Código de Barras', description: 'Aponte a câmera para o produto e o app preenche nome, marca e categoria automaticamente via Open Food Facts (EAN-13/UPC-A).' },
+      ],
+      screenshotsLabel: 'Capturas de Tela',
+      screenshotsHeading: 'Veja funcionando',
+      screenshots: [
+        { src: '/images/home-stock/hs-busca-desktop.png', caption: 'Busca de produtos' },
+        { src: '/images/home-stock/hs-compras-desktop.png', caption: 'Lista de compras com itens abaixo do mínimo' },
+        { src: '/images/home-stock/hs-novo-produto-desktop.png', caption: 'Adicionar produto com atalho para o scanner de código de barras' },
+        { src: '/images/home-stock/hs-item-details-desktop.png', caption: 'Detalhe do produto com stepper de quantidade' },
+        { src: '/images/home-stock/hs-item-details-2-desktop.png', caption: 'Campos expandidos: categoria, local, mínimo e ideal' },
+        { src: '/images/home-stock/hs-ajustes-desktop.png', caption: 'Ajustes: tema, conta Google, categorias e locais' },
+        { src: '/images/home-stock/hs-inventario-mobile.png', caption: 'Inventário no mobile, com navegação inferior' },
+      ],
+      featuresLabel: 'Funcionalidades',
+      featuresHeading: 'Tudo que você precisa para controlar o estoque de casa',
+      features: [
+        { title: 'Inventário Tátil', description: 'Busca, filtros por categoria e favoritos, stepper de quantidade com resposta instantânea (otimista, sincroniza em segundo plano com debounce de 600ms).' },
+        { title: 'Lista de Compras Automática', description: 'Qualquer item com quantidade abaixo do mínimo entra na lista automaticamente; marque como comprado com um gesto de arrastar.' },
+        { title: 'Scanner de Código de Barras', description: 'Câmera + detecção EAN-13/UPC-A. O app tenta preencher nome, marca e categoria automaticamente via Open Food Facts.' },
+        { title: 'Categorias e Locais Customizáveis', description: 'Organize por onde o produto fica em casa, com categorias e locais hierárquicos personalizáveis (ex: "Cozinha > Geladeira").' },
+        { title: 'Login com Google Obrigatório', description: 'Cada usuário tem sua própria planilha, criada automaticamente no primeiro acesso dentro do próprio Google Drive.' },
+        { title: 'Tema e PWA', description: 'Tema claro, escuro ou sistema. App instalável como PWA, com a mesma experiência em qualquer dispositivo.' },
+      ],
+      archLabel: 'Arquitetura',
+      archHeading: 'Frontend-only com zero backend próprio',
+      archDesc: 'Arquitetura em camadas onde a UI nunca importa diretamente da infraestrutura. repositoryProvider.ts é o único ponto de decisão: resolve o spreadsheetId do usuário logado e devolve (com cache) o repositório ativo. Trocar de backend significa criar uma nova classe implementando InventoryRepository — zero mudanças na UI.',
+      archLayers: [
+        { name: 'Presentation', description: 'Páginas e componentes React (inventário, busca, compras, detalhe do produto, ajustes). Nunca importa infrastructure diretamente.' },
+        { name: 'Hooks', description: 'TanStack Query para cache e mutations. Incremento de quantidade com debounce de 600ms evita estourar a cota da Sheets API.' },
+        { name: 'Domain', description: 'Tipos TypeScript (Product, Category, Location), schemas Zod e a interface InventoryRepository — o contrato que toda implementação de backend deve seguir.' },
+        { name: 'Infrastructure', description: 'GoogleSheetsRepository (Sheets API v4), DriveApiClient/SheetsInitializer (Drive API) e OpenFoodFactsClient (lookup por código de barras).' },
+      ],
+      stackLabel: 'Stack Tecnológica',
+      stackHeading: 'O que faz funcionar',
+      ctaHeading: 'Veja o código-fonte',
+      ctaText: 'Projeto pessoal de código aberto, disponível publicamente em stock.lealtek.com.',
+      ctaBtn: 'Ver no GitHub',
+      ctaBtnDemo: 'Acessar Home Stock',
+    },
+
     games: {
       meta: {
         title: 'Jogos',
@@ -500,6 +555,10 @@ export const translations = {
       'meta-board': {
         tagline: 'Kanban board direto na sua planilha Google Sheets',
         description: 'Transforma qualquer Google Sheets em um quadro Kanban interativo — sem backend, sem banco de dados próprio, sem mensalidade. Drag & drop, 17 tipos de campo, criação de cards com IA e responsivo por design.',
+      },
+      'home-stock': {
+        tagline: 'Controle de estoque doméstico — Google Sheets como banco de dados',
+        description: 'Mantém o inventário da casa (despensa, geladeira, banheiro, limpeza) atualizado em segundos, com lista de compras gerada automaticamente a partir dos itens abaixo do mínimo. Scanner de código de barras preenche produtos automaticamente via Open Food Facts. Zero backend próprio, zero mensalidade — os dados vivem na sua própria planilha do Google Drive.',
       },
     },
 
@@ -953,6 +1012,61 @@ export const translations = {
       ctaBtn: 'View on GitHub',
     },
 
+    homeStock: {
+      meta: {
+        title: 'Home Stock — Home Inventory Tracking with Google Sheets',
+        description: 'Zero-backend home inventory app that uses Google Sheets as a database. Automatic shopping list, barcode scanner, and installable PWA.',
+      },
+      category: 'Lab · Personal Project',
+      statusComplete: 'Complete',
+      backToLabs: '← Labs',
+      tagline: 'Home inventory tracking — Google Sheets as your database',
+      description: 'Keep your household inventory (pantry, fridge, bathroom, cleaning supplies) up to date in seconds. The shopping list is generated automatically from items below their minimum quantity — no own server, no monthly fee, no data on a third-party database: everything stays in your own Google Drive spreadsheet.',
+      conceptLabel: 'The Concept',
+      conceptHeading: 'Zero backend. Your spreadsheet, your control.',
+      concept: [
+        { title: 'Google Sheets as DB', description: 'Your Google spreadsheet is the database — products, categories, and locations tabs. Auditable, exportable, and automatically backed up by Google.' },
+        { title: 'Zero Fees', description: 'No own server, no infrastructure cost. The Google access token lives in memory only — never persists to disk.' },
+        { title: 'Barcode Scanner', description: 'Point the camera at a product and the app fills in name, brand, and category automatically via Open Food Facts (EAN-13/UPC-A).' },
+      ],
+      screenshotsLabel: 'Screenshots',
+      screenshotsHeading: 'See it in action',
+      screenshots: [
+        { src: '/images/home-stock/hs-busca-desktop.png', caption: 'Product search' },
+        { src: '/images/home-stock/hs-compras-desktop.png', caption: 'Shopping list with items below minimum' },
+        { src: '/images/home-stock/hs-novo-produto-desktop.png', caption: 'Add product with barcode scanner shortcut' },
+        { src: '/images/home-stock/hs-item-details-desktop.png', caption: 'Product detail with quantity stepper' },
+        { src: '/images/home-stock/hs-item-details-2-desktop.png', caption: 'Expanded fields: category, location, minimum and ideal' },
+        { src: '/images/home-stock/hs-ajustes-desktop.png', caption: 'Settings: theme, Google account, categories and locations' },
+        { src: '/images/home-stock/hs-inventario-mobile.png', caption: 'Inventory on mobile, with bottom navigation' },
+      ],
+      featuresLabel: 'Features',
+      featuresHeading: 'Everything you need to control your household stock',
+      features: [
+        { title: 'Touch-Friendly Inventory', description: 'Search, category and favorite filters, quantity stepper with instant response (optimistic, syncs in the background with a 600ms debounce).' },
+        { title: 'Automatic Shopping List', description: 'Any item with quantity below the minimum enters the list automatically; mark as purchased with a swipe gesture.' },
+        { title: 'Barcode Scanner', description: 'Camera + EAN-13/UPC-A detection. The app tries to fill in name, brand, and category automatically via Open Food Facts.' },
+        { title: 'Customizable Categories and Locations', description: 'Organize by where the product lives at home, with customizable hierarchical categories and locations (e.g. "Kitchen > Fridge").' },
+        { title: 'Mandatory Google Login', description: 'Each user has their own spreadsheet, automatically created on first access inside their own Google Drive.' },
+        { title: 'Theme and PWA', description: 'Light, dark, or system theme. Installable as a PWA, with the same experience on any device.' },
+      ],
+      archLabel: 'Architecture',
+      archHeading: 'Frontend-only with zero own backend',
+      archDesc: 'Layered architecture where the UI never imports directly from infrastructure. repositoryProvider.ts is the single decision point: it resolves the logged-in user\'s spreadsheetId and returns (with cache) the active repository. Swapping backends means creating one new class implementing InventoryRepository — zero UI changes.',
+      archLayers: [
+        { name: 'Presentation', description: 'React pages and components (inventory, search, shopping list, product detail, settings). Never imports infrastructure directly.' },
+        { name: 'Hooks', description: 'TanStack Query for cache and mutations. Quantity increments use a 600ms debounce to avoid hitting the Sheets API quota.' },
+        { name: 'Domain', description: 'TypeScript types (Product, Category, Location), Zod schemas, and the InventoryRepository interface — the contract every backend implementation must follow.' },
+        { name: 'Infrastructure', description: 'GoogleSheetsRepository (Sheets API v4), DriveApiClient/SheetsInitializer (Drive API), and OpenFoodFactsClient (barcode lookup).' },
+      ],
+      stackLabel: 'Tech Stack',
+      stackHeading: 'What powers it',
+      ctaHeading: 'View the source code',
+      ctaText: 'Open-source personal project, publicly available at stock.lealtek.com.',
+      ctaBtn: 'View on GitHub',
+      ctaBtnDemo: 'Open Home Stock',
+    },
+
     games: {
       meta: {
         title: 'Games',
@@ -1155,6 +1269,10 @@ export const translations = {
       'meta-board': {
         tagline: 'Kanban board straight from your Google Sheets',
         description: 'Turns any Google Sheets into an interactive Kanban board — no backend, no own database, no monthly fee. Drag & drop, 17 field types, AI-powered card creation, and responsive by design.',
+      },
+      'home-stock': {
+        tagline: 'Home inventory tracking — Google Sheets as your database',
+        description: 'Keeps your household inventory (pantry, fridge, bathroom, cleaning supplies) up to date in seconds, with a shopping list generated automatically from items below their minimum quantity. Barcode scanner fills in products automatically via Open Food Facts. Zero own backend, zero monthly fee — data lives in your own Google Drive spreadsheet.',
       },
     },
 
