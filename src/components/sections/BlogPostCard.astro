@@ -11,9 +11,10 @@ interface Props {
   tags: string[];
   slug: string;
   linkedinUrl: string;
+  class?: string;
 }
 
-const { title, date, excerpt, tags, slug, linkedinUrl } = Astro.props;
+const { title, date, excerpt, tags, slug, linkedinUrl, class: className } = Astro.props;
 const locale = (Astro.currentLocale ?? 'pt') as Locale;
 const t = getTranslations(locale);
 
@@ -24,7 +25,7 @@ const formattedDate = date.toLocaleDateString(locale === 'pt' ? 'pt-BR' : 'en-US
 });
 ---
 
-<article class="blog-card">
+<article class:list={['blog-card', className]}>
   <div class="blog-header">
     <time class="blog-date" datetime={date.toISOString()}>{formattedDate}</time>
     <h3 class="blog-title">

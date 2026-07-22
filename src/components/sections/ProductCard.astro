@@ -9,9 +9,10 @@ import type { Locale } from '../../i18n/translations';
 interface Props {
   product: Product;
   featured?: boolean;
+  class?: string;
 }
 
-const { product, featured = false } = Astro.props;
+const { product, featured = false, class: className } = Astro.props;
 const locale = (Astro.currentLocale ?? 'pt') as Locale;
 const t = getTranslations(locale);
 const base = locale === 'en' ? '/en' : '';
@@ -21,7 +22,7 @@ const tagline = tp?.tagline ?? product.tagline;
 const description = tp?.description ?? product.description;
 ---
 
-<article class:list={['product-card', { featured }]}>
+<article class:list={['product-card', className, { featured }]}>
   <div class="card-header">
     <div class="card-header-top">
       {product.logo && (
